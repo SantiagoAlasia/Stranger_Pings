@@ -79,4 +79,5 @@ Son señales representadas por una secuencia de valores definidos únicamente en
 
 ## Referencias
 
----
+Stallings, W. (2004). Comunicaciones y redes de computadoras (7.ª ed.). Pearson Education.
+
