@@ -30,26 +30,31 @@
 
 ## Desarrollo
 
-**1. Resumen breve de fundamentos básicos y escenciales**
+### 1. Resumen breve de fundamentos básicos y escenciales
+
 - Ondas electromagnéticas.
 
-Son perturbaciones que se propagan en el espacio, formadas por campos eléctricos y magnéticos que oscilan de mandera perpendicular entre sí y a la dirección de propagación. No requieren un medio material, por lo que pueden transmitirse incluso en el vacío. Están caracterizadas por su longitud de onda y su frecuencia.
+ Son perturbaciones que se propagan en el espacio, formadas por campos eléctricos y magnéticos que oscilan de mandera perpendicular entre sí y a la dirección de propagación. No requieren un medio material, por lo que pueden transmitirse incluso en el vacío. Están caracterizadas por su longitud de onda y su frecuencia.
+
 - Modulación.
 
 Es el proceso mediante el cual una señal de información (de baja frecuencia) se combina con una señal portadora de alta frecuencia, para su transmisión a través de un medio.
+
 - Demodulación.
 
 Es el proceso inverso a la modulación, se realiza en el receptor para recuperar la señal de información original a partir de la señal modulada recibida.
+
 - Señales de tiempo continuo.
 
 Son aquellas cuya variable independiente, generalmente el tiempo (*t*), puede tomar cualquier valor real dentro de un intervalo, formando un dominio continuo.
+
 - Señales de tiempo discreto.
 
 Son señales representadas por una secuencia de valores definidos únicamente en instantes de tiempo específicos, en lugar de en cada momento posible.
 
 **b)** Considerando que esta onda viaja exactamente a la velocidad de la luz, tenemos:
-- Longitud de onda: *λ* = 60mm = 0,06m
-- Frecuencia: *f = c / λ* = 3x10<sup>8</sup> / 0,06 = 5 GHz
+- Longitud de onda: $ \lambda = 60mm = 0,06m $
+- Frecuencia: $f = \frac{c}{\lambda} = \frac{3.10^8}{0,06} = 5 GHz$
 
 **c)** Esta onda electromagnética, al tener una frecuencia de 5 GHz, opera en la banda SHF (Super High Frequency), ya que la misma abarca el rango de frecuencias de 3 a 30 GHz.
 
@@ -66,10 +71,30 @@ Son señales representadas por una secuencia de valores definidos únicamente en
 
 - iii) En las transmisiones por fibra óptica, la atenuación es mucho menor que en otros medios, y se produce principalmente por absorción y dispersión de la luz dentro de la fibra, requiriendo en enlaces muy extensos el uso de regeneradores ópticos.
 
-1. 
-2. ![Figura1: Codificación ASCII de la letra "a"](img/Figura1-Codificacion%20ASCII.drawio.png) 
-3. ![Figura2: Modulación PSK](/img/Figura2-ModulacionPSK.drawio.png)
-4. 
+### 2. Comunicación de Datos
+**a)** En la figura podemos observar dos señales: una de datos y otra de reloj. Este coneccion corresponde a una comunicación serial síncrona, en la cual la señal de reloj es utilizada por el receptor para muestrear los bits de datos en los instantes correctos, garantizando que la información sea interpretada de manera confiable. 
+
+**b)** 
+
+**c)** En este caso, se desea transmitir el símbolo ‘a’, cuya codificación en ASCII corresponde al byte 01100001. A partir de esta representación binaria, es posible deducir la forma que adoptará la señal durante la transmisión.
+
+![Figura1: Codificación ASCII de la letra "a"](img/Figura1-Codificacion%20ASCII.drawio.png) 
+
+**d)** Para determinar el valor de la señal, se debe realizar la medición en el centro de la celda de cada bit. En el caso de la figura mostrada más abajo, la muestra debería tomarse en el instante de tiempo correspondiente a T4. De esta manera, se garantiza que el valor de la señal en cada celda sea el correcto.
+
+![Figura2: Momento de muestreo de la señal](img/Figura2-MuestreoDeLaSeñal.png)
+
+### 3.
+**a)**
+
+**b)**
+![Figura3: Modulación PSK](img/Figura3-ModulacionPSK.drawio.png)
+
+**c)**
+
+**d)**
+
+### 4.
 
 ---
 
