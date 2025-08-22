@@ -124,7 +124,7 @@ La dirección IP de la laptop definida por DHCP es: 192.168.0.101
 
 Se realizaron pruebas de conectividad entre los dispositivos mediante la herramienta de diagnóstico *ping*. Los resultados confirmaron la comunicación bidireccional entre la PC y la notebook, así como con el router. Esto validó el correcto funcionamiento de la red configurada y la coherencia en la asignación de direcciones IP. 
 
-Pruebas en la PC de escritorio: 
+Pruebas en la PC de escritorio
 <img width="869" height="880" alt="image" src="https://github.com/user-attachments/assets/8369545d-22f9-41c1-99db-d33ac1113276" 
 
 Pruebas en la Laptop 
