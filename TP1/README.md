@@ -101,6 +101,18 @@ Son señales representadas por una secuencia de valores definidos únicamente en
 
 ### 4.
 
+Para este punto lo primero que se hizo fue colocar un router inalambrico desde la categoría **Wireless Devices** en el area de trabajo del Packet Tracer, que servirá como el nodo central de la red. 
+Luego, se configuró el Router según los datos establecidos en la consigna: 
+
+- IP address: 192.168.0.1
+- Subnet Mask: 255.255.255.0
+- SSID: StrangerPings
+- Authentication: WPA2-PSK
+- Password: strangerpings
+
+<img width="1030" height="619" alt="image" src="https://github.com/user-attachments/assets/13a47d70-0b3b-4fcf-ba8a-efb5fbcdacbe" />
+
+
 ---
 
 ## Discusión Y Conclusiones
