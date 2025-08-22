@@ -23,9 +23,14 @@
 
 ## Resumen
 
+En la primera parte del trabajo se analizaron los conceptos básicos de las ondas electromagnéticas, determinando frecuencia, longitud de onda y su ubicación en el espectro, jjunto con la identificación de dispositivos que operan en dicha banda. Se evaluaron fenómenos asociados a la propagación de señales y su influencia en distintas tecnologías de comunicación, así como el funcionamiento de señales digitales en esquemas de transmisión simples. Estos análisis permitieron comprender las limitaciones de transmitir señales escalonadas de manera inalambrica y sentaron las bases para el estudio de tecnicas de modulación y la implementación práctica en Packet Tracer. 
+
+
 ---
 
 ## Introducción
+
+El presente trabajo de laboratorio tiene como objetivo repasar los fundamentos escenciales de las Comunicaciones Digitales, incluyendo ondas electromagneticas, señales en tiempo continuo y discreto, y conceptos de modulación y demodulación. Además se utilizó la herramienta Packet Tracer para comprender el diseño y análisis de redes de comunicación 
 
 
 ## Desarrollo
