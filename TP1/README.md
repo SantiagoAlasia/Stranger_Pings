@@ -16,7 +16,7 @@
 ### Información de los autores
  
 - **Información de contacto**: santiago.alasia@mi.unc.edu.ar 
-- **Información de contacto**: 
+- **Información de contacto**: lucia.feiguin@mi.unc.edu.ar
 - **Información de contacto**: elena.monutti@mi.unc.edu.ar
 
 ---
@@ -111,6 +111,16 @@ Luego, se configuró el Router según los datos establecidos en la consigna:
 - Password: strangerpings
 
 <img width="1030" height="619" alt="image" src="https://github.com/user-attachments/assets/13a47d70-0b3b-4fcf-ba8a-efb5fbcdacbe" />
+
+Como podemos ver en la imagen, el router inalámbrico opera en la frecuencia de 2.437 GHz, correspondiente al canal 6 en la banda de 2.4 GHz. Esta frecuencia se encuentra dentro de la región de microondas del espectro electromagnético y pertenece a la banda ISM (Industrial, Scientific and Medical), de uso no licenciado a nivel mundial. Esta banda la usan tecnologías como WiFi, Bluetooth y algunos dispositivos de uso cotidiano, lo que explica la posibilidad de interferencias entre equipos que comparten el mismo rango. 
+
+Luego, se agregó una PC de escritorio y se conectó al router mediante un cable de cobre recto. La configuración de red se realizó en modo DHCP, permitiendo que la PC obtuviera automáticamente una dirección de IP válida dentro de la red. 
+
+Se incorporó una notebook y se le instaló una tarjeta de red inalámbrica. Posteriormente, se conectó a la red WiFi configurada en el router ingresando la clave WPA2 definida previamente. 
+
+<img width="577" height="425" alt="image" src="https://github.com/user-attachments/assets/e2d760fd-b621-4892-b078-d295e4a25cde" />
+<img width="524" height="403" alt="image" src="https://github.com/user-attachments/assets/e2e9671d-cd97-4fa5-ac3a-2f4c583680e6" />
+
 
 
 ---
