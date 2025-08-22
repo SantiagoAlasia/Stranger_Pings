@@ -114,13 +114,25 @@ Luego, se configuró el Router según los datos establecidos en la consigna:
 
 Como podemos ver en la imagen, el router inalámbrico opera en la frecuencia de 2.437 GHz, correspondiente al canal 6 en la banda de 2.4 GHz. Esta frecuencia se encuentra dentro de la región de microondas del espectro electromagnético y pertenece a la banda ISM (Industrial, Scientific and Medical), de uso no licenciado a nivel mundial. Esta banda la usan tecnologías como WiFi, Bluetooth y algunos dispositivos de uso cotidiano, lo que explica la posibilidad de interferencias entre equipos que comparten el mismo rango. 
 
-Luego, se agregó una PC de escritorio y se conectó al router mediante un cable de cobre recto. La configuración de red se realizó en modo DHCP, permitiendo que la PC obtuviera automáticamente una dirección de IP válida dentro de la red. 
+Luego, se agregó una PC de escritorio y se conectó al router mediante un cable de cobre recto. La configuración de red se realizó en modo DHCP, permitiendo que la PC obtuviera automáticamente una dirección de IP válida dentro de la red. En este caso, dicha dirección es: 192.168.0.100
 
-Se incorporó una notebook y se le instaló una tarjeta de red inalámbrica. Posteriormente, se conectó a la red WiFi configurada en el router ingresando la clave WPA2 definida previamente. 
+Se incorporó una notebook y se le instaló una tarjeta de red inalámbrica. Posteriormente, se conectó a la red WiFi configurada en el router ingresando la clave WPA2 definida previamente.
+La dirección IP de la laptop definida por DHCP es: 192.168.0.101
 
 <img width="577" height="425" alt="image" src="https://github.com/user-attachments/assets/e2d760fd-b621-4892-b078-d295e4a25cde" />
 <img width="524" height="403" alt="image" src="https://github.com/user-attachments/assets/e2e9671d-cd97-4fa5-ac3a-2f4c583680e6" />
 
+Se realizaron pruebas de conectividad entre los dispositivos mediante la herramienta de diagnóstico *ping*. Los resultados confirmaron la comunicación bidireccional entre la PC y la notebook, así como con el router. Esto validó el correcto funcionamiento de la red configurada y la coherencia en la asignación de direcciones IP. 
+
+Pruebas en la PC de escritorio: 
+<img width="869" height="880" alt="image" src="https://github.com/user-attachments/assets/8369545d-22f9-41c1-99db-d33ac1113276" 
+
+Pruebas en la Laptop 
+<img width="869" height="887" alt="image" src="https://github.com/user-attachments/assets/dd9d762a-2e4d-4e23-84da-3023eb80e279" />
+
+Por último, en la vista física se analizó la cobertura de la señal Wifi. Cuando la notebook se encontraba en la zona violeta (area de propacación), la comunicación se mantuvo estable. Al mover el dispositivo fuera de la cobertura, el enlace se perdió y no fue posible establecer conexión, lo que permitió obsevar el alcance y limitaciones de la señal inalámbrica
+
+<img width="663" height="492" alt="image" src="https://github.com/user-attachments/assets/cae3b883-9657-4841-9e7a-03ebc69edfa9" />
 
 
 ---
