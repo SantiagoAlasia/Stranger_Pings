@@ -23,14 +23,14 @@
 
 ## Resumen
 
-En la primera parte del trabajo se analizaron los conceptos básicos de las ondas electromagnéticas, determinando frecuencia, longitud de onda y su ubicación en el espectro, jjunto con la identificación de dispositivos que operan en dicha banda. Se evaluaron fenómenos asociados a la propagación de señales y su influencia en distintas tecnologías de comunicación, así como el funcionamiento de señales digitales en esquemas de transmisión simples. Estos análisis permitieron comprender las limitaciones de transmitir señales escalonadas de manera inalambrica y sentaron las bases para el estudio de tecnicas de modulación y la implementación práctica en Packet Tracer. 
+En la primera parte del trabajo se analizaron los conceptos básicos de las ondas electromagnéticas, determinando frecuencia, longitud de onda y su ubicación en el espectro, junto con la identificación de dispositivos que operan en dicha banda. Se evaluaron fenómenos asociados a la propagación de señales y su influencia en distintas tecnologías de comunicación, así como el funcionamiento de señales digitales en esquemas de transmisión simples. Estos análisis permitieron comprender las limitaciones de transmitir señales escalonadas de manera inalambrica y sentaron las bases para el estudio de tecnicas de modulación y la implementación práctica en Packet Tracer. 
 
 
 ---
 
 ## Introducción
 
-El presente trabajo de laboratorio tiene como objetivo repasar los fundamentos escenciales de las Comunicaciones Digitales, incluyendo ondas electromagneticas, señales en tiempo continuo y discreto, y conceptos de modulación y demodulación. Además se utilizó la herramienta Packet Tracer para comprender el diseño y análisis de redes de comunicación 
+El presente trabajo de laboratorio tiene como objetivo repasar los fundamentos escenciales de las Comunicaciones Digitales, incluyendo ondas electromagneticas, señales en tiempo continuo y discreto, y conceptos de modulación y demodulación. Además se utilizó la herramienta Packet Tracer para comprender el diseño y análisis de redes de comunicación.
 
 
 ## Desarrollo
@@ -77,23 +77,44 @@ Son señales representadas por una secuencia de valores definidos únicamente en
 - iii) En las transmisiones por fibra óptica, la atenuación es mucho menor que en otros medios, y se produce principalmente por absorción y dispersión de la luz dentro de la fibra, requiriendo en enlaces muy extensos el uso de regeneradores ópticos.
 
 ### 2. Comunicación de Datos
-**a)** En la figura podemos observar dos señales: una de datos y otra de reloj. Este coneccion corresponde a una comunicación serial síncrona, en la cual la señal de reloj es utilizada por el receptor para muestrear los bits de datos en los instantes correctos, garantizando que la información sea interpretada de manera confiable. 
+**a)** En la figura podemos observar dos señales: una de datos y otra de reloj. Este coneccion corresponde a una comunicación serial síncrona, en la cual la señal de reloj es utilizada por el receptor para muestrear los bits de datos en los instantes correctos, garantizando que la información sea interpretada de manera confiable. Además, vemos una sola línea de datos que va desde un módulo al otro, es decir, se trata de una comunicaion simplex.
 
-**b)** 
+**b)** Una de las principales ventajas de la comunicación síncrona es su alta velocidad, ya que no requiere el envío de bits adicionales para sincronizar los equipos. Pero al tratarse de una comunicación en modo simplex, no es la mejor opcion para una transmisión bidireccional. En este caso, lo mejor sería implementar un esquema half-duplex o un sistema full-duplex.
 
 **c)** En este caso, se desea transmitir el símbolo ‘a’, cuya codificación en ASCII corresponde al byte 01100001. A partir de esta representación binaria, es posible deducir la forma que adoptará la señal durante la transmisión.
 
-![Figura1: Codificación ASCII de la letra "a"](img/Figura1-Codificacion%20ASCII.drawio.png) 
+</br></br>
+<p align="center">
+  <img src="img/CodificacionASCII.drawio.png" alt="Codificación ASCII del carácter 'a'" />
+</p>
+<div style="text-align: center;">
+    <em>Figura 1: Codificación ASCII del carácter 'a'.</em>
+</div>
+</br></br>
 
 **d)** Para determinar el valor de la señal, se debe realizar la medición en el centro de la celda de cada bit. En el caso de la figura mostrada más abajo, la muestra debería tomarse en el instante de tiempo correspondiente a T4. De esta manera, se garantiza que el valor de la señal en cada celda sea el correcto.
 
-![Figura2: Momento de muestreo de la señal](img/Figura2-MuestreoDeLaSeñal.png)
+</br></br>
+<p align="center">
+  <img src="img/MuestreoDeLaSeñal.png" alt="Momento de muestreo de la señal" />
+</p>
+<div style="text-align: center;">
+    <em>Figura 2: Momento de muestreo de la señal.</em>
+</div>
+</br></br>
 
 ### 3.
 **a)**
 
 **b)**
-![Figura3: Modulación PSK](img/Figura3-ModulacionPSK.drawio.png)
+</br></br>
+<p align="center">
+  <img src="img/ModulacionPSK.drawio.png" alt="Modulación PSK" />
+</p>
+<div style="text-align: center;">
+    <em>Figura 3: Modulación PSK.</em>
+</div>
+</br></br>
 
 **c)**
 
@@ -110,7 +131,14 @@ Luego, se configuró el Router según los datos establecidos en la consigna:
 - Authentication: WPA2-PSK
 - Password: strangerpings
 
-<img width="1030" height="619" alt="image" src="https://github.com/user-attachments/assets/13a47d70-0b3b-4fcf-ba8a-efb5fbcdacbe" />
+</br></br>
+<p align="center">
+  <img src="img/ConfiguracionWiFi.png" alt="Panel de Configuración de la red Wireless" />
+</p>
+<div style="text-align: center;">
+    <em>Figura 4: Panel de Configuración de la red Wireless.</em>
+</div>
+</br></br>
 
 Como podemos ver en la imagen, el router inalámbrico opera en la frecuencia de 2.437 GHz, correspondiente al canal 6 en la banda de 2.4 GHz. Esta frecuencia se encuentra dentro de la región de microondas del espectro electromagnético y pertenece a la banda ISM (Industrial, Scientific and Medical), de uso no licenciado a nivel mundial. Esta banda la usan tecnologías como WiFi, Bluetooth y algunos dispositivos de uso cotidiano, lo que explica la posibilidad de interferencias entre equipos que comparten el mismo rango. 
 
@@ -119,23 +147,58 @@ Luego, se agregó una PC de escritorio y se conectó al router mediante un cable
 Se incorporó una notebook y se le instaló una tarjeta de red inalámbrica. Posteriormente, se conectó a la red WiFi configurada en el router ingresando la clave WPA2 definida previamente.
 La dirección IP de la laptop definida por DHCP es: 192.168.0.101
 
-<img width="577" height="425" alt="image" src="https://github.com/user-attachments/assets/e2d760fd-b621-4892-b078-d295e4a25cde" />
-<img width="524" height="403" alt="image" src="https://github.com/user-attachments/assets/e2e9671d-cd97-4fa5-ac3a-2f4c583680e6" />
+</br></br>
+<p align="center">
+  <img src="img/PaginaConnect.png" alt="Panel de coneccion a la red Wireless" />
+</p>
+<div style="text-align: center;">
+    <em>Figura 5: Panel de coneccion a la red Wireless.</em>
+</div>
+</br></br>
+
+</br></br>
+<p align="center">
+  <img src="img/PaginaLogin.png" alt="Panel de Login de la red Wireless" />
+</p>
+<div style="text-align: center;">
+    <em>Figura 6: Panel de Login de la red Wireless.</em>
+</div>
+</br></br>
 
 Se realizaron pruebas de conectividad entre los dispositivos mediante la herramienta de diagnóstico *ping*. Los resultados confirmaron la comunicación bidireccional entre la PC y la notebook, así como con el router. Esto validó el correcto funcionamiento de la red configurada y la coherencia en la asignación de direcciones IP. 
 
 Pruebas en la PC de escritorio
 
-<img width="869" height="880" alt="image" src="https://github.com/user-attachments/assets/48788a47-89b8-4e11-8cc4-a49ea8f2b783" />
-
+</br></br>
+<p align="center">
+  <img src="img/PC0Ping.png" alt="Pruebas de coneccion en la PC" />
+</p>
+<div style="text-align: center;">
+    <em>Figura 7: Pruebas de coneccion en la PC.</em>
+</div>
+</br></br>
 
 Pruebas en la Laptop 
-<img width="869" height="887" alt="image" src="https://github.com/user-attachments/assets/dd9d762a-2e4d-4e23-84da-3023eb80e279" />
+
+</br></br>
+<p align="center">
+  <img src="img/Laptop0ping.png" alt="Pruebas de coneccion en la Laptop" />
+</p>
+<div style="text-align: center;">
+    <em>Figura 8: Pruebas de coneccion en la Laptop.</em>
+</div>
+</br></br>
 
 Por último, en la vista física se analizó la cobertura de la señal Wifi. Cuando la notebook se encontraba en la zona violeta (area de propacación), la comunicación se mantuvo estable. Al mover el dispositivo fuera de la cobertura, el enlace se perdió y no fue posible establecer conexión, lo que permitió obsevar el alcance y limitaciones de la señal inalámbrica
 
-<img width="663" height="492" alt="image" src="https://github.com/user-attachments/assets/cae3b883-9657-4841-9e7a-03ebc69edfa9" />
-
+</br></br>
+<p align="center">
+  <img src="img/AreaWiFi.png" alt="Area de Alcance de la red Wireless" />
+</p>
+<div style="text-align: center;">
+    <em>Figura 9: Área de Alcance de la red Wireless.</em>
+</div>
+</br></br>
 
 ---
 
