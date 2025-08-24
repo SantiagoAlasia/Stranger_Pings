@@ -32,6 +32,7 @@ En la primera parte del trabajo se analizaron los conceptos básicos de las onda
 
 El presente trabajo de laboratorio tiene como objetivo repasar los fundamentos escenciales de las Comunicaciones Digitales, incluyendo ondas electromagneticas, señales en tiempo continuo y discreto, y conceptos de modulación y demodulación. Además se utilizó la herramienta Packet Tracer para comprender el diseño y análisis de redes de comunicación.
 
+---
 
 ## Desarrollo
 
