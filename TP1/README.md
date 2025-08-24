@@ -57,8 +57,8 @@ Son aquellas cuya variable independiente, generalmente el tiempo (*t*), puede to
 
 Son señales representadas por una secuencia de valores definidos únicamente en instantes de tiempo específicos, en lugar de en cada momento posible.
 
-**b)** Considerando que esta onda viaja exactamente a la velocidad de la luz, tenemos:
-- Longitud de onda: $ \lambda = 60mm = 0,06m $
+**b)** Considerando que esta onda viaja exactamente a la velocidad de la luz, se tiene:
+- Longitud de onda: $\lambda = 60mm = 0,06m$
 - Frecuencia: $f = \frac{c}{\lambda} = \frac{3.10^8}{0,06} = 5 GHz$
 
 **c)** Esta onda electromagnética, al tener una frecuencia de 5 GHz, opera en la banda SHF (Super High Frequency), ya que la misma abarca el rango de frecuencias de 3 a 30 GHz.
@@ -77,7 +77,7 @@ Son señales representadas por una secuencia de valores definidos únicamente en
 - iii) En las transmisiones por fibra óptica, la atenuación es mucho menor que en otros medios, y se produce principalmente por absorción y dispersión de la luz dentro de la fibra, requiriendo en enlaces muy extensos el uso de regeneradores ópticos.
 
 ### 2. Comunicación de Datos
-**a)** En la figura podemos observar dos señales: una de datos y otra de reloj. Este coneccion corresponde a una comunicación serial síncrona, en la cual la señal de reloj es utilizada por el receptor para muestrear los bits de datos en los instantes correctos, garantizando que la información sea interpretada de manera confiable. Además, vemos una sola línea de datos que va desde un módulo al otro, es decir, se trata de una comunicaion simplex.
+**a)** En la figura se pueden observar dos señales: una de datos y otra de reloj. Esta conexión corresponde a una comunicación serial síncrona, en la cual la señal de reloj es utilizada por el receptor para muestrear los bits de datos en los instantes correctos, garantizando que la información sea interpretada de manera confiable. Además, se ve una sola línea de datos que va desde un módulo al otro, es decir, se trata de una comunicación simplex.
 
 **b)** Una de las principales ventajas de la comunicación síncrona es su alta velocidad, ya que no requiere el envío de bits adicionales para sincronizar los equipos. Pero al tratarse de una comunicación en modo simplex, no es la mejor opcion para una transmisión bidireccional. En este caso, lo mejor sería implementar un esquema half-duplex o un sistema full-duplex.
 
@@ -103,8 +103,8 @@ Son señales representadas por una secuencia de valores definidos únicamente en
 </div>
 </br></br>
 
-### 3.
-**a)**
+### 3. Técnicas de modulación
+**a)** En la imagen se está representando una modulación PSK (Phase Shift Keying). Esto significa que lo que cambia es la fase de la portadora, cuando hay un cambio de bit 0 a bit 1, se puede notar un cambio en la fase de la portadora. 
 
 **b)**
 </br></br>
@@ -116,9 +116,11 @@ Son señales representadas por una secuencia de valores definidos únicamente en
 </div>
 </br></br>
 
-**c)**
+**c)** Las otras técnicas de modulación basadas en los mismos principios que existen son ASK (Amplitude Shift Keying) y FSK (Frequency Shift Keying). ASK es una modulación por desplazamiento de amplitud, la amplitud de la portadora cambia según el bit transmitido. Por otro lado, FSK es modulación por desplazamiento de frecuencia, lo que cambia según el bit transmitido es la frecuencia de la portadora.
 
-**d)**
+**d)** El Bit Error Rate (BER) o tasa de error de bit es la proporción de bits recibidos con error respecto al total de bits transmitidos. Podría decirse que es una medida de la calidad de un sistema de comunicación digital.
+
+Con respecto a las técnicas de modulación presentadas anteriormente, es la modulación PSK la que tiene mejores prestaciones. La información se transmite en la fase, que es más difícil de alteral por el ruido que la amplitud (ASK) o la frecuencia (FSK).
 
 ### 4.
 
@@ -140,7 +142,7 @@ Luego, se configuró el Router según los datos establecidos en la consigna:
 </div>
 </br></br>
 
-Como podemos ver en la imagen, el router inalámbrico opera en la frecuencia de 2.437 GHz, correspondiente al canal 6 en la banda de 2.4 GHz. Esta frecuencia se encuentra dentro de la región de microondas del espectro electromagnético y pertenece a la banda ISM (Industrial, Scientific and Medical), de uso no licenciado a nivel mundial. Esta banda la usan tecnologías como WiFi, Bluetooth y algunos dispositivos de uso cotidiano, lo que explica la posibilidad de interferencias entre equipos que comparten el mismo rango. 
+Como se puede ver en la imagen, el router inalámbrico opera en la frecuencia de 2.437 GHz, correspondiente al canal 6 en la banda de 2.4 GHz. Esta frecuencia se encuentra dentro de la región de microondas del espectro electromagnético y pertenece a la banda ISM (Industrial, Scientific and Medical), de uso no licenciado a nivel mundial. Esta banda la usan tecnologías como WiFi, Bluetooth y algunos dispositivos de uso cotidiano, lo que explica la posibilidad de interferencias entre equipos que comparten el mismo rango. 
 
 Luego, se agregó una PC de escritorio y se conectó al router mediante un cable de cobre recto. La configuración de red se realizó en modo DHCP, permitiendo que la PC obtuviera automáticamente una dirección de IP válida dentro de la red. En este caso, dicha dirección es: 192.168.0.100
 
@@ -203,6 +205,10 @@ Por último, en la vista física se analizó la cobertura de la señal Wifi. Cua
 ---
 
 ## Discusión Y Conclusiones
+
+A lo largo de este trabajo práctico de laboratoriose repasaron los fundamentos de las comunicaciones digitales. Se analizó cómo distintas técnicas de modulación afectan el desempeño de un sistema. Además, mediante una implementación en Packet Tracer fue posible comprender de manera práctica el diseño y la configuración de una red inalámbrica, verificando su funcionamiento con pruebas de conectividad y observando en la simulación cómo la cobertura y la propagación limitan la comunicación.
+
+Se puede afirmar que este trabajo permitió integrar conceptos teóricos con la práctica, logrando una visión más clara sobre cómo se transmiten las señales en sistemas reales, sus limitaciones y las decisiones técnicas necesarias para garantizar una comunicación confiable.
 
 ---
 
