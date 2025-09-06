@@ -37,16 +37,18 @@ Esta diferencia de frecuencias puede ser calculada como:
 
 $$\Delta f = \frac{\Delta v}{v} * f_0$$
 
-**b)** Como $\Delta f$ es proporcional a la frecuencia de la señal transmitida, las transmisiones con las frecuencias mas altas serán las mas afectadas. Por ejemplo: Las bandas EHF, SHF, UHF.
-
-De la misma manera podemos concluir que las bandas de transmisión resilientes serán las de frecuencia mas baja. Por ejemplo: Las bandas ELF, SLF, ULF, etc.
+**b)** El efecto Doppler afecta más a las transmisiones que implican un movimiento relativo significativo entre el transmisor y el receptor, como en la comunicación satélital o con vehículos aéreos. 
 
 **c)** Los celulares no se pueden encender en los aviones ya que estos pueden generar interferencia con los sistemas de comunicación del avión.
 
 ### 2.
 **a)** En la figura podemos ver como se intrduce ruido/interferencia electromagnetica en la señal debido a una herramienta electrica. Este fenomeno fisico ocaciona perturbaciones en la señal lo que complica la desmodulacion de la misma.
 
-**b)** 
+**b)** La transmisión mas afectada por el *ruido o interferencia electromagnética (EMI)* es la transmisión analógica. Como las señales analógicas son continuas, cualquier variación en el valor de la señal, puede interpretarse como parte de la señal.
+
+En cambio,  la transmisión digital es significativamente más resilientes al ruido. Como la información se transmite en valores discretos, aunque el ruido puede alterar la señal, los receptores digitales están diseñados para distinguir entre los dos estados.
+
+El tipo de transmisión que es inmune al ruido e interferencia electromagnética es la fibra óptica. Al transmitir la información con pulsos de luz, esta no se ve afectada por este fenómeno electromagnético. 
 
 **c)** *Signal to Noise Ratio (SNR)* es una medida que nos permite comparar la potencia de la señal con la potencia del ruido presente en el canal. Se suele medir en decibelio $[dB]$ y se puede calcular como:
 
