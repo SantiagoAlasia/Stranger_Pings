@@ -63,7 +63,20 @@ $$SNR[dB] = 10 * \log {(\frac{P_{señal}}{P_{ruido}})}$$
 Como ya se reviso en el TP01, el *Bit Error Rato (BER)* nos indica la probabilidad de que el bit recibido sea distinto del transmitido. En un canal con bajo nivel de SNR (la potencia del ruido es mayor a la potencia de la señal), se espera un valor alto de BER ya que el efecto del ruido electromagnético en el canal es mayor al de la señal.
 
 ### 3. 
-**a)**
+**a)** **Ethernet** Es una tecnologìa de capas de enlace de datos (capa 2 del modelo OSI), usada en redes LAN. Su mision es encapsular los datos de protocolos superiores (IP, ARP, IPv6, etc.) en tramas Ethernet y entregarlos de un dispositivo a otro dentro de la misma red local. 
+Define:
+- Direccionamiento físico (MAC): 48 bits, AA:BB:CC:DD:EE:FF
+- Formato de trama
+- Velocidades
+- Medio Físico: cable, fira optica, etc. 
+La estructura de la trama típica es aquella dada por Ethernet II: 
+|Destino MAC (6B) | Origen MAC (6B) | EtherType (2B) | Payload (46-1500B) | FCS (4B) |
+  1. Destino MAC: a que equipo va dirigido el frame
+  2. Origen MAC: identifica quien envía
+  3. EtherType: qué protocolo está transportando
+  4. Payload: datos reales
+  5. FCS: campo de control de errores
+**DIFERENCIAS ENTRE ETHERNET/ FAST ETHERNET/ GIGABIT ETHERNET 
 **b)**
 **c)**
 **d)**
