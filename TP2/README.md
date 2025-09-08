@@ -68,15 +68,31 @@ Define:
 - Direccionamiento físico (MAC): 48 bits, AA:BB:CC:DD:EE:FF
 - Formato de trama
 - Velocidades
-- Medio Físico: cable, fira optica, etc. 
-La estructura de la trama típica es aquella dada por Ethernet II: 
+- Medio Físico: cable, fira optica, etc.
+- 
+La estructura de la trama típica es aquella dada por Ethernet II:
+
 |Destino MAC (6B) | Origen MAC (6B) | EtherType (2B) | Payload (46-1500B) | FCS (4B) |
   1. Destino MAC: a que equipo va dirigido el frame
   2. Origen MAC: identifica quien envía
   3. EtherType: qué protocolo está transportando
   4. Payload: datos reales
   5. FCS: campo de control de errores
-**DIFERENCIAS ENTRE ETHERNET/ FAST ETHERNET/ GIGABIT ETHERNET 
+
+**DIFERENCIAS ENTRE ETHERNET/ FAST ETHERNET/ GIGABIT ETHERNET** 
+
+**VERSIÓN**          |     **VELOCIDAD**     |  **MEDIO TÍPICO**  
+
+ETHERNET                     10 Mbps                UTP Cat3/5       
+
+FAST ETHERNET                100 Mbps               UTP Cat5/5e        
+ 
+GIGABIT ETHERNET             1 Gbps                 UTP Cat5e/6
+
+<img width="1491" height="201" alt="image" src="https://github.com/user-attachments/assets/7c8b9f46-1420-4470-bc1b-7c4cebd9d5cb" />
+
+En Esta figura observamos la sección 'Ethernet II' de un paquete ICMP capturado en Wireshark. El campo Destination corresponde a la MAC del router, mientras que el campo Source corresponde a la MAC de la interfaz local. El Ether type indica 0x0800, lo que señala que la carga es un paquete IPv4.
+
 **b)**
 **c)**
 **d)**
