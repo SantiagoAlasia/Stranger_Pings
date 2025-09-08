@@ -23,9 +23,13 @@
 
 ## Resumen
 
+En la primera parte del trabajo se analizaron los fenómenos físicos asociados a la transmisión de señales (como el efecto Doppler, el ruido y la interferencia electromagnética) y su impacto sobre distintos tipos de transmisión de datos. Asimismo, se estudió el concepto de SNR y se lo relacionó con el concepto previamente abordado de BER. Finalmente, se llevaron a cabo análisis vinculados con la capa de enlace de datos.
+
 ---
 
 ## Introducción
+
+El presente trabajo de laboratorio tiene como objetivos terminar de repasar conceptos fundamentales inherentes a la capa física, y entender los conceptos relacionados con la capa de enlace de datos. Asimismo, se empleó la herramienta Wireshark para capturar tráfico de paquetes y observar de manera práctica la aplicación de los conceptos estudiados a lo largo del trabajo.
 
 ---
 
