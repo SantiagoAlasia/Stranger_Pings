@@ -126,9 +126,5 @@ El uso de una VPN no oculta dirección MAC en la LAN, ya que las tramas Ethernet
 
 ## Discusión Y Conclusione
 
-El trabajo permitió entender los fundamentos de las redes, las interferencias en el medio físico y la función del Ethernet. Con Wireshark se analizaron tramas, direcciones MAC y fabricantes, comprobando como la comunicación difiere en una LAN y en Internet. Finalmente, se reflexionó sobre la trazabilidad de la MAC, su similitud con el IMEI y el rol de la VPN en la proteccion de la privacidad. 
+El trabajo permitió comprender los fundamentos de las redes y los efectos de interferencias en la transmisión de datos. Se analizaron tramas Ethernet, direcciones MAC y dispositivos mediante Wireshark, comprobando las diferencias entre la comunicación en una LAN y en Internet. Además, se reflexionó sobre la trazabilidad de identificadores únicos como MAC e IMEI y el papel de la VPN en la protección de la privacidad. En conjunto, la práctica consolidó los conceptos teóricos de las capas física y de enlace, y mostró su aplicación en entornos reales de redes.
 
----
-
-## Referencias
-{}
