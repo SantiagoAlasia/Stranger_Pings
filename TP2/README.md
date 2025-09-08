@@ -23,7 +23,7 @@
 
 ## Resumen
 
-En la primera parte del trabajo se analizaron los fenómenos físicos asociados a la transmisión de señales (como el efecto Doppler, el ruido y la interferencia electromagnética) y su impacto sobre distintos tipos de transmisión de datos. Asimismo, se estudió el concepto de SNR y se lo relacionó con el concepto previamente abordado de BER. Finalmente, se llevaron a cabo análisis vinculados con la capa de enlace de datos.
+En este trabajo se analizaron los fenómenos físicos que afectan la transmisión de señales, como el efecto Doppler, el ruido y la interferencia electromagnética, y su impacto sobre distintos tipos de transmisión de datos. Se estudió la relación entre la relación señal-ruido (SNR) y la tasa de error de bits (BER), y se abordaron aspectos de la capa de enlace de datos, con énfasis en Ethernet, direcciones MAC y cables UTP. Además, se utilizó Wireshark para capturar y analizar tráfico de red, y se reflexionó sobre la trazabilidad de identificadores únicos de dispositivos y la protección de la privacidad mediante VPN.
 
 ---
 
@@ -127,6 +127,7 @@ El uso de una VPN no oculta dirección MAC en la LAN, ya que las tramas Ethernet
 ## Discusión Y Conclusione
 
 El trabajo permitió entender los fundamentos de las redes, las interferencias en el medio físico y la función del Ethernet. Con Wireshark se analizaron tramas, direcciones MAC y fabricantes, comprobando como la comunicación difiere en una LAN y en Internet. Finalmente, se reflexionó sobre la trazabilidad de la MAC, su similitud con el IMEI y el rol de la VPN en la proteccion de la privacidad. 
+
 ---
 
 ## Referencias
