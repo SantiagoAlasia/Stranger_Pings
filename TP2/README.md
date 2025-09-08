@@ -41,35 +41,35 @@ Esta diferencia de frecuencias puede ser calculada como:
 
 $$\Delta f = \frac{\Delta v}{v} * f_0$$
 
-**b)** El efecto Doppler afecta más a las transmisiones que implican un movimiento relativo significativo entre el transmisor y el receptor, como en la comunicación satélital o con vehículos aéreos. 
+**b)** El efecto Doppler afecta más a las transmisiones que implican un movimiento relativo significativo entre el transmisor y el receptor, como en la comunicación satelital o con vehículos aéreos. 
 
 **c)** Los celulares no se pueden encender en los aviones ya que estos pueden generar interferencia con los sistemas de comunicación del avión.
 
 ### 2.
-**a)** En la figura podemos ver como se intrduce ruido/interferencia electromagnetica en la señal debido a una herramienta electrica. Este fenomeno fisico ocaciona perturbaciones en la señal lo que complica la desmodulacion de la misma.
+**a)** En la figura podemos ver como se introduce ruido/interferencia electromagnetica en la señal debido a una herramienta eléctrica. Este fenómeno fisico ocaciona perturbaciones en la señal lo que complica la desmodulación de la misma.
 
-**b)** La transmisión mas afectada por el *ruido o interferencia electromagnética (EMI)* es la transmisión analógica. Como las señales analógicas son continuas, cualquier variación en el valor de la señal, puede interpretarse como parte de la señal.
+**b)** La transmisión mas afectada por el *ruido o interferencia electromagnética (EMI)* es la transmisión analógica. Como las señales analógicas son continuas, cualquier variación en el valor de la señal puede interpretarse como parte de la señal.
 
-En cambio,  la transmisión digital es significativamente más resilientes al ruido. Como la información se transmite en valores discretos, aunque el ruido puede alterar la señal, los receptores digitales están diseñados para distinguir entre los dos estados.
+En cambio,  la transmisión digital es significativamente más resiliente al ruido. Como la información se transmite en valores discretos, aunque el ruido puede alterar la señal, los receptores digitales están diseñados para distinguir entre los dos estados.
 
 El tipo de transmisión que es inmune al ruido e interferencia electromagnética es la fibra óptica. Al transmitir la información con pulsos de luz, esta no se ve afectada por este fenómeno electromagnético. 
 
-**c)** *Signal to Noise Ratio (SNR)* es una medida que nos permite comparar la potencia de la señal con la potencia del ruido presente en el canal. Se suele medir en decibelio $[dB]$ y se puede calcular como:
+**c)** *Signal to Noise Ratio (SNR)* es una medida que nos permite comparar la potencia de la señal con la potencia del ruido presente en el canal. Se suele medir en decibelios $[dB]$ y se puede calcular como:
 
 $$SNR[dB] = 10 * \log {(\frac{P_{señal}}{P_{ruido}})}$$
 
-> Nota: Mientras mas alto el valor de $SNR$, la señal llegara con mejor calidad.
+> Nota: Mientras más alto el valor de $SNR$, la señal llegará con mejor calidad.
 
-Como ya se reviso en el TP01, el *Bit Error Rato (BER)* nos indica la probabilidad de que el bit recibido sea distinto del transmitido. En un canal con bajo nivel de SNR (la potencia del ruido es mayor a la potencia de la señal), se espera un valor alto de BER ya que el efecto del ruido electromagnético en el canal es mayor al de la señal.
+Como ya se revisó en el TP01, el *Bit Error Rato (BER)* nos indica la probabilidad de que el bit recibido sea distinto del transmitido. En un canal con bajo nivel de SNR (la potencia del ruido es mayor a la potencia de la señal), se espera un valor alto de BER ya que el efecto del ruido electromagnético en el canal es mayor al de la señal.
 
 ### 3. 
-**a)** **Ethernet** Es una tecnologìa de capas de enlace de datos (capa 2 del modelo OSI), usada en redes LAN. Su mision es encapsular los datos de protocolos superiores (IP, ARP, IPv6, etc.) en tramas Ethernet y entregarlos de un dispositivo a otro dentro de la misma red local. 
+**a)** **Ethernet** Es una tecnologìa de capas de enlace de datos (capa 2 del modelo OSI), usada en redes LAN. Su misión es encapsular los datos de protocolos superiores (IP, ARP, IPv6, etc.) en tramas Ethernet y entregarlos de un dispositivo a otro dentro de la misma red local. 
 Define:
 - Direccionamiento físico (MAC): 48 bits, AA:BB:CC:DD:EE:FF
 - Formato de trama
 - Velocidades
 - Medio Físico: cable, fira optica, etc.
-- 
+
 La estructura de la trama típica es aquella dada por Ethernet II:
 
 |Destino MAC (6B) | Origen MAC (6B) | EtherType (2B) | Payload (46-1500B) | FCS (4B) |
@@ -83,15 +83,15 @@ La estructura de la trama típica es aquella dada por Ethernet II:
 
 **VERSIÓN**          |     **VELOCIDAD**     |  **MEDIO TÍPICO**  
 
-ETHERNET                     10 Mbps                UTP Cat3/5       
+ETHERNET         |            10 Mbps         |       UTP Cat3/5       
 
-FAST ETHERNET                100 Mbps               UTP Cat5/5e        
+FAST ETHERNET       |         100 Mbps        |       UTP Cat5/5e        
  
-GIGABIT ETHERNET             1 Gbps                 UTP Cat5e/6
+GIGABIT ETHERNET      |       1 Gbps          |       UTP Cat5e/6
 
 <img width="1491" height="201" alt="image" src="https://github.com/user-attachments/assets/7c8b9f46-1420-4470-bc1b-7c4cebd9d5cb" />
 
-En Esta figura observamos la sección 'Ethernet II' de un paquete ICMP capturado en Wireshark. El campo Destination corresponde a la MAC del router, mientras que el campo Source corresponde a la MAC de la interfaz local. El Ether type indica 0x0800, lo que señala que la carga es un paquete IPv4.
+En seta figura observamos la sección 'Ethernet II' de un paquete ICMP capturado en Wireshark. El campo Destination corresponde a la MAC del router, mientras que el campo Source corresponde a la MAC de la interfaz local. El Ether type indica 0x0800, lo que señala que la carga es un paquete IPv4.
 
 **b)** Un **Cable UTP**  es un cable de par trenzado no apantallado. Cada par de hilos (normalmente 4 pares u 8 hilos) se trenza para reducir interferencia. Es muy utilizado en Ethernet. 
 
@@ -108,8 +108,6 @@ El **Cable Cruzado** invierte pares Tx y Rx, se usa típicamente para conectar S
 En esta captura se observa un paquete ICMP Echo Reply enviado por la puerta de enlace (192.168.100.86). En el encabezado Ethernet II se identifica como dirección MAC origen a4:00:e2:3a:69:9b (router Huawei) y como destino c4:75:ab:e9:a8:f9 (placa Intel de mi PC). El campo EthernetType (0x0800) indica que la carga es IPv4. Dentro del encabezado IP, el protocolo es el ICMP(1), y el bloque ICMP muestra un mensaje de tipo 0 (Echo Reply) con identificador 0x0001 y secuencia 4. El campo de datos contiene la cadena ASCII 'abcdef...', que corresponde al payload estandar del ping. El tamaño del frame fue de 74 bytes, lo que coincide con los campos Ethernet + IPv4 + ICMP + datos. 
 
 **d)** La dirección MAC del gateway obtenida fue a4:00:e2:3a:69:9b. Los 3 primeros bytes (a4:00:e2) corresponden al OUI registrado por Huawei Technologies Co., Ltd., lo que confirma que el dispositivo que actúa como puerta de enlace es un router Huawei. Esto evidencia que la MAC no solo permite identificar de manera única a un equipo dentro de la red local, sino tambiín obtener información sobre el fabricante del hardware. 
-
-Fuentes de información: https://maclookup.app/
 
 
 **e)**
@@ -128,3 +126,8 @@ El uso de una VPN no oculta dirección MAC en la LAN, ya que las tramas Ethernet
 
 El trabajo permitió comprender los fundamentos de las redes y los efectos de interferencias en la transmisión de datos. Se analizaron tramas Ethernet, direcciones MAC y dispositivos mediante Wireshark, comprobando las diferencias entre la comunicación en una LAN y en Internet. Además, se reflexionó sobre la trazabilidad de identificadores únicos como MAC e IMEI y el papel de la VPN en la protección de la privacidad. En conjunto, la práctica consolidó los conceptos teóricos de las capas física y de enlace, y mostró su aplicación en entornos reales de redes.
 
+---
+
+## Referencias
+
+https://maclookup.app/
