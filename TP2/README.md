@@ -93,17 +93,40 @@ GIGABIT ETHERNET             1 Gbps                 UTP Cat5e/6
 
 En Esta figura observamos la sección 'Ethernet II' de un paquete ICMP capturado en Wireshark. El campo Destination corresponde a la MAC del router, mientras que el campo Source corresponde a la MAC de la interfaz local. El Ether type indica 0x0800, lo que señala que la carga es un paquete IPv4.
 
-**b)**
-**c)**
-**d)**
+**b)** Un **Cable UTP**  es un cable de par trenzado no apantallado. Cada par de hilos (normalmente 4 pares u 8 hilos) se trenza para reducir interferencia. Es muy utilizado en Ethernet. 
+
+El trenzado reduce la diafonía o crosstalk y las interferencias externas porque las señales se transmiten de modo diferencial. Un UTP de categoría más alta tiene trenzados mas firmes y por lo tanto mayor inmunidad al ruido y mayor capacidad de transmisión. 
+
+El **Cable derecho** se usa típicamente enre la PC y un switch/router con el mismo pinout en ambos extremos.
+
+El **Cable Cruzado** invierte pares Tx y Rx, se usa típicamente para conectar Switch-Switch o PC-PC.
+
+
+**c)** La puerta de enlace predeterminada detectada fue: 192.168.100.1
+<img width="1515" height="829" alt="image" src="https://github.com/user-attachments/assets/837ea9e8-3154-4cd3-a53a-ea2208489864" />
+
+En esta captura se observa un paquete ICMP Echo Reply enviado por la puerta de enlace (192.168.100.86). En el encabezado Ethernet II se identifica como dirección MAC origen a4:00:e2:3a:69:9b (router Huawei) y como destino c4:75:ab:e9:a8:f9 (placa Intel de mi PC). El campo EthernetType (0x0800) indica que la carga es IPv4. Dentro del encabezado IP, el protocolo es el ICMP(1), y el bloque ICMP muestra un mensaje de tipo 0 (Echo Reply) con identificador 0x0001 y secuencia 4. El campo de datos contiene la cadena ASCII 'abcdef...', que corresponde al payload estandar del ping. El tamaño del frame fue de 74 bytes, lo que coincide con los campos Ethernet + IPv4 + ICMP + datos. 
+
+**d)** La dirección MAC del gateway obtenida fue a4:00:e2:3a:69:9b. Los 3 primeros bytes (a4:00:e2) corresponden al OUI registrado por Huawei Technologies Co., Ltd., lo que confirma que el dispositivo que actúa como puerta de enlace es un router Huawei. Esto evidencia que la MAC no solo permite identificar de manera única a un equipo dentro de la red local, sino tambiín obtener información sobre el fabricante del hardware. 
+
+Fuentes de información: https://maclookup.app/
+
+
 **e)**
 
 ### 4.
+La dirección MAC es un identificador único de cada dispositivo en la LAN, lo que implica que puede usarse para rastrear y distinguir a los usuarios dentro de una red local. Sin embargo, hacia Internet los servidores remotos no reciben la MAC, sino únicamente la dirección IP pública. 
+
+El IMEI cumple un rol equivalente a la MAC pero en redes celulares: permite a los operadores móviles identificar y rastrear equipos. Tanto la MAC como el IMEI son identificadores únicos de hardware que comprometen la privacidad si son usados para trazabilidad 
+
+El uso de una VPN no oculta dirección MAC en la LAN, ya que las tramas Ethernet siguen utilizando la MAC real del dispositivo para llegar al Router. La VPN sí cifra los datos y cambia la IP visible para los destinos remotos pero no modifica la información a nivel de capa de enlace. 
+
 
 ---
 
 ## Discusión Y Conclusiones
 
+El trabajo permitió entender los fundamentos de las redes, las interferencias en el medio físico y la función del Ethernet. Con Wireshark se analizaron tramas, direcciones MAC y fabricantes, comprobando como la comunicación difiere en una LAN y en Internet. Finalmente, se reflexionó sobre la trazabilidad de la MAC, su similitud con el IMEI y el rol de la VPN en la proteccion de la privacidad. 
 ---
 
 ## Referencias
