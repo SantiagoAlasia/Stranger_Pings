@@ -29,7 +29,7 @@ En este trabajo se analizaron los fenómenos físicos que afectan la transmisió
 
 ## Introducción
 
-El presente trabajo de laboratorio tiene como objetivos terminar de repasar conceptos fundamentales inherentes a la capa física, y entender los conceptos relacionados con la capa de enlace de datos. Asimismo, se empleó la herramienta Wireshark para capturar tráfico de paquetes y observar de manera práctica la aplicación de los conceptos estudiados a lo largo del trabajo.
+El presente trabajo de laboratorio tiene como objetivo profundizar en los conceptos de la capa física y de la capa de enlace de datos, explorando cómo los fenómenos físicos afectan la transmisión de señales y cómo se gestionan los errores en las redes. Para ello se empleó Wireshark, permitiendo capturar y analizar paquetes de red de manera práctica. Además, se estudiaron identificadores únicos de dispositivos, como direcciones MAC y IMEI, y su relación con la privacidad en las comunicaciones digitales.
 
 ---
 
