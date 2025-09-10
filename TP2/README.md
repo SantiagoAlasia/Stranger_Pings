@@ -119,6 +119,8 @@ El IMEI cumple un rol equivalente a la MAC pero en redes celulares: permite a lo
 
 El uso de una VPN no oculta dirección MAC en la LAN, ya que las tramas Ethernet siguen utilizando la MAC real del dispositivo para llegar al Router. La VPN sí cifra los datos y cambia la IP visible para los destinos remotos pero no modifica la información a nivel de capa de enlace. 
 
+<img width="1365" height="290" alt="image" src="https://github.com/user-attachments/assets/52e19668-049c-4eda-87b8-8b7a83204714" />
+
 
 ---
 
