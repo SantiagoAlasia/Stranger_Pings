@@ -111,6 +111,9 @@ En esta captura se observa un paquete ICMP Echo Reply enviado por la puerta de e
 
 
 **e)**
+<img width="1365" height="290" alt="image" src="https://github.com/user-attachments/assets/52e19668-049c-4eda-87b8-8b7a83204714" />
+
+En esta figura se observa el resultado de la prueba realizada utilizando 2 computadoras de miembros del equipo. En este caso, ambos integrantes se encuentran en la misma LAN, por lo que la comunicación ICMP se da directamente entre sus interfaces de red sin pasar por el router. En la trama Ethernet II se identifica comodirección MAC de origen f8:59:71:7c:69:3d (equipo del miembro 1) y como dirección MAC de destino 8:6c:25:d2:b0:40 (equipo del miembro 2). El campo EtherType (0x0800) indica que la carga util corresponde a IPv4. Dentro del encabezado IP, la direción de origen es 172.18.118.149 y la dirección destino es 172.18.116.184, confirmando que se trata de la comunicación derecta entre ambos hosts. Finalmente, en el bloque ICMP se reconoce el mensaje de eco, utilizado para verificar la conctividad. Esta evidencia muestra que, en una red local, es posible obtener tanto la IP como la dirección MAC de otro dispositivo mediante el intercambioo ARP inicial y las tramas ICMP posteriores.
 
 ### 4.
 La dirección MAC es un identificador único de cada dispositivo en la LAN, lo que implica que puede usarse para rastrear y distinguir a los usuarios dentro de una red local. Sin embargo, hacia Internet los servidores remotos no reciben la MAC, sino únicamente la dirección IP pública. 
@@ -119,7 +122,7 @@ El IMEI cumple un rol equivalente a la MAC pero en redes celulares: permite a lo
 
 El uso de una VPN no oculta dirección MAC en la LAN, ya que las tramas Ethernet siguen utilizando la MAC real del dispositivo para llegar al Router. La VPN sí cifra los datos y cambia la IP visible para los destinos remotos pero no modifica la información a nivel de capa de enlace. 
 
-<img width="1365" height="290" alt="image" src="https://github.com/user-attachments/assets/52e19668-049c-4eda-87b8-8b7a83204714" />
+
 
 
 ---
