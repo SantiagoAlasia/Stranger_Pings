@@ -23,11 +23,17 @@
 
 ## Resumen
 
+En el desarrollo de este trabajo práctico de laboratorio se investigan los principales estándares de redes locales, las versiones recientes de Wi-Fi y las características que diferencian los medios guiados de los inalámbricos. También se analizan la Ley de Snell y su relación con la propagación de la luz en fibras ópticas, así como la seguridad asociada a distintas versiones de los protocolos.
+
+Se recopilan y comparan las propiedades de protocolos inalámbricos como Bluetooth, ZigBee, LTE, 5G o LoRa, considerando su alcance y tasa de transmisión. Finalmente, se examinan las tecnologías que permiten acceso a internet en vuelo, sus limitaciones y la forma en que se gestiona el tráfico entre servicios locales y globales.
 
 ---
 
 ## Introducción
 
+El presente informe de este trabajo práctico de laboratorio está enfocado en el análisis de las capas de acceso en redes locales, los estándares asociados y los fundamentos físicos que las sustentan. Se busca comprender la evolución de los protocolos más utilizados, como IEEE 802.3 y 802.11, y su impacto en la transmisión de datos.
+
+A lo largo del trabajo se abordan tecnologías cableadas e inalámbricas, destacando la fibra óptica y sus modos de propagación, así como protocolos de comunicación relevantes en el ámbito del IoT y las redes móviles. Además, se exploran casos actuales, como la conectividad en aviones, integrando teoría y aplicaciones reales.
 
 ---
 
