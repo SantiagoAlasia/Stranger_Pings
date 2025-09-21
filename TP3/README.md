@@ -82,11 +82,23 @@ En redes modernas, según explica Kurose-Ross, ambas tecnologías son complement
 
 ### 4. Estado del arte
 
-**a)**
+**a)** Las tecnologías que permiten Internet en el vuelo son las siguientes:
 
-**b)**
+- **Satélites:** estos satélites retransmiten la señal entre la aeronave y estaciones terrestres. El avión lleva antenas orientables o electrónicamente ditigidas para conectarse al satélite. La principal ventaja es que tienen cobertura global, sobre océanos y zonas remotas, y además pueden dar buen ancho de banda. Algunas de las limitaciones son la latencia alta (aprox. 500 ms o más ida y vuelta), el coste de equipamiento y de operación, consumo de energía, atenuación por lluvia u otros fenómenos atmosféricos en bandas altas, visibilidad del satélite, etc.
+- **Air-to-Ground (ATG):** se usan redes terrestres celulares / torres de comunicación con antenas "vista al cielo" o con lobos dirigidos hacia aviones. El avión lleva antenas que se conectan con esas torres. Su principal ventaja es que tiene mucha menor latencia que los satélites, menor coste por bit y equipamiento más simple y ligero. La mayor limitacion es su cobertura limitada, ya que no funciona sobre océanos o zonas sin infraestructura, y además puede tener interferencia o congestión si hay muchas aeronaves o móviles.
 
-**c)**
+**b)** Publicación científico/tecnológica relacionada con el tema: 
+
+**From GEO to LEO: First Look Into Starlink In-Flight Connectivity**, de los autores: Daniel Jang, Matteo Varvello, Aravindh Raman, Yasir Zaki.
+
+Este estudio compara el rendimiento de la conectividad a bordo entre satélites geostacionarios (GEO) y la constelación de satélites de órbita baja (LEO) Starlink. Se realizaron mediciones en 26 vuelos de 7 aerolíneas diferentes utilizando dispositivos Android con la plataforma AmiGo. Los resultados mostraron que Starlink ofrece latencias significativamente menores y mayor ancho de banda en comparación con los sistemas GEO. Sin embargo, también se identificaron desafíos relacionados con la selección dinámica de gateways, problemas de DNS y la influencia de algoritmos de control de congestión en el rendimiento.
+
+**c)** En muchos aviones con WiFi a bordo y un sistema de entretenimiento, hay dos fuentes de tráfico:
+
+- Tráfico local: es el contenido de entretenimiento que está "hosteado" a bordo, en servidores dentro del avión o conectado localmente. El mismo no sale hacia internet, sino que se transmite localmente en la red interna del avión, quizás mediante WiFi local o una red interna, sin usar el enlace satelital o el ATG.
+- Tráfico hacia afuera / internet: este tráfico (correo, navegación web, redes sociales, etc.) sí pasa por el enlace externo, ya sea de satélite o ATG.
+
+Con respecto al ancho de banda, el contenido local puede consumir mucho si hay muchas personas viendo la misma película, pero como es local no se ve afectado por latencia de enlace externo. Por su parte, el internet externo sí: latencia, pérdida de paquetes y ancho de banda limitado.
 
 ---
 
