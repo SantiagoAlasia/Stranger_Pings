@@ -43,13 +43,43 @@ A lo largo del trabajo se abordan tecnologías cableadas e inalámbricas, destac
 
 **a)**
 
-**b)**
+*IEEE 802.3*:
+
+- Historia: Fue desarrollada en los años 70 por Xerox PARC, con los primeros cables coaxiles como medio de transmisión. En 1983, fue estandarizado por la IEEE como 802.3. Inicialmente funcionaba a 10Mbps sobre cable coaxil con CSMA/CD, pero luego evoluciono a 100Mbps(*Fast Ethernet*), 1Gbps(Gigabit Ethernet), y actualmente llega a 400Gbps y 800Gbps usando par trenzado y fibra óptica.
+
+- Campo de Aplicación: Es utilizado principalmente en redes de area local (*LAN*) cableadas, interconexiónes de backbone y aplicaciones industriales.
+
+*IEEE 802.11*:
+
+- Historia: El estándar original se aprobó en 1997 con velocidades de 1–2 Mbps. En 1999 aparecieron 802.11a (5 GHz, 54 Mbps) y 802.11b (2.4 GHz, 11 Mbps). Luego vinieron 802.11g (2003, 54 Mbps en 2.4 GHz), 802.11n (2009, hasta 600 Mbps con MIMO), 802.11ac (2013, WiFi 5, hasta 7 Gbps), 802.11ax (2019, WiFi 6/6E, hasta 9.6 Gbps con OFDMA y 6 GHz) y actualmente 802.11be (WiFi 7) en desarrollo.
+
+- Campo de Aplicación: Es utilizado en redes de area local inalámbricas(WLAN). También es muy utilizado en las aplicaciones de IoT, que son muy populares hoy en día.
+
+**b)** **FALTA EJERCICIO DE LA FACU**
 
 **c)**
+Cuando una red Wi-Fi opera bajo un determinado protocolo y un dispositivo posee una tarjeta de red inalámbrica (NIC) que solo soporta un estándar más antiguo, pueden ocurrir dos situaciones:
 
-**d)**
+1. Los estándares de la familia 802.11 fueron diseñados en gran medida para mantener compatibilidad hacia atrás, es decir, el punto de acceso es retrocompatible. En este caso, el dispositivo podrá conectarse, pero lo hará utilizando las características de la versión más antigua soportada. Esto genera una degradación en la experiencia del usuario, ya que no podrá aprovechar las ventajas del protocolo más reciente, como mayores tasas de datos o nuevas funciones de seguridad.
+
+2. También se puede dar la situación en la que el administrador de la red configure el punto de acceso para trabajar únicamente con protocolos nuevos, entonces los dispositivos con hardware antiguo no podrán asociarse a la red. Esta decisión suele tomarse en redes que priorizan rendimiento y seguridad.
+
+**d)** **FALTA EJERCICIO DE LA FACU**
+La evolución de los protocolos IEEE 802.11 no solo ha incrementado las tasas de transmisión y la eficiencia espectral, sino que también ha estado fuertemente vinculada a mejoras en los mecanismos de seguridad. Cada nueva versión incorporó o reforzó algoritmos de autenticación y cifrado para enfrentar vulnerabilidades descubiertas en estándares previos.
 
 **e)**
+<div align="center">
+
+|                    |**Wi-Fi 5**|**Wi-Fi 6**|**Wi-Fi 7**|
+|--------------------|-----------|-----------|-----------|
+|Versión IEEE        |  802.11ac | 802.11ax  ̣| 802.11be  |
+|Tasa de Datos Máxima|  ~ 7Gbps  | ~ 10Gbps  | > 30Gbps  |
+|Bandas              |   5 GHz   |2.4/5/6 GHz|2.4/5/6 GHz|
+|Ancho de Banda      |Max 160 MHz|Max 160 MHz|Max 320 MHz|
+|Modulación          |  256 QAM  |  1024 QAM |  4096 QAM |
+|Sistema de Seguridad|   WPA2    |   WPA3    |   WPA3    |
+
+</div>
 
 ### 2. Transmisiones en Fibra Óptica
 
@@ -62,7 +92,7 @@ Entonces, las principales diferencias son que la fibra monomodo es más cara, y 
 
 **b)** La Ley de Snell establece la relación entre los ángulos de incidencia y refracción al pasar la luz de un medio a otro, donde $n$ es el índice de refracción del medio. 
 
-$n_1 \cdot \sin(\theta_1) = n_2 \cdot \sin(\theta_2)$
+$$n_1 \cdot \sin(\theta_1) = n_2 \cdot \sin(\theta_2)$$
 
 En relación con la fibra óptica, el núcleo tiene un índice de refracción mayor que el revestimiento, lo que provoca que la luz que incide con cierto ángulo se refleje totalmente dentro del núcleo, lo cual se conoce como reflexión interna total. Además, según el ángulo de entrada, como se observa en las imágenes, pueden existir distintos modos de propagación (multimodo) o único modo (monomodo).
 
