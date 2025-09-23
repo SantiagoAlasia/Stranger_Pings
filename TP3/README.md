@@ -68,6 +68,7 @@ Cuando una red Wi-Fi opera bajo un determinado protocolo y un dispositivo posee 
 La evolución de los protocolos IEEE 802.11 no solo ha incrementado las tasas de transmisión y la eficiencia espectral, sino que también ha estado fuertemente vinculada a mejoras en los mecanismos de seguridad. Cada nueva versión incorporó o reforzó algoritmos de autenticación y cifrado para enfrentar vulnerabilidades descubiertas en estándares previos.
 
 **e)**
+
 <div align="center">
 
 |                    |**Wi-Fi 5**|**Wi-Fi 6**|**Wi-Fi 7**|
@@ -80,6 +81,8 @@ La evolución de los protocolos IEEE 802.11 no solo ha incrementado las tasas de
 |Sistema de Seguridad|   WPA2    |   WPA3    |   WPA3    |
 
 </div>
+
+**Tabla 1: Características de las distintas versiones.**
 
 ### 2. Transmisiones en Fibra Óptica
 
@@ -105,10 +108,50 @@ En redes modernas, según explica Kurose-Ross, ambas tecnologías son complement
 ### 3. Protocolos de comunicación inalámbrica
 
 **a)**
+<div align="center">
+
+|   **Protocolo**    |**¿Esta Estandarizado? SI / NO**|**¿Cual(es) Estandar(es)?(Ultima versión)**|
+|--------------------|--------------------------------|-------------------------------------------|
+|Wi-Fi               |               SI               |          Wi-Fi 7(IEEE 802.11be)           |
+|Bluetooth           |               SI               |               Bluetooth 5.4               |  
+|ZigBee              |               SI               |              Zigbee Pro 2023              |  
+|NFC                 |               SI               |           Versión 15 del NFC Forum        |
+|LTE                 |               SI               |  LTE Advanced Pro (también llamado 4.5G)  |  
+|GSM                 |               SI               |               3GPP Release 12             |  
+|5G (3GPP)           |               SI               |     Release 18 (2024, “5G-Advanced”)      |  
+|LoRaWAN             |               SI               |             LoRaWAN 1.0.4 (2020)          | 
+|NB-IoT              |               SI               |               3GPP Versión 17             |
+|SigFox              |               NO               |                      -                    |     
+|Z-Wave              |               SI               |   Z-Wave Plus v2 (700/800 series, 2021)   |  
+
+</div>
+
+**Tabla 2: Protocolos Inalámbricos.**
 
 **b)**
+<div align="center">
+
+![alt text](image.png)
+
+</div>
+
+**Tabla 3: Distance vs Data Rate**
 
 **c)**
+
+<div align="center">
+
+|**Característica**                              |**UTP Cat 7** |**Fibra Óptica**|**Wi-Fi 802.11be**| **BLuetooth 5.4**   | **5G**      |
+|------------------------------------------------|--------------|----------------|------------------|---------------------|-------------| 
+|Ancho de banda                                  |10Gbps        |100Gbps         |30Gbps            |2Mbps                |10Gbps       |
+|Distancias                                      |100m          |100km           |10m - 100m        |100m                 |1km - 10km   | 
+|Inmunidad a EMI/RFI                             |Moderado/Bajo |Inmune          |Moderado/Bajo     |Bajo                 |Moderado/Bajo|  
+|Costos de medios/conectores/dispositivos        |Moderado/Bajo |Alto            |Moderado          |Bajo                 |Moderado/Alto|
+|¿Disponible en Packet Tracer?                   |SI            |SI              |SI                |SI                   |NO           |   
+
+</div>
+
+**Tabla 4: Características de los distintos medios de transmisión.**
 
 ### 4. Estado del arte
 
