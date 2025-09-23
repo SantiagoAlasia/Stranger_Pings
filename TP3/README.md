@@ -55,7 +55,23 @@ A lo largo del trabajo se abordan tecnologías cableadas e inalámbricas, destac
 
 - Campo de Aplicación: Es utilizado en redes de area local inalámbricas(WLAN). También es muy utilizado en las aplicaciones de IoT, que son muy populares hoy en día.
 
-**b)** **FALTA EJERCICIO DE LA FACU**
+**b)** 
+Para detectar que version del protocolo 802.11 utiliza la red WiFi a la que estamos conectados, podemos seguir los siguientes paso: *En el caso de usar una PC con Linux*
+   1. Abrimos una terminal e introducimos el comando `iw dev wlp2s0 link`. Esto nos generara la siguiente salida.
+   <div align="center">
+
+   ![alt text](img/image-1.png)
+   
+   </div>
+
+   **Figura 1: Salida de Terminal.**
+   
+   2. De la salida del punto anterior podemos notar que:<br>
+      a. La frecuencia es de 5GHz.<br>
+      b. La velocidad es de 360 Mbps.<br>
+      c. Opera en *VHT* (Very High Throughput).<br>
+   Entonces podemos deducir que la version del protocolo es IEEE 802.11 ac (WiFi 5).
+
 
 **c)**
 Cuando una red Wi-Fi opera bajo un determinado protocolo y un dispositivo posee una tarjeta de red inalámbrica (NIC) que solo soporta un estándar más antiguo, pueden ocurrir dos situaciones:
@@ -64,7 +80,7 @@ Cuando una red Wi-Fi opera bajo un determinado protocolo y un dispositivo posee 
 
 2. También se puede dar la situación en la que el administrador de la red configure el punto de acceso para trabajar únicamente con protocolos nuevos, entonces los dispositivos con hardware antiguo no podrán asociarse a la red. Esta decisión suele tomarse en redes que priorizan rendimiento y seguridad.
 
-**d)** **FALTA EJERCICIO DE LA FACU**
+**d)** 
 La evolución de los protocolos IEEE 802.11 no solo ha incrementado las tasas de transmisión y la eficiencia espectral, sino que también ha estado fuertemente vinculada a mejoras en los mecanismos de seguridad. Cada nueva versión incorporó o reforzó algoritmos de autenticación y cifrado para enfrentar vulnerabilidades descubiertas en estándares previos.
 
 **e)**
@@ -131,11 +147,11 @@ En redes modernas, según explica Kurose-Ross, ambas tecnologías son complement
 **b)**
 <div align="center">
 
-![alt text](image.png)
+![alt text](img/image-2.png)
 
 </div>
 
-**Tabla 3: Distance vs Data Rate**
+**Figura 2: Distance vs Data Rate**
 
 **c)**
 
