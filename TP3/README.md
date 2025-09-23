@@ -56,7 +56,7 @@ A lo largo del trabajo se abordan tecnologías cableadas e inalámbricas, destac
 - Campo de Aplicación: Es utilizado en redes de area local inalámbricas(WLAN). También es muy utilizado en las aplicaciones de IoT, que son muy populares hoy en día.
 
 **b)** 
-Para detectar que version del protocolo 802.11 utiliza la red WiFi a la que estamos conectados, podemos seguir los siguientes paso: *En el caso de usar una PC con Linux*
+Para detectar que versión del protocolo 802.11 utiliza la red WiFi a la que estamos conectados, podemos seguir los siguientes paso: *En el caso de usar una PC con Linux*
    1. Abrimos una terminal e introducimos el comando `iw dev wlp2s0 link`. Esto nos generara la siguiente salida.
    <div align="center">
 
@@ -70,6 +70,7 @@ Para detectar que version del protocolo 802.11 utiliza la red WiFi a la que esta
       a. La frecuencia es de 5GHz.<br>
       b. La velocidad es de 360 Mbps.<br>
       c. Opera en *VHT* (Very High Throughput).<br>
+   
    Entonces podemos deducir que la version del protocolo es IEEE 802.11 ac (WiFi 5).
 
 
@@ -82,6 +83,8 @@ Cuando una red Wi-Fi opera bajo un determinado protocolo y un dispositivo posee 
 
 **d)** 
 La evolución de los protocolos IEEE 802.11 no solo ha incrementado las tasas de transmisión y la eficiencia espectral, sino que también ha estado fuertemente vinculada a mejoras en los mecanismos de seguridad. Cada nueva versión incorporó o reforzó algoritmos de autenticación y cifrado para enfrentar vulnerabilidades descubiertas en estándares previos.
+
+Para saber que sistema de seguridad esta utilizando nuestra reD WiFi podemos entrar a las propiedad de la red y verificar el tipo de seguridad. En nuestro caso, el tipo de seguridad es *WPA2*.
 
 **e)**
 
@@ -157,7 +160,7 @@ En redes modernas, según explica Kurose-Ross, ambas tecnologías son complement
 
 <div align="center">
 
-|**Característica**                              |**UTP Cat 7** |**Fibra Óptica**|**Wi-Fi 802.11be**| **BLuetooth 5.4**   | **5G**      |
+|**Característica**                              |**UTP Cat 7** |**Fibra Óptica**|**Wi-Fi 802.11be**| **BLuetooth 5.4**   |**5G**      |
 |------------------------------------------------|--------------|----------------|------------------|---------------------|-------------| 
 |Ancho de banda                                  |10Gbps        |100Gbps         |30Gbps            |2Mbps                |10Gbps       |
 |Distancias                                      |100m          |100km           |10m - 100m        |100m                 |1km - 10km   | 
