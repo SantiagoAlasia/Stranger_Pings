@@ -196,7 +196,11 @@ Con respecto al ancho de banda, el contenido local puede consumir mucho si hay m
 
 ## Discusión Y Conclusiones
 
+El trabajo permitió comparar medios guiados e inalámbricos, destacando que la fibra óptica ofrece gran capacidad y confiabilidad, mientras que las tecnologías inalámbricas brindan flexibilidad y movilidad. Ambos enfoques no son excluyentes, sino complementarios dentro de las redes modernas.
 
+La evolución de los estándares IEEE mostró cómo las mejoras en velocidad van siempre acompañadas de avances en seguridad y eficiencia, siendo clave para responder a la creciente demanda de conectividad. Asimismo, la diversidad de protocolos inalámbricos como Bluetooth, ZigBee, LoRa o 5G refleja que cada uno está orientado a un caso de uso particular, desde IoT hasta comunicaciones de gran escala.
+
+Finalmente, el análisis de la conectividad en vuelo ejemplifica cómo se aplican estas tecnologías en contextos reales, donde las limitaciones físicas obligan a combinar soluciones como satélites y enlaces terrestres. En conjunto, se concluye que el futuro de las redes depende de la integración de múltiples tecnologías, optimizadas según el escenario de aplicación.
 
 ---
 
