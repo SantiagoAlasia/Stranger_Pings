@@ -35,7 +35,40 @@ En este trabajo práctico se estudian las capas de acceso en redes locales, sus 
 
 ## Desarrollo
 
-### 1.
+### 1. Alcance de Redes y Virtualización
+
+**a)** Clasificación de las redes según su alcance. Las redes se clasifican según su tamaño, cobertura geográfica y propósito.
+
+- **PAN (Personal Area Network):** red de área personal. Conecta dispositivos cercanos a una persona (como celular, smartwatch o auriculares Bluetooth). Su alcance es de pocos metros.
+
+- **LAN (Local Area Network):** red de área local. Cubre espacios reducidos como un hogar, oficina o institución. Usa medios cableados o inalámbricos y ofrece altas velocidades de transmisión.
+
+- **MAN (Metropolitan Area Network):** red metropolitana. Conecta varias LAN dentro de una ciudad o campus. Utiliza infraestructura pública o privada.
+
+- **WAN (Wide Area Network):** red de área amplia. Conecta redes distribuidas en grandes distancias, incluso países. Internet es el ejemplo más representativo.
+
+- **WLAN (Wireless LAN):** red LAN inalámbrica basada en el estándar IEEE 802.11 (Wi-Fi), que permite la conexión sin cables dentro de un área local.
+
+**b)** Una VLAN (Virtual Local Area Network) es una red local lógica que se crea dentro de un switch para segmentar el tráfico sin necesidad de separar físicamente los dispositivos. Permite agrupar equipos por función, área o nivel de seguridad, mejorando el rendimiento y la administración de la red.
+
+Clasificación:
+
+- **Estáticas (por puerto):** el administrador asigna manualmente cada puerto del switch a una VLAN.
+
+- **Dinámicas:** la asignación se realiza automáticamente según criterios como dirección MAC, protocolo o autenticación.
+
+**c)** El estándar IEEE 802.1Q define el mecanismo para identificar y manejar múltiples VLANs en una misma conexión física.
+Agrega una etiqueta (tag) de 4 bytes en el encabezado Ethernet que indica a qué VLAN pertenece cada trama. Esta etiqueta permite que varios switches compartan información de VLANs a través de enlaces trunk, manteniendo la separación lógica entre redes.
+
+**Relación con VLAN:**
+
+El protocolo 802.1Q es el que permite el transporte simultáneo de varias VLAN sobre un mismo enlace, garantizando que las tramas lleguen solo a los dispositivos de su misma VLAN.
+
+**d)** El tagging es el proceso de añadir o leer la etiqueta 802.1Q en las tramas Ethernet. Esta etiqueta identifica la VLAN de origen y permite que los switches y routers distingan el tráfico de distintas VLANs cuando viajan por un enlace trunk.
+
+Cuando la trama llega a su destino final (una interfaz de acceso), la etiqueta se elimina (untagged), entregando la información al dispositivo como si perteneciera a una única red.
+
+### 2. Implementación en Packet-Tracer
 
 ---
 
