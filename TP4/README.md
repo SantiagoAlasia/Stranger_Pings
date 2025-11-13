@@ -70,6 +70,81 @@ Cuando la trama llega a su destino final (una interfaz de acceso), la etiqueta s
 
 ### 2. Implementación en Packet-Tracer
 
+
+
+### 3. Despliegue de red LAN a bordo de una aeronave
+
+En este ejercicio se implementó una red de área local segmentada mediante VLANs utilizando Cisco Packet Tracer. El objetivo principal fue configurar un switch con tres VLANs distintas (Turista, Business y Administración), y un router que actúe como punto de interconexión entre ellas mediante la técnica Router-on-a-Stick.
+
+Además, se estableció un enlace con un router ISP, simulando la conexión a Internet, y se configuraron las direcciones IP correspondientes a cada subred para permitir el enrutamiento interno y el acceso externo según las políticas del enunciado.
+
+**Diagrama general de la red**
+
+<img width="827" height="514" alt="Captura de pantalla 2025-11-13 003800" src="https://github.com/user-attachments/assets/fe7c47f8-f49e-49c8-8e00-6135603d474a" />
+
+La red se compone de un router principal conectado a un switch, al cual se asocian distintos dispositivos distribuidos en tres VLANs.
+El router secundario (ISP) representa la conexión hacia Internet.
+Cada grupo de usuarios y el servidor se encuentran en subredes diferentes para garantizar la segmentación lógica del tráfico.
+
+**Configuración del switch**
+
+<img width="652" height="196" alt="Captura de pantalla 2025-11-13 003732" src="https://github.com/user-attachments/assets/db0efbc0-b8c6-438a-abf1-842b58c4a36e" />
+
+Se crearon las VLAN 10 (Turista), 20 (Business) y 99 (Admin) y se asignaron los puertos correspondientes según cada grupo de usuarios.
+
+
+**Configuración del router principal**
+
+<img width="662" height="98" alt="image" src="https://github.com/user-attachments/assets/a9368154-64d7-4cf9-9237-17d0d2f36f11" />
+
+Se configuraron subinterfaces para cada VLAN con encapsulación 802.1Q, permitiendo la comunicación entre redes internas mediante un único enlace trunk con el switch.
+
+**Enlace con el ISP**
+
+<img width="654" height="38" alt="image" src="https://github.com/user-attachments/assets/8e2db2a1-324a-4124-996d-b25f1c24db66" />
+
+Se configuró la red 200.0.0.0/30 para la interconexión entre ambos routers, garantizando la conectividad hacia la red externa.
+
+**IP DHCP de las laptops**
+
+<img width="867" height="456" alt="image" src="https://github.com/user-attachments/assets/21571372-5448-4a4f-9009-41b32aef4211" />
+
+<img width="860" height="482" alt="image" src="https://github.com/user-attachments/assets/eacb057f-ad06-4efb-8a17-ebebd0a09358" />
+
+<img width="865" height="450" alt="image" src="https://github.com/user-attachments/assets/6a6ec3af-ae18-4dc3-955a-40a03decb83c" />
+
+Las capturas evidencian que los equipos conectados a cada VLAN reciben automáticamente una dirección IP válida dentro de su red, junto con la máscara y el gateway predeterminado asignado (10.10.x.11).
+
+Esto confirma el correcto funcionamiento del servidor DHCP implementado en el router y la adecuada segmentación del tráfico mediante VLANs.
+
+Además, la obtención automática de direcciones IP valida la comunicación entre el switch y el router a través del enlace trunk 802.1Q, el cual transporta las tramas etiquetadas de cada VLAN hasta el router (“Router-on-a-Stick”) para su administración centralizada.
+
+**Configuración de la traducción de direcciones NAT**
+
+<img width="554" height="134" alt="image" src="https://github.com/user-attachments/assets/e658d8e3-02ee-4870-89b8-a710ea3b5e55" />
+
+Se observa la implementación de NAT con sobrecarga (PAT), que permite que las redes internas Business (10.10.20.0/24) y Administración (10.10.99.0/24) accedan a Internet utilizando la dirección pública 200.0.0.1 del router principal.
+
+**Tabla de traducciones NAT**
+
+<img width="621" height="173" alt="image" src="https://github.com/user-attachments/assets/1b4829e8-cf90-4bdd-a680-7e185079d50d" />
+
+Cada dirección interna es traducida a la IP pública del router principal, lo que confirma la correcta operación del mecanismo de NAT.
+
+**Laptop Business**
+
+<img width="468" height="443" alt="image" src="https://github.com/user-attachments/assets/4e35e5b7-8778-40a1-8831-8c25db47a160" />
+
+El equipo de la VLAN 20 logra comunicarse con el host 8.8.8.8 y con el host 200.0.0.2, demostrando que el NAT traduce correctamente las direcciones internas hacia la red externa.
+
+**Laptop Turista**
+
+<img width="479" height="180" alt="image" src="https://github.com/user-attachments/assets/c3a3817c-1e0b-47a4-98fd-c535a4cde23b" />
+
+El filtrado mediante listas de control de acceso (ACL) impide que los dispositivos de la VLAN 10 accedan a Internet, cumpliendo con la política de seguridad establecida.
+
+
+
 ---
 
 ## Discusión Y Conclusiones
