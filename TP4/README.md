@@ -79,6 +79,14 @@ Para la implementacion del ejercicio se siguieron los siguientes pasos.
 </div>
 
 2. Seteo de direcciones IP, mascara de subred y direccion IP de gateway mediante la interfaz grafica de cada PC.
+
+PC-A: <img width="866" height="320" alt="image" src="https://github.com/user-attachments/assets/0420487a-b7b2-4edb-adaa-d58157032108" />
+
+PC-B: <img width="871" height="331" alt="image" src="https://github.com/user-attachments/assets/85859188-6a16-4c67-a906-64350c694d36" />
+
+SW-1: 
+
+SW-2: 
    
 3. Una vez configuradas las dos laptos, se emepezo con la configuracion de los switches. Primero, mediante la coneccion de consola se cambio el nombre del dispositivo.
 
