@@ -23,9 +23,13 @@
 
 ## Resumen
 
+El trabajo consiste en instalar y probar un broker MQTT, suscribirse y publicar mensajes desde distintos clientes, y simular una red de dispositivos IoT. Se desarrollan ejercicios que incluyen comunicación directa, broadcasting con comodines, y la generación de datos desde sensores distribuidos, que son recopilados por una gateway central. Además, se capturan paquetes para analizarlos y se responden preguntas sobre transporte, seguridad, QoS y el modelo pub/sub. El TP permite entender de manera práctica el funcionamiento esencial de MQTT en una red local.
+
 ---
 
 ## Introducción
+
+En este trabajo práctico se estudia el protocolo MQTT, uno de los más utilizados en sistemas IoT por su bajo consumo de recursos y su modelo de comunicación Publish/Subscribe. A través de una simulación de red local, se implementa un broker MQTT y varios clientes que intercambian datos mediante tópicos jerárquicos. El objetivo es comprender cómo funciona esta arquitectura, cómo se gestionan los mensajes y qué ventajas ofrece respecto a otros modelos de comunicación.
 
 ---
 
