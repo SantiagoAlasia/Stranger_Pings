@@ -80,21 +80,23 @@ Para la implementación del ejercicio se siguieron los siguientes pasos.
 
 2. Seteo de direcciones IP, máscara de subred y dirección IP de gateway mediante la interfaz gráfica de cada PC.
 
-PC-A: <img width="866" height="320" alt="image" src="https://github.com/user-attachments/assets/0420487a-b7b2-4edb-adaa-d58157032108" />
+PC-A: 
+<div>
+ <img width="866" height="320" alt="image" src="https://github.com/user-attachments/assets/0420487a-b7b2-4edb-adaa-d58157032108" />
+</div>
 
-PC-B: <img width="871" height="331" alt="image" src="https://github.com/user-attachments/assets/85859188-6a16-4c67-a906-64350c694d36" />
-
-SW-1: <img width="655" height="468" alt="image" src="https://github.com/user-attachments/assets/172f7a9a-9d87-43b4-9bbf-0066fee4d0d5" />
-
-SW-2: <img width="650" height="464" alt="image" src="https://github.com/user-attachments/assets/0314143c-9f77-4b95-b1bb-de70fd3af602" />
+PC-B: 
+<div>
+ <img width="871" height="331" alt="image" src="https://github.com/user-attachments/assets/85859188-6a16-4c67-a906-64350c694d36" />
+</div>
    
-3. Una vez configuradas las dos laptops, se emepezó con la configuración de los switches. Primero, mediante la conexión de consola se cambio el nombre del dispositivo.
+3. Una vez configuradas las dos laptops, se emepezó con la configuración de los switches. Primero, mediante la conexión de consola se cambió el nombre del dispositivo.
 
 <div>
  <img width="466" height="73" alt="image" src="https://github.com/user-attachments/assets/e03cbcae-9c08-4300-8ae4-8964b0e63386" />
 </div>
 
-4. Ademá, se agregó seguridad para los distintos modos de configuración de los dispositivos.
+4. Además, se agregó seguridad para los distintos modos de configuración de los dispositivos.
 
 <div>
  <img width="317" height="140" alt="image" src="https://github.com/user-attachments/assets/5587db71-4fc7-4ee0-b5d4-7a4b467dbb10" />
@@ -118,7 +120,7 @@ SW-2: <img width="650" height="464" alt="image" src="https://github.com/user-att
  <img width="567" height="322" alt="image" src="https://github.com/user-attachments/assets/203986b3-a7a3-4e20-8e6a-a88dbdc4c901" />
 </div>
 
-8. Para comprobar el conexionado, se puede realizar ```ping``` entre las computadoras para ver si hay comunicacion entre ellas.
+8. Para comprobar el conexionado, se puede realizar ```ping``` entre las computadoras para ver si hay comunicación entre ellas.
 <div>
  <img width="395" height="227" alt="image" src="https://github.com/user-attachments/assets/0d50e6e7-3e2d-4b98-913f-8c8c39b620fe" />
  <img width="404" height="212" alt="image" src="https://github.com/user-attachments/assets/1c313b32-6257-4d68-9367-346c55202c18" />
@@ -136,12 +138,33 @@ SW-2: <img width="650" height="464" alt="image" src="https://github.com/user-att
  <img width="553" height="239" alt="image" src="https://github.com/user-attachments/assets/4be8d83c-c356-45ce-930e-74ceb9b81189" />
 </div>
 
-11. Asignacion de la PC-A a la VLAN1.
+11. Asignacion de la PC-A a la VLAN10.
 
 <div>
 <img width="386" height="56" alt="image" src="https://github.com/user-attachments/assets/99eb7385-6920-4b21-85e4-f70446e7c64c" />
 </div>
 
+12. Removemos la ip de VLAN1 y la asignamos en la VLAN99 (Correspondiente a Management)
+
+13. Verificación de los estados de la VLAN y de las interfaces.
+
+SW-1: 
+<div>
+ <img width="655" height="468" alt="image" src="https://github.com/user-attachments/assets/172f7a9a-9d87-43b4-9bbf-0066fee4d0d5" />
+</div>
+
+<div>
+ Como podemos ver, ahora aparece la VLAN10 con la ip correspondiente al sw1.
+</div>
+
+14. Repetimos los pasos 11 y 12 para el sw2.
+
+SW-2:
+<div>
+ <img width="650" height="464" alt="image" src="https://github.com/user-attachments/assets/0314143c-9f77-4b95-b1bb-de70fd3af602" />
+</div>
+
+15. Por ultimo, revisamos el conexionado con ```ping```entre las PC's y entre los switches.
 
 ### 3. Despliegue de red LAN a bordo de una aeronave
 
