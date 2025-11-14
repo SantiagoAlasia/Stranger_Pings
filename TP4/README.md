@@ -84,9 +84,9 @@ PC-A: <img width="866" height="320" alt="image" src="https://github.com/user-att
 
 PC-B: <img width="871" height="331" alt="image" src="https://github.com/user-attachments/assets/85859188-6a16-4c67-a906-64350c694d36" />
 
-SW-1: 
+SW-1: <img width="655" height="468" alt="image" src="https://github.com/user-attachments/assets/172f7a9a-9d87-43b4-9bbf-0066fee4d0d5" />
 
-SW-2: 
+SW-2: <img width="650" height="464" alt="image" src="https://github.com/user-attachments/assets/0314143c-9f77-4b95-b1bb-de70fd3af602" />
    
 3. Una vez configuradas las dos laptos, se emepezo con la configuracion de los switches. Primero, mediante la coneccion de consola se cambio el nombre del dispositivo.
 
