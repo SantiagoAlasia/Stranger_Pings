@@ -70,6 +70,69 @@ Cuando la trama llega a su destino final (una interfaz de acceso), la etiqueta s
 
 ### 2. Implementación en Packet-Tracer
 
+Para la implementacion del ejercicio se siguieron los siguientes pasos.
+> Obs: Algunos pasos se realizaron por duplicado, uno por cada switch.
+1. Colocación de los componentes y su correspondiente coneccionado.
+
+<div>
+ <img width="678" height="251" alt="image" src="https://github.com/user-attachments/assets/5404b8b1-32b5-4c70-a488-aa4e1e0b97f6" /> 
+</div>
+
+2. Seteo de direcciones IP, mascara de subred y direccion IP de gateway mediante la interfaz grafica de cada PC.
+   
+3. Una vez configuradas las dos laptos, se emepezo con la configuracion de los switches. Primero, mediante la coneccion de consola se cambio el nombre del dispositivo.
+
+<div>
+ <img width="466" height="73" alt="image" src="https://github.com/user-attachments/assets/e03cbcae-9c08-4300-8ae4-8964b0e63386" />
+</div>
+
+4. Ademas, se agrego seguridad para los distintos modos de configuracion de los dispositivos.
+
+<div>
+ <img width="317" height="140" alt="image" src="https://github.com/user-attachments/assets/5587db71-4fc7-4ee0-b5d4-7a4b467dbb10" />
+</div>
+
+5. Para agregar un grado de seguridad mayor, se encriptaron todas las contraseñas.
+
+<div>
+ <img width="308" height="30" alt="image" src="https://github.com/user-attachments/assets/334e0f2c-2812-42f3-8cc2-eb1b3ce10f43" />
+</div>
+
+6. Una vez realizada la configuracion inicial en cada switch, empezamos a agregar las direcciones ip de los switches.
+
+<div>
+ <img width="497" height="141" alt="image" src="https://github.com/user-attachments/assets/e03faeb7-0243-459a-9289-02c2542f4c63" />
+</div>
+
+7. Visualizacion de las interfaces no usadaas.
+
+<div>
+ <img width="567" height="322" alt="image" src="https://github.com/user-attachments/assets/203986b3-a7a3-4e20-8e6a-a88dbdc4c901" />
+</div>
+
+8. Para comprobar el coneccionado, se puede realizar ```ping``` entre las computadoras para ver si hay comunicacion entre ellas.
+<div>
+ <img width="395" height="227" alt="image" src="https://github.com/user-attachments/assets/0d50e6e7-3e2d-4b98-913f-8c8c39b620fe" />
+ <img width="404" height="212" alt="image" src="https://github.com/user-attachments/assets/1c313b32-6257-4d68-9367-346c55202c18" />
+</div>
+
+9. Cracion de vlans en ambos switches
+
+<div>
+ <img width="476" height="168" alt="image" src="https://github.com/user-attachments/assets/fc5ccfcf-de30-4463-8ab3-ea3fc9fb2eaf" /> 
+</div>
+
+10. VLAN's hasta el momento. Por defecto la vlan elegida es la 1.
+
+<div>
+ <img width="553" height="239" alt="image" src="https://github.com/user-attachments/assets/4be8d83c-c356-45ce-930e-74ceb9b81189" />
+</div>
+
+11. Asignacion de la PC-A a la VLAN1.
+
+<div>
+<img width="386" height="56" alt="image" src="https://github.com/user-attachments/assets/99eb7385-6920-4b21-85e4-f70446e7c64c" />
+</div>
 
 
 ### 3. Despliegue de red LAN a bordo de una aeronave
