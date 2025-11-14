@@ -37,7 +37,13 @@ En este trabajo práctico se estudia el protocolo MQTT, uno de los más utilizad
 
 ### 1. Protocolo MQTT y patrón de diseño PubSub
 
+MQTT (Message Queuing Telemetry Transport) es un protocolo de mensajería ligero diseñado para facilitar la comunicación entre dispositivos en entornos donde los recursos son limitados o la conexión es inestable. Funciona sobre TCP y está pensado para transmitir pequeños volúmenes de datos con muy bajo consumo de ancho de banda, lo que lo convierte en una opción ideal para aplicaciones de Internet de las Cosas. Su arquitectura se basa en el intercambio de mensajes a través de un broker, que actúa como intermediario entre los distintos clientes conectados, permitiendo que la comunicación sea asincrónica y no dependa de que los dispositivos estén activos al mismo tiempo. Además, MQTT utiliza tópicos jerárquicos y permite ajustar el nivel de fiabilidad mediante tres niveles de QoS, que determinan el grado de garantía con el que un mensaje llega a destino.
 
+Entre sus principales ventajas se destacan su bajo consumo de recursos, su capacidad para escalar a grandes cantidades de dispositivos y la flexibilidad que ofrece gracias a la estructura de tópicos. También permite que los clientes se desconecten temporalmente sin perder mensajes importantes, dependiendo del QoS configurado. Sin embargo, el protocolo presenta algunas desventajas: depende por completo del broker para funcionar, ya que si este falla toda la comunicación se interrumpe; no incorpora mecanismos de seguridad por defecto, por lo que es necesario agregar cifrado como TLS de manera explícita; y no es la mejor opción para redes locales de alto rendimiento donde existen protocolos más rápidos o complejos.
+
+En cuanto a sus usos, MQTT es ampliamente utilizado en sistemas IoT, como redes de sensores, actuadores, automatización del hogar o monitoreo industrial. También se emplea en aplicaciones donde se requiere enviar datos de manera eficiente y confiable, incluso en redes con alta latencia o poco ancho de banda.
+
+El modelo sobre el que se basa MQTT es el patrón de diseño PubSub. En este enfoque, los dispositivos que generan información —llamados publishers— no envían mensajes directamente a otros dispositivos, sino que publican dichos mensajes en un tópico. Por su parte, los dispositivos que necesitan recibir esa información —los subscribers— se suscriben a los tópicos que les interesan. El broker se encarga de conectar ambos extremos, reenviando los mensajes publicados a todos los suscriptores correspondientes. Este desacoplamiento entre emisores y receptores simplifica el diseño de la red, mejora la escalabilidad y evita que cada dispositivo deba conocer la dirección de los demás para comunicarse.
 
 ### 2. 3. 4. Broker MQTT
 
