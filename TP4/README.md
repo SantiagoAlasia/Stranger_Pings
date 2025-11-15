@@ -146,25 +146,52 @@ PC-B:
 
 12. Removemos la ip de VLAN1 y la asignamos en la VLAN99 (Correspondiente a Management)
 
+<img width="429" height="128" alt="image" src="https://github.com/user-attachments/assets/acb68ffb-5c1b-46a2-b935-27e4b8a04e32" />
+
 13. Verificación de los estados de la VLAN y de las interfaces.
 
-SW-1: 
 <div>
- <img width="655" height="468" alt="image" src="https://github.com/user-attachments/assets/172f7a9a-9d87-43b4-9bbf-0066fee4d0d5" />
+ <img width="654" height="479" alt="image" src="https://github.com/user-attachments/assets/e82ee779-1d93-4da7-b563-f091f6293ed0" />
+ <img width="646" height="264" alt="image" src="https://github.com/user-attachments/assets/d45735e1-de5c-4ab3-9d98-9172cfb5e9ba" />
 </div>
 
 <div>
- Como podemos ver, ahora aparece la VLAN10 con la ip correspondiente al sw1.
+ Como podemos ver, ahora aparece la VLAN99 con la ip correspondiente al sw1 y la VLAN10 con el puerto correspondiente.
 </div>
 
-14. Repetimos los pasos 11 y 12 para el sw2.
+
+14. Repetimos los pasos 11, 12 y 13 para el sw2.
+
+Asignación de la PC-B a la VLAN 10
+
+<img width="338" height="80" alt="image" src="https://github.com/user-attachments/assets/d770fd08-d0a3-4e13-b82a-c4601b3e666f" />
+
+Removemos la ip de VLAN1 y la asignamos en la VLAN99 (Correspondiente a Management)
+
+<img width="442" height="111" alt="image" src="https://github.com/user-attachments/assets/7346eb25-40a4-4a94-a674-1a5dc2df035e" />
 
 SW-2:
 <div>
- <img width="650" height="464" alt="image" src="https://github.com/user-attachments/assets/0314143c-9f77-4b95-b1bb-de70fd3af602" />
+ <img width="666" height="463" alt="image" src="https://github.com/user-attachments/assets/4902384e-e208-425d-a821-8f3b94ce4ae8" />
+ <img width="640" height="259" alt="image" src="https://github.com/user-attachments/assets/b76a50ea-c4f9-47f0-a1e4-e539e3f8340b" />
 </div>
 
+
 15. Por ultimo, revisamos el conexionado con ```ping```entre las PC's y entre los switches.
+
+De PC-A a PC-B: <img width="458" height="211" alt="image" src="https://github.com/user-attachments/assets/0732a122-f962-4fe3-ae2c-28eddf92e7ca" />
+
+De PC-B a PC-A: <img width="467" height="212" alt="image" src="https://github.com/user-attachments/assets/d95d800d-dbf5-4d35-ac1f-7ef8958a33c7" />
+
+De sw1 a sw2: <img width="565" height="97" alt="image" src="https://github.com/user-attachments/assets/b8a397fe-8822-4deb-a5de-dc39e3b7b634" />
+
+De sw2 a sw1: <img width="571" height="100" alt="image" src="https://github.com/user-attachments/assets/367d4f20-7f1b-468e-af29-3feb50a601af" />
+
+Los pings entre PC-A (192.168.10.3) y PC-B (192.168.10.4) fueron exitosos en ambos sentidos, mostrando 0% de pérdida de paquetes y tiempos de respuesta menores a 1 ms. Esto confirma que ambas computadoras están correctamente configuradas dentro de la VLAN 10 (Laboratorio), que los puertos de acceso fueron asignados correctamente y que el tráfico entre switches se está manejando adecuadamente.
+
+También se realizó un ping entre los switches sw1 (192.168.1.11) y sw2 (192.168.1.12), obteniéndose nuevamente un 100% de éxito. Esto indica que las interfaces VLAN 1/99 están correctamente configuradas, que el enlace entre switches funciona sin errores y que la conectividad de administración es adecuada.
+
+En conjunto, todas las pruebas validan que la topología está correctamente configurada y que las VLANs funcionan según lo esperado.
 
 ### 3. Despliegue de red LAN a bordo de una aeronave
 
