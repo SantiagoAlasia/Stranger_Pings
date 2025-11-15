@@ -47,9 +47,146 @@ En cuanto a sus usos, MQTT es ampliamente utilizado en sistemas IoT, como redes 
 
 El modelo sobre el que se basa MQTT es el patrón de diseño PubSub. En este enfoque, los dispositivos que generan información —llamados publishers— no envían mensajes directamente a otros dispositivos, sino que publican dichos mensajes en un tópico. Por su parte, los dispositivos que necesitan recibir esa información —los subscribers— se suscriben a los tópicos que les interesan. El broker se encarga de conectar ambos extremos, reenviando los mensajes publicados a todos los suscriptores correspondientes. Este desacoplamiento entre emisores y receptores simplifica el diseño de la red, mejora la escalabilidad y evita que cada dispositivo deba conocer la dirección de los demás para comunicarse.
 
-### 2. 3. 4. Broker MQTT
+### 2
+<img width="623" height="361" alt="image" src="https://github.com/user-attachments/assets/7fdfbec1-16a7-42ab-bf78-f56cbaaf6f6f" />
+En la Figura 1 se muestra la configuración del broker HiveMQ Cloud, con los parámetros de red necesarios para establecer la conexión segura mediante TLS sobre el puerto 8883.
 
+<img width="1490" height="773" alt="image" src="https://github.com/user-attachments/assets/79b07603-0abb-46a0-a756-6b8bc84b6a9d" />
+La Figura 2 muestra la ejecución del cliente MQTT en Python, donde se observa la recepción del mensaje “Hola Mundo desde MQTT”, validando la correcta conexión y funcionalidad del broker HiveMQ.
 
+**Simulación entre 2 Nodos** 
+Script del Dispositivo B - Subscriber 
+<pre>
+import argparse, ssl, sys
+import paho.mqtt.client as mqtt
+
+def on_connect(client, userdata, flags, reason_code, properties=None):
+    if reason_code == 0:
+        print("[B] Conectado. Suscribiendo a:", userdata["topic"])
+        client.subscribe(userdata["topic"], qos=1)
+    else:
+        print(f"[B][ERROR] Falló la conexión. code={reason_code}")
+
+def on_message(client, userdata, msg):
+    try:
+        text = msg.payload.decode("utf-8", errors="replace")
+    except Exception:
+        text = str(msg.payload)
+    print(f"[B] Recibido: {msg.topic} -> {text} (QoS={msg.qos})")
+
+def main():
+    p = argparse.ArgumentParser(description="MQTT Subscriber (Dispositivo B)")
+    p.add_argument("--host", required=True)
+    p.add_argument("--port", type=int, default=8883)
+    p.add_argument("--user", required=True)
+    p.add_argument("--password", required=True)
+    p.add_argument("--topic", default="lan/deviceA/status")
+    args = p.parse_args()
+
+    userdata = {"topic": args.topic}
+    client = mqtt.Client(client_id="nodo-B-subscriber", userdata=userdata, clean_session=True)
+    client.username_pw_set(args.user, args.password)
+
+    client.tls_set(
+        ca_certs=None,
+        certfile=None,
+        keyfile=None,
+        cert_reqs=ssl.CERT_REQUIRED,
+        tls_version=ssl.PROTOCOL_TLS_CLIENT,
+        ciphers=None
+    )
+    client.tls_insecure_set(False)
+
+    client.on_connect = on_connect
+    client.on_message = on_message
+
+    print(f"[B] Conectando a {args.host}:{args.port} (TLS) como '{args.user}'...")
+    try:
+        client.connect(args.host, port=args.port, keepalive=60)
+    except Exception as e:
+        print(f"[B][ERROR] No se pudo conectar: {e}")
+        sys.exit(2)
+
+    try:
+        client.loop_forever()
+    except KeyboardInterrupt:
+        print("\n[B] Cancelado por el usuario.")
+        client.disconnect()
+
+if __name__ == "__main__":
+    main()
+</pre>
+
+Script del Dispositivo A — Publisher
+<pre>
+import argparse, ssl, sys
+import paho.mqtt.client as mqtt
+
+def on_connect(client, userdata, flags, reason_code, properties=None):
+    if reason_code == 0:
+        print("[A] Conectado. Publicando...")
+        info = client.publish(
+            userdata["topic"],
+            payload=userdata["payload"],
+            qos=userdata["qos"],
+            retain=userdata["retain"]
+        )
+        info.wait_for_publish()
+        print(f"[A] Publicado: {userdata['topic']} -> {userdata['payload']} (QoS={userdata['qos']}, retain={userdata['retain']})")
+        client.disconnect()
+    else:
+        print(f"[A][ERROR] Falló la conexión. code={reason_code}")
+
+def main():
+    p = argparse.ArgumentParser(description="MQTT Publisher (Dispositivo A)")
+    p.add_argument("--host", required=True)
+    p.add_argument("--port", type=int, default=8883)
+    p.add_argument("--user", required=True)
+    p.add_argument("--password", required=True)
+    p.add_argument("--topic", default="lan/deviceA/status")
+    p.add_argument("--payload", default="Device A operativo")
+    p.add_argument("--qos", type=int, default=1, choices=[0,1,2])
+    p.add_argument("--retain", type=int, default=0, help="1 para publicar con retain")
+    args = p.parse_args()
+
+    userdata = {
+        "topic": args.topic,
+        "payload": args.payload,
+        "qos": args.qos,
+        "retain": bool(args.retain),
+    }
+
+    client = mqtt.Client(client_id="nodo-A-publisher", userdata=userdata, clean_session=True)
+    client.username_pw_set(args.user, args.password)
+
+    client.tls_set(
+        ca_certs=None,
+        certfile=None,
+        keyfile=None,
+        cert_reqs=ssl.CERT_REQUIRED,
+        tls_version=ssl.PROTOCOL_TLS_CLIENT,
+        ciphers=None
+    )
+    client.tls_insecure_set(False)
+
+    client.on_connect = on_connect
+
+    print(f"[A] Conectando a {args.host}:{args.port} (TLS) como '{args.user}'...")
+    try:
+        client.connect(args.host, port=args.port, keepalive=60)
+    except Exception as e:
+        print(f"[A][ERROR] No se pudo conectar: {e}")
+        sys.exit(2)
+
+    try:
+        client.loop_forever()
+    except KeyboardInterrupt:
+        print("\n[A] Cancelado por el usuario.")
+        client.disconnect()
+
+if __name__ == "__main__":
+    main()
+</pre>
 
 ### 5. Jerarquía de tópicos
 
