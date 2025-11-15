@@ -47,20 +47,24 @@ En cuanto a sus usos, MQTT es ampliamente utilizado en sistemas IoT, como redes 
 
 El modelo sobre el que se basa MQTT es el patrón de diseño PubSub. En este enfoque, los dispositivos que generan información —llamados publishers— no envían mensajes directamente a otros dispositivos, sino que publican dichos mensajes en un tópico. Por su parte, los dispositivos que necesitan recibir esa información —los subscribers— se suscriben a los tópicos que les interesan. El broker se encarga de conectar ambos extremos, reenviando los mensajes publicados a todos los suscriptores correspondientes. Este desacoplamiento entre emisores y receptores simplifica el diseño de la red, mejora la escalabilidad y evita que cada dispositivo deba conocer la dirección de los demás para comunicarse.
 
-### 2
+### 2.
 <img width="623" height="361" alt="image" src="https://github.com/user-attachments/assets/7fdfbec1-16a7-42ab-bf78-f56cbaaf6f6f" />
 En la Figura 1 se muestra la configuración del broker HiveMQ Cloud, con los parámetros de red necesarios para establecer la conexión segura mediante TLS sobre el puerto 8883.
 
 <img width="1490" height="773" alt="image" src="https://github.com/user-attachments/assets/79b07603-0abb-46a0-a756-6b8bc84b6a9d" />
 La Figura 2 muestra la ejecución del cliente MQTT en Python, donde se observa la recepción del mensaje “Hola Mundo desde MQTT”, validando la correcta conexión y funcionalidad del broker HiveMQ.
 
-**Simulación entre 2 Nodos** 
+
+### Simulación entre 2 Nodos
+
 Script del Dispositivo B - Subscriber 
+
+
 <pre>
 import argparse, ssl, sys
 import paho.mqtt.client as mqtt
 
-def on_connect(client, userdata, flags, reason_code, properties=None):
+def on_connect(client, userdata, flags, reason_code, properties):
     if reason_code == 0:
         print("[B] Conectado. Suscribiendo a:", userdata["topic"])
         client.subscribe(userdata["topic"], qos=1)
@@ -84,7 +88,12 @@ def main():
     args = p.parse_args()
 
     userdata = {"topic": args.topic}
-    client = mqtt.Client(client_id="nodo-B-subscriber", userdata=userdata, clean_session=True)
+    client = mqtt.Client(
+        mqtt.CallbackAPIVersion.VERSION2,
+        client_id="nodo-B-subscriber",
+        userdata=userdata,
+        protocol=mqtt.MQTTv311,
+    )
     client.username_pw_set(args.user, args.password)
 
     client.tls_set(
@@ -115,14 +124,17 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 </pre>
 
 Script del Dispositivo A — Publisher
+
+
 <pre>
 import argparse, ssl, sys
 import paho.mqtt.client as mqtt
 
-def on_connect(client, userdata, flags, reason_code, properties=None):
+def on_connect(client, userdata, flags, reason_code, properties):
     if reason_code == 0:
         print("[A] Conectado. Publicando...")
         info = client.publish(
@@ -156,7 +168,12 @@ def main():
         "retain": bool(args.retain),
     }
 
-    client = mqtt.Client(client_id="nodo-A-publisher", userdata=userdata, clean_session=True)
+    client = mqtt.Client(
+        mqtt.CallbackAPIVersion.VERSION2,
+        client_id="nodo-A-publisher",
+        userdata=userdata,
+        protocol=mqtt.MQTTv311,
+    )
     client.username_pw_set(args.user, args.password)
 
     client.tls_set(
@@ -187,6 +204,214 @@ def main():
 if __name__ == "__main__":
     main()
 </pre>
+
+**RESULTADOS EN TERMINAL**
+
+Publisher: 
+<img width="1414" height="501" alt="image" src="https://github.com/user-attachments/assets/104f91ef-029f-406c-b7bb-542c8cc9d4cb" />
+
+Subscriber: 
+<img width="1458" height="765" alt="image" src="https://github.com/user-attachments/assets/1621589a-695b-4c93-9cf8-f2871b6f3b01" />
+
+En las Figuras 3 y 4 se observa la simulación de dos nodos MQTT en una red local: el Dispositivo A publica su estado en el tópico lan/deviceA/status, mientras que el Dispositivo B recibe el mensaje, evidenciando el correcto enrutamiento de mensajes a través del broker.
+
+### Broadcasting en la red local
+
+Script del Dispositivo B - Subscriber 
+
+<pre>
+import argparse, ssl, sys
+import paho.mqtt.client as mqtt
+
+def on_connect(client, userdata, flags, reason_code, properties):
+    print(f"[SUB][on_connect] reason_code={reason_code}")
+    if reason_code == 0:
+        print(f"[SUB] Conectado. Suscribiendo a: {userdata['topic']}")
+        client.subscribe(userdata["topic"], qos=userdata["qos"])
+    else:
+        print(f"[SUB][ERROR] Falló la conexión. code={reason_code}")
+
+def on_message(client, userdata, msg):
+    try:
+        text = msg.payload.decode("utf-8", errors="replace")
+    except Exception:
+        text = str(msg.payload)
+    print(f"[SUB] {msg.topic} -> {text} (QoS={msg.qos}, retain={msg.retain})")
+
+# Firmas robustas para distintas variantes en paho-mqtt 2.x
+def on_disconnect(client, userdata, *rest, **kwargs):
+    # formatos posibles: (reason_code, properties) o (disconnect_flags, reason_code, properties)
+    reason_code = None
+    if len(rest) == 2:
+        reason_code = rest[0]
+    elif len(rest) == 3:
+        reason_code = rest[1]
+    print(f"[SUB][on_disconnect] reason_code={reason_code}, extra_len={len(rest)}")
+
+def main():
+    p = argparse.ArgumentParser(description="MQTT Broadcast Subscriber")
+    p.add_argument("--host", required=True)
+    p.add_argument("--port", type=int, default=8883)
+    p.add_argument("--user", required=True)
+    p.add_argument("--password", required=True)
+    p.add_argument("--topic", default="lan/broadcast/#")
+    p.add_argument("--qos", type=int, default=0, choices=[0,1,2])
+    p.add_argument("--keepalive", type=int, default=180)  # más tolerante a inactividad
+    args = p.parse_args()
+
+    userdata = {"topic": args.topic, "qos": args.qos}
+    client = mqtt.Client(
+        mqtt.CallbackAPIVersion.VERSION2,
+        client_id="sub-broadcast",
+        userdata=userdata,
+        protocol=mqtt.MQTTv311,
+    )
+    client.username_pw_set(args.user, args.password)
+
+    client.tls_set(
+        ca_certs=None,
+        certfile=None,
+        keyfile=None,
+        cert_reqs=ssl.CERT_REQUIRED,
+        tls_version=ssl.PROTOCOL_TLS_CLIENT,
+        ciphers=None
+    )
+    client.tls_insecure_set(False)
+
+    client.on_connect = on_connect
+    client.on_message = on_message
+    client.on_disconnect = on_disconnect
+
+    print(f"[SUB] Conectando a {args.host}:{args.port} (TLS) como '{args.user}'...")
+    try:
+        client.connect(args.host, port=args.port, keepalive=args.keepalive)
+    except Exception as e:
+        print(f"[SUB][ERROR] No se pudo conectar: {e}")
+        sys.exit(2)
+
+    try:
+        client.loop_forever()
+    except KeyboardInterrupt:
+        print("\n[SUB] Cancelado por el usuario.")
+        client.disconnect()
+
+if __name__ == "__main__":
+    main()
+</pre>
+
+Script del Dispositivo A — Publisher
+
+
+<pre>
+# mqtt_broadcast_pub.py
+# Publicador para "broadcast". Compatible paho-mqtt >= 2.x
+
+import argparse, ssl, sys
+import paho.mqtt.client as mqtt
+
+def on_connect(client, userdata, flags, reason_code, properties):
+    print(f"[PUB][on_connect] reason_code={reason_code}")
+    if reason_code == 0:
+        print("[PUB] Conectado. Publicando...")
+        info = client.publish(
+            userdata["topic"],
+            payload=userdata["payload"],
+            qos=userdata["qos"],
+            retain=userdata["retain"]
+        )
+        print(f"[PUB] publish() mid={info.mid}, rc={info.rc}")
+    else:
+        print(f"[PUB][ERROR] Falló la conexión. code={reason_code}")
+
+def on_publish(client, userdata, mid, reason_codes=None, properties=None):
+    print(f"[PUB][on_publish] mid={mid} confirmado. reason_codes={reason_codes}")
+    client.disconnect()
+
+def on_disconnect(client, userdata, *rest, **kwargs):
+    reason_code = None
+    if len(rest) == 2:
+        reason_code = rest[0]
+    elif len(rest) == 3:
+        reason_code = rest[1]
+    print(f"[PUB][on_disconnect] reason_code={reason_code}, extra_len={len(rest)}")
+
+def main():
+    p = argparse.ArgumentParser(description="MQTT Broadcast Publisher")
+    p.add_argument("--host", required=True)
+    p.add_argument("--port", type=int, default=8883)
+    p.add_argument("--user", required=True)
+    p.add_argument("--password", required=True)
+    p.add_argument("--topic", default="lan/broadcast/all")
+    p.add_argument("--payload", default="Mensaje de broadcast")
+    p.add_argument("--qos", type=int, default=0, choices=[0,1,2])
+    p.add_argument("--retain", type=int, default=0, help="1 para publicar con retain")
+    p.add_argument("--keepalive", type=int, default=60)
+    args = p.parse_args()
+
+    userdata = {
+        "topic": args.topic,
+        "payload": args.payload,
+        "qos": args.qos,
+        "retain": bool(args.retain),
+    }
+
+    client = mqtt.Client(
+        mqtt.CallbackAPIVersion.VERSION2,
+        client_id="pub-broadcast",
+        userdata=userdata,
+        protocol=mqtt.MQTTv311,
+    )
+    client.username_pw_set(args.user, args.password)
+
+    client.tls_set(
+        ca_certs=None,
+        certfile=None,
+        keyfile=None,
+        cert_reqs=ssl.CERT_REQUIRED,
+        tls_version=ssl.PROTOCOL_TLS_CLIENT,
+        ciphers=None
+    )
+    client.tls_insecure_set(False)
+
+    client.on_connect = on_connect
+    client.on_publish = on_publish
+    client.on_disconnect = on_disconnect
+
+    print(f"[PUB] Conectando a {args.host}:{args.port} (TLS) como '{args.user}'...")
+    try:
+        client.connect(args.host, port=args.port, keepalive=args.keepalive)
+    except Exception as e:
+        print(f"[PUB][ERROR] No se pudo conectar: {e}")
+        sys.exit(2)
+
+    try:
+        client.loop_forever()
+    except KeyboardInterrupt:
+        print("\n[PUB] Cancelado por el usuario.")
+        client.disconnect()
+
+if __name__ == "__main__":
+    main()
+
+</pre>
+
+**RESULTADOS EN TERMINAL**
+
+Publisher: 
+
+<img width="1488" height="764" alt="image" src="https://github.com/user-attachments/assets/189e9dba-04d8-48fe-b171-649bd5c94e03" />
+
+Subscriber 1: 
+
+<img width="1450" height="626" alt="image" src="https://github.com/user-attachments/assets/a3911f95-c970-4245-844f-c1b579afd476" />
+
+Subscriber 2: 
+
+<img width="1488" height="756" alt="image" src="https://github.com/user-attachments/assets/d211313a-9925-45cf-bbcd-283668968926" />
+
+
+
+
 
 ### 5. Jerarquía de tópicos
 
