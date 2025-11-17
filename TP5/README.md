@@ -27,6 +27,7 @@ En este trabajo se estudia el protocolo MQTT (Message Queuing Telemetry Transpor
 Se implementa un broker MQTT y varios clientes publicadores y suscriptores que intercambian mensajes bajo tópicos jerárquicos, explorando el funcionamiento de broadcasts, ruteo lógico, y niveles de QoS.
 Además, se experimenta con la captura y análisis de paquetes mediante un sniffer, y se discuten aspectos de integridad, confidencialidad y disponibilidad de la arquitectura.
 Finalmente, se reflexiona sobre las ventajas del modelo Pub/Sub frente al cliente-servidor y las limitaciones del protocolo MQTT en entornos LAN simulados.
+
 ---
 
 ## Introducción
@@ -48,10 +49,17 @@ En cuanto a sus usos, MQTT es ampliamente utilizado en sistemas IoT, como redes 
 El modelo sobre el que se basa MQTT es el patrón de diseño PubSub. En este enfoque, los dispositivos que generan información —llamados publishers— no envían mensajes directamente a otros dispositivos, sino que publican dichos mensajes en un tópico. Por su parte, los dispositivos que necesitan recibir esa información —los subscribers— se suscriben a los tópicos que les interesan. El broker se encarga de conectar ambos extremos, reenviando los mensajes publicados a todos los suscriptores correspondientes. Este desacoplamiento entre emisores y receptores simplifica el diseño de la red, mejora la escalabilidad y evita que cada dispositivo deba conocer la dirección de los demás para comunicarse.
 
 ### 2.
-<img width="623" height="361" alt="image" src="https://github.com/user-attachments/assets/7fdfbec1-16a7-42ab-bf78-f56cbaaf6f6f" />
+
+<div>
+ <img width="623" height="361" alt="image" src="https://github.com/user-attachments/assets/7fdfbec1-16a7-42ab-bf78-f56cbaaf6f6f" />
+</div>
+
 En la Figura 1 se muestra la configuración del broker HiveMQ Cloud, con los parámetros de red necesarios para establecer la conexión segura mediante TLS sobre el puerto 8883.
 
-<img width="1490" height="773" alt="image" src="https://github.com/user-attachments/assets/79b07603-0abb-46a0-a756-6b8bc84b6a9d" />
+<div>
+ <img width="1490" height="773" alt="image" src="https://github.com/user-attachments/assets/79b07603-0abb-46a0-a756-6b8bc84b6a9d" />
+</div>
+
 La Figura 2 muestra la ejecución del cliente MQTT en Python, donde se observa la recepción del mensaje “Hola Mundo desde MQTT”, validando la correcta conexión y funcionalidad del broker HiveMQ.
 
 
@@ -208,10 +216,14 @@ if __name__ == "__main__":
 **RESULTADOS EN TERMINAL**
 
 Publisher: 
-<img width="1414" height="501" alt="image" src="https://github.com/user-attachments/assets/104f91ef-029f-406c-b7bb-542c8cc9d4cb" />
+<div>
+ <img width="1414" height="501" alt="image" src="https://github.com/user-attachments/assets/104f91ef-029f-406c-b7bb-542c8cc9d4cb" />
+</div>
 
-Subscriber: 
-<img width="1458" height="765" alt="image" src="https://github.com/user-attachments/assets/1621589a-695b-4c93-9cf8-f2871b6f3b01" />
+Subscriber:
+<div> 
+ <img width="1458" height="765" alt="image" src="https://github.com/user-attachments/assets/1621589a-695b-4c93-9cf8-f2871b6f3b01" />
+</div>
 
 En las Figuras 3 y 4 se observa la simulación de dos nodos MQTT en una red local: el Dispositivo A publica su estado en el tópico lan/deviceA/status, mientras que el Dispositivo B recibe el mensaje, evidenciando el correcto enrutamiento de mensajes a través del broker.
 
@@ -399,19 +411,21 @@ if __name__ == "__main__":
 
 Publisher: 
 
-<img width="1488" height="764" alt="image" src="https://github.com/user-attachments/assets/189e9dba-04d8-48fe-b171-649bd5c94e03" />
+<div>
+ <img width="1488" height="764" alt="image" src="https://github.com/user-attachments/assets/189e9dba-04d8-48fe-b171-649bd5c94e03" />
+</div>
 
 Subscriber 1: 
 
-<img width="1450" height="626" alt="image" src="https://github.com/user-attachments/assets/a3911f95-c970-4245-844f-c1b579afd476" />
+<div>
+ <img width="1450" height="626" alt="image" src="https://github.com/user-attachments/assets/a3911f95-c970-4245-844f-c1b579afd476" />
+</div>
 
 Subscriber 2: 
 
-<img width="1488" height="756" alt="image" src="https://github.com/user-attachments/assets/d211313a-9925-45cf-bbcd-283668968926" />
-
-
-
-
+<div>
+ <img width="1488" height="756" alt="image" src="https://github.com/user-attachments/assets/d211313a-9925-45cf-bbcd-283668968926" />
+</div>
 
 ### 5. Jerarquía de tópicos
 
@@ -436,25 +450,74 @@ Subscriber 2:
 
 **a) Protocolos de capa de transporte**
 
+Como lo dice la documentación, MQTT  y por lo tanto el sistema, funciona sobre el protocolo TCP. Este protocolo garantiza la entrega ordenada y confiable de los paquetes, a diferencia de otros protocolos como UDP.
 
 **b) Integridad, Confidencialidad y Disponibilidad** 
 
+En cuanto a la integridad, al utilizar TCP nos garantizamos que los mensajes lleguen completos y sin errores, pero no nos garantiza protección contra ataques. En nuestro caso, también utilizamos TLS por lo tanto estamos protegidos en ese aspecto (Confidencialidad).
+Como mencionamos anteriormente la disponibilidad del sistema depende del estado del broker, ya que este maneja la transmisión de todos los dispositivos (Pub/Sub). Si este se cae el sistema se cae.
 
 **c) QoS**
 
+La calidad de servicio de MQTT ofrece tres niveles de confiabilidad distintos, que se adaptan a diversos casos de uso de IoT que requieren diferentes niveles de confiabilidad según sus requisitos específicos.
 
-**d) Ventajas de pub/sub frente a cliente-servidor**
+- QoS 0 : QoS 0 ofrece mensajería "disparar y olvidar" sin acuse de recibo del receptor.
 
+- QoS 1 : QoS 1 garantiza que los mensajes se entreguen al menos una vez al requerir un acuse de recibo PUBACK.
 
+- QoS 2 : QoS 2 garantiza que cada mensaje se entregue exactamente una vez mediante un protocolo de enlace de cuatro pasos (PUBLISH, PUBREC, PUBREL, PUBCOMP).
+
+Este enfoque por niveles permite a los desarrolladores tener más flexibilidad a la hora de diseñar sus sistemas.
+
+**d) Ventajas del modelo pub/sub frente al modelo cliente-servidor**
+
+El modelo publish/subscribe presenta varias ventajas importantes respecto al esquema tradicional cliente-servidor:
+
+1. *Desacoplamiento entre dispositivos*
+En pub/sub, el publicador y el suscriptor no necesitan conocerse entre sí. No deben saber la dirección IP ni el puerto del otro; solo deben conectarse al broker y trabajar mediante tópicos. Esto simplifica el diseño y permite agregar o quitar dispositivos sin modificar el sistema.
+
+2. *Mayor tolerancia a fallos*
+En un sistema cliente-servidor, si el servidor falla, todos los clientes pierden la comunicación. En cambio, en pub/sub, el broker puede almacenar mensajes (según el QoS configurado) y entregarlos cuando el cliente vuelva a conectarse, evitando pérdidas y mejorando la confiabilidad.
+
+3. *Escalabilidad*
+Gracias al desacoplamiento, esta arquitectura soporta fácilmente un gran número de clientes y mensajes. Cada dispositivo solo publica o se suscribe, mientras que el broker gestiona la distribución, lo que permite escalar el sistema sin grandes cambios.
+
+4. *Flexibilidad*
+MQTT ofrece distintos niveles de QoS, permitiendo seleccionar el grado de confiabilidad necesario para cada aplicación. Además, los tópicos jerárquicos y los comodines (+, #) hacen que el enrutamiento de mensajes sea muy flexible y fácil de organizar.
+ 
 **e) Limitaciones de MQTT**
 
+MQTT es ideal para aplicaciones IoT porque trabaja con mensajes pequeños y frecuentes. Sin embargo, cuando se necesita transferir datos de mayor tamaño como *archivos o imágenes* el protocolo deja de ser eficiente. Además, al depender de un intermediario (el broker) toda comunicación debe pasar por él, lo que introduce una latencia adicional respecto a una conexión directa entre dispositivos dentro de una red LAN.
 
 **f) Broker central**
+
+Como ya mencionamos el broker es el componente central que conecta a todos los dispositivos. Todos los mensajes deben pasar por él: los publishers envían sus datos al broker y los subscribers los reciben también desde ese mismo punto. Por lo tanto, el broker se convierte en un punto único de falla. Si el broker deja de funcionar, toda la red MQTT queda inmediatamente incomunicada.
+
+Si bien la centralización tiene ventajas como:
+
+- Controlar accesos.
+- Registrar actividad.
+- Ordenar los tópicos.
+- Coordinar dispositivos.
+- Realizar lógica de enrutamiento.
+
+Esa misma centralización es lo que hace que el broker sea un componente demasiado crítico. 
 
 ---
 
 ## Discusión Y Conclusiones
 
+Este Trabajo Práctico N.º 5 permitió adentrarse en el protocolo MQTT mediante la simulación del funcionamiento de una red local con múltiples dispositivos IoT. La experiencia facilitó la comprensión del modelo Publish/Subscribe y permitió analizar con mayor profundidad sus ventajas y limitaciones.
+
+En una primera etapa se llevó a cabo una investigación teórica. Luego, con esos conocimientos, se procedió a la implementación práctica de los distintos componentes del sistema.
+
+El desarrollo del trabajo permitió no solo implementar un sistema funcional, sino también analizar las caracteristicas de MQTT en un entorno controlado.
+
+En conclusión, MQTT se presenta como una solución robusta, simple y flexible para redes de sensores y sistemas de automatización, siempre que se consideren cuidadosamente sus restricciones y se utilicen configuraciones adecuadas según el entorno y los objetivos de la aplicación.
+
 ---
 
 ## Referencias
+
+- MQTT: https://mqtt.org/
+- HiveMQ: https://www.hivemq.com/
