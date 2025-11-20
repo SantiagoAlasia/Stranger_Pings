@@ -429,23 +429,36 @@ Subscriber 2:
 
 ### 5. Jerarquía de tópicos
 
-**a) Simulación de sensores**
 
+Terminal 1 – Gateway (suscriptor + CSV)
+<pre>
+ 
+</pre>
+Foto: 
 
-**b) Cliente "central"**
+Terminal 2 – Sensor sala1/temp
+<pre>
+ 
+</pre>
+Foto: 
 
+Terminal 3 – Sensor sala1/hum
+<pre>
+ 
+</pre>
+Foto: 
 
-**c) Ploteo de datos**
+Terminal 4 – Sensor sala2/temp
+<pre>
+ 
+</pre>
+Foto: 
 
-
-**d) Broadcasting**
-
-
-**e) Captura de paquete**
-
-
-
-
+Terminal 5 – Broadcast (comandos a todos)
+<pre>
+ 
+</pre>
+Foto:
 ### 6. Preguntas
 
 **a) Protocolos de capa de transporte**
