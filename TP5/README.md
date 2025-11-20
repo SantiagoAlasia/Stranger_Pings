@@ -430,35 +430,250 @@ Subscriber 2:
 ### 5. Jerarquía de tópicos
 
 
-Terminal 1 – Gateway (suscriptor + CSV)
+Terminal 1 – Script Gateway (suscriptor + CSV)
 <pre>
- 
-</pre>
-Foto: 
+ import argparse, ssl, time, csv
+import paho.mqtt.client as mqtt
 
-Terminal 2 – Sensor sala1/temp
-<pre>
- 
-</pre>
-Foto: 
+CSV_FILE = "datos_sensores.csv"
 
-Terminal 3 – Sensor sala1/hum
-<pre>
- 
-</pre>
-Foto: 
+def on_message(client, userdata, msg):
+    valor = msg.payload.decode()
+    timestamp = time.strftime("%Y-%m-%d %H:%M:%S")
 
-Terminal 4 – Sensor sala2/temp
-<pre>
- 
+    print(f"[GATEWAY] {timestamp} | {msg.topic} -> {valor}")
+
+    with open(CSV_FILE, "a", newline="") as f:
+        writer = csv.writer(f)
+        writer.writerow([timestamp, msg.topic, valor])
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--host", required=True)
+    parser.add_argument("--port", type=int, default=8883)
+    parser.add_argument("--user", required=True)
+    parser.add_argument("--password", required=True)
+    args = parser.parse_args()
+
+    client = mqtt.Client(protocol=mqtt.MQTTv311)
+    client.username_pw_set(args.user, args.password)
+    client.tls_set(tls_version=ssl.PROTOCOL_TLS_CLIENT)
+
+    client.on_message = on_message
+
+    topic = "lan/+/sensor/+"
+    print(f"[GATEWAY] Suscribiéndose a {topic}")
+
+    client.connect(args.host, args.port, 60)
+    client.subscribe(topic, qos=1)
+
+    client.loop_forever()
+
+if __name__ == "__main__":
+    main()
 </pre>
-Foto: 
+Foto: <img width="1458" height="739" alt="image" src="https://github.com/user-attachments/assets/e076622a-519b-4c19-b52e-da0442c75127" />
+
+Terminal 2 – Script Sensor sala1/temp
+<pre>
+import argparse, ssl, time, random
+import paho.mqtt.client as mqtt
+
+running = False
+
+def on_message(client, userdata, msg):
+    global running
+    comando = msg.payload.decode().lower()
+    if comando == "start":
+        running = True
+        print("[sala1/temp] Recibido comando START → comenzando a transmitir")
+    elif comando == "stop":
+        running = False
+        print("[sala1/temp] Recibido comando STOP → deteniendo transmisión")
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--host", required=True)
+    parser.add_argument("--port", type=int, default=8883)
+    parser.add_argument("--user", required=True)
+    parser.add_argument("--password", required=True)
+    parser.add_argument("--interval", type=float, default=2.0)
+    args = parser.parse_args()
+
+    topic = "lan/sala1/sensor/temp"
+    client = mqtt.Client(protocol=mqtt.MQTTv311)
+
+    client.username_pw_set(args.user, args.password)
+    client.tls_set(tls_version=ssl.PROTOCOL_TLS_CLIENT)
+
+    client.on_message = on_message
+    client.connect(args.host, args.port, keepalive=60)
+    client.subscribe("lan/broadcast/cmd", qos=1)
+    client.loop_start()
+
+    print(f"[SALA1/TEMP] Esperando comando START...")
+
+    try:
+        while True:
+            if running:
+                valor = round(20 + random.uniform(-3, 5), 2)
+                client.publish(topic, str(valor), qos=1)
+                print(f"[SALA1/TEMP] -> {valor}")
+            time.sleep(args.interval)
+    except KeyboardInterrupt:
+        client.loop_stop()
+        client.disconnect()
+
+if __name__ == "__main__":
+    main()
+
+</pre>
+Foto: <img width="1461" height="741" alt="image" src="https://github.com/user-attachments/assets/e757bb2f-9f92-4617-9bae-70e7bfb249b6" />
+
+Terminal 3 – Script Sensor sala1/hum
+<pre>
+import argparse, ssl, time, random
+import paho.mqtt.client as mqtt
+
+running = False
+
+def on_message(client, userdata, msg):
+    global running
+    comando = msg.payload.decode().lower()
+    if comando == "start":
+        running = True
+        print("[sala1/hum] Recibido START → comenzando transmisión")
+    elif comando == "stop":
+        running = False
+        print("[sala1/hum] Recibido STOP → deteniendo transmisión")
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--host", required=True)
+    parser.add_argument("--port", type=int, default=8883)
+    parser.add_argument("--user", required=True)
+    parser.add_argument("--password", required=True)
+    parser.add_argument("--interval", type=float, default=3.0)
+    args = parser.parse_args()
+
+    topic = "lan/sala1/sensor/hum"
+    client = mqtt.Client(protocol=mqtt.MQTTv311)
+
+    client.username_pw_set(args.user, args.password)
+    client.tls_set(tls_version=ssl.PROTOCOL_TLS_CLIENT)
+
+    client.on_message = on_message
+    client.connect(args.host, args.port, keepalive=60)
+    client.subscribe("lan/broadcast/cmd", qos=1)
+    client.loop_start()
+
+    print(f"[SALA1/HUM] Esperando comando START...")
+
+    try:
+        while True:
+            if running:
+                valor = round(40 + random.uniform(-15, 15), 2)
+                client.publish(topic, str(valor), qos=1)
+                print(f"[SALA1/HUM] -> {valor}")
+            time.sleep(args.interval)
+    except KeyboardInterrupt:
+        client.loop_stop()
+        client.disconnect()
+
+if __name__ == "__main__":
+    main()
+
+</pre>
+Foto: <img width="1470" height="747" alt="image" src="https://github.com/user-attachments/assets/95a2cf6d-4fd0-4410-85a1-2ccef327be5f" />
+
+Terminal 4 – Script Sensor sala2/temp
+<pre>
+import argparse, ssl, time, random
+import paho.mqtt.client as mqtt
+
+running = False
+
+def on_message(client, userdata, msg):
+    global running
+    comando = msg.payload.decode().lower()
+    if comando == "start":
+        running = True
+        print("[sala2/temp] Recibido START → comenzando transmisión")
+    elif comando == "stop":
+        running = False
+        print("[sala2/temp] Recibido STOP → deteniendo transmisión")
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--host", required=True)
+    parser.add_argument("--port", type=int, default=8883)
+    parser.add_argument("--user", required=True)
+    parser.add_argument("--password", required=True)
+    parser.add_argument("--interval", type=float, default=2.5)
+    args = parser.parse_args()
+
+    topic = "lan/sala2/sensor/temp"
+    client = mqtt.Client(protocol=mqtt.MQTTv311)
+
+    client.username_pw_set(args.user, args.password)
+    client.tls_set(tls_version=ssl.PROTOCOL_TLS_CLIENT)
+
+    client.on_message = on_message
+    client.connect(args.host, args.port, keepalive=60)
+    client.subscribe("lan/broadcast/cmd", qos=1)
+    client.loop_start()
+
+    print(f"[SALA2/TEMP] Esperando comando START...")
+
+    try:
+        while True:
+            if running:
+                valor = round(18 + random.uniform(-2, 4), 2)
+                client.publish(topic, str(valor), qos=1)
+                print(f"[SALA2/TEMP] -> {valor}")
+            time.sleep(args.interval)
+    except KeyboardInterrupt:
+        client.loop_stop()
+        client.disconnect()
+
+if __name__ == "__main__":
+    main()
+
+</pre>
+Foto: <img width="1458" height="748" alt="image" src="https://github.com/user-attachments/assets/d122e361-f9eb-465f-a95a-b856509820f7" />
 
 Terminal 5 – Broadcast (comandos a todos)
 <pre>
- 
+ import argparse, ssl
+import paho.mqtt.client as mqtt
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--host", required=True)
+    parser.add_argument("--port", type=int, default=8883)
+    parser.add_argument("--user", required=True)
+    parser.add_argument("--password", required=True)
+    parser.add_argument("--cmd", required=True, help="start o stop")
+    args = parser.parse_args()
+
+    topic = "lan/broadcast/cmd"
+
+    client = mqtt.Client(protocol=mqtt.MQTTv311)
+    client.username_pw_set(args.user, args.password)
+    client.tls_set(tls_version=ssl.PROTOCOL_TLS_CLIENT)
+
+    print(f"[CMD] Enviando comando '{args.cmd}' a {topic}")
+    client.connect(args.host, args.port, 60)
+
+    client.publish(topic, args.cmd, qos=1)
+    client.disconnect()
+
+if __name__ == "__main__":
+    main()
 </pre>
-Foto:
+Foto: 
+
+
 ### 6. Preguntas
 
 **a) Protocolos de capa de transporte**
