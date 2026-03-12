@@ -36,5 +36,5 @@ Cada carpeta incluye:
 ## 🧭 Información adicional
 
 🏛️ **Carrera:** Ingeniería en Computación  
-📚 **Materia:** Redes de Computadoras
+📚 **Materia:** Redes de Computadoras <br>
 📅 **Año:** 2026
