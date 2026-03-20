@@ -145,6 +145,16 @@ Ahora, el *default gateway* deberá volver a modificar las direcciones MAC's par
 
 ### 5.
 
+a. Esto se debe a que la dirección lógica (IP) se utiliza para identificar el destino final, mientras que la dirección física (MAC) cambia en cada salto porque se utiliza para identificar a los nodos adyacentes.
+
+b. Se utiliza este mecanismo porque cuando el destino está en otra red, el host no puede obtener directamente su dirección física. El gateway resuelve este problema ya que posee una tabla de rutas que le permite determinar el siguiente salto para llegar al destino final.
+
+c. El enrutamiento *hop-by-hop* permite que cada router tome decisiones basadas en en su tabla de enrutamiento, lo que mejora la escalabilidad, ya que no requiere conocimiento global de la red. Además, aporta tolerancia a fallos, ya que en caso de que se caiga un nodo se pueden usar otros caminos para entregar el paquete.
+
+d. Es necesario reconstruir la trama Ethernet en cada salto porque las direcciones MAC indican el siguiente salto del paquete. El router desencapsula el paquete IP y lo vuelve a encapsular con nuevas direcciones físicas correspondientes al siguiente salto (Basado en su tabla de enrutamiento). Si se reenviara el mismo frame, la dirección MAC destino sería incorrecta y la trama no podría ser entregada.
+
+e.El campo TTL evita que los paquetes permanezcan indefinidamente en la red en caso de no alcanzar su destino. Al decrementarse en cada salto, garantiza que el paquete tenga una vida limitada. Si este mecanismo no existiera, los paquetes podrían circular indefinidamente, provocando congestión y un uso innecesario de los recursos de la red.
+
 ### Parte 2. Inyección y Detección de errores.
 
 ---
