@@ -157,6 +157,44 @@ e.El campo TTL evita que los paquetes permanezcan indefinidamente en la red en c
 
 ### Parte 2. Inyección y Detección de errores.
 
+#### Detección de errores 
+
+El sistema utiliza un mecanismo EDAC basado en paridad par, donde el bit de paridad indica si la cantidad de bits en ‘1’ del payload es par. 
+
+El paquete recibido presenta: 
+
+- Payload: 1111001000111100 
+- Cantidad de bits en ‘1’: 9 (impar) 
+- EDAC recibido: 0 
+
+Dado que el valor de EDAC indica paridad par, pero el payload posee una cantidad impar de unos, se detecta una inconsistencia. 
+
+La discrepancia entre el bit de paridad y el contenido del payload indica que el paquete fue alterado durante la transmisión. 
+
+Esto implica que: 
+
+- El payload recibido no coincide con el original enviado 
+- El mecanismo de paridad permitió detectar el error correctamente 
+
+El payload original, suponiendo que solo se cambió un bit con respecto al payload recibido, podría ser una de las siguientes opciones: 
+
+- 0111001000111100 
+- 1011001000111100 
+- 1101001000111100 
+- 1110001000111100 
+- 1111101000111100 
+- 1111011000111100 
+- 1111000000111100 
+- 1111001100111100 
+- 1111001010111100 
+- 1111001001111100 
+- 1111001000011100 
+- 1111001000101100 
+- 1111001000110100 
+- 1111001000111000 
+- 1111001000111110 
+- 1111001000111101 
+
 ---
 
 ## Discusión Y Conclusiones
