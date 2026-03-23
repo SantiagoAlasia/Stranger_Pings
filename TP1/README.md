@@ -23,9 +23,19 @@
 
 ## Resumen
 
+En este trabajo se desarrolló una simulación del envío de paquetes en una red, donde se analizaron los procesos de encapsulamiento, resolución de direcciones y enrutamiento entre distintas LANs. Se observó cómo los hosts envían paquetes hacia el gateway cuando el destino se encuentra fuera de su red, y cómo los routers modifican las tramas Ethernet en cada salto, decrementando además el campo TTL para evitar la circulación indefinida de los paquetes.
+
+Por otro lado, se abordó la detección de errores mediante el uso de un esquema EDAC basado en paridad par. A partir del análisis de un paquete recibido, se identificó una inconsistencia entre el bit de paridad y la cantidad de bits en ‘1’ del payload, lo que permitió concluir que la información fue alterada durante la transmisión. 
+
+En conjunto, el trabajo permitió comprender tanto el funcionamiento del enrutamiento en redes como las limitaciones y alcances de los métodos de detección de errores en sistemas de comunicación digital.
+
 ---
 
 ## Introducción
+
+En las redes de computadoras, la transmisión de información entre dispositivos implica múltiples procesos, como el direccionamiento lógico mediante IP, la resolución de direcciones físicas mediante ARP y el enrutamiento de paquetes entre distintas redes. Estos mecanismos permiten que los datos lleguen correctamente a su destino, aun cuando deban atravesar varios nodos intermedios.
+
+En el presente trabajo práctico se analizan estos conceptos a través de la simulación del envío de paquetes dentro de una red, considerando el comportamiento de hosts, routers y tablas de enrutamiento. Además, se estudia la problemática de la integridad de los datos mediante la implementación de técnicas de detección de errores (EDAC), evaluando cómo los errores pueden ser introducidos en la transmisión y cómo estos son detectados en el receptor.
 
 ---
 
