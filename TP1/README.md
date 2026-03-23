@@ -209,6 +209,8 @@ El payload original, suponiendo que solo se cambió un bit con respecto al paylo
 
 ## Discusión Y Conclusiones
 
----
+A lo largo del trabajo se analizaron los mecanismos fundamentales del envío de paquetes en redes, destacando la diferencia entre direccionamiento lógico (IP) y físico (MAC). Se observó cómo los hosts envían los paquetes al gateway cuando el destino no pertenece a su red, y cómo el router se encarga de reenviarlos modificando las direcciones MAC y decrementando el campo TTL en cada etapa del recorrido.
 
-## Referencias
+Por otro lado, el análisis de la detección de errores mediante paridad par permitió identificar una inconsistencia entre el bit EDAC y el payload recibido, lo que evidenció que el paquete fue alterado durante la transmisión. Este resultado demuestra que el método es efectivo para detectar errores cuando se produce una alteración en la cantidad de bits en ‘1’.
+
+Sin embargo, también se concluye que la paridad es un mecanismo limitado, ya que no permite corregir errores ni detectarlos en todos los casos. En conjunto, el trabajo permitió comprender el funcionamiento del envío de paquetes entre redes y la importancia de los mecanismos de detección de errores para garantizar la integridad de la información.
