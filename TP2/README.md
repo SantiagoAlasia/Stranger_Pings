@@ -39,17 +39,17 @@ Se logró armar el cable bajo la norma T568A/B con éxito y sin compplicaciones,
 
 1. Inspección visual: Se revisó que los conductores estuvieran correctamente alineados, que llegaran hasta el fondo del conector y que la cubierta externa estuviera correctamente prensada.
 
-![alt text](image.png)
+![alt text](imagenes/image.png)
 
-![alt text](image-1.png)
+![alt text](imagenes/image-1.png)
 
 2. Verificación eléctrica: Se utilizó un tester de cables Ethernet para comprobar la continuidad de cada uno de los 8 hilos. El resultado esperado fue una correspondencia directa entre los pines de ambos extremos (1-1, 2-2, ..., 8-8), confirmando la correcta construcción del cable.
 
-![alt text](image-2.png)
+![alt text](imagenes/image-2.png)
 
-![alt text](image-3.png)
+![alt text](imagenes/image-3.png)
 
-![alt text](image-4.png)
+![alt text](imagenes/image-4.png)
 
 En conclusión, el cable funcionó correctamente, por lo que podemos afirmar que fue adecuadamente armado.
 
@@ -77,9 +77,9 @@ Para acceder al switch se utilizó el software PuTTY, configurado con los siguie
 
 Se conectó la PC al puerto de consola del switch mediante un cable serie a RJ-45, logrando acceso a la interfaz de configuración.
 
-![alt text](image-5.png)
+![alt text](imagenes/image-5.png)
 
-![alt text](image-6.png)
+![alt text](imagenes/image-6.png)
 
 **Configuración básica**
 
@@ -87,11 +87,11 @@ Una vez iniciada la sesión, se accedió al modo privilegiado mediante el comand
 
 En este punto, el equipo quedó listo para recibir comandos de configuración. Sin embargo, no se realizaron modificaciones adicionales sobre el dispositivo (como cambio de contraseñas o configuración de parámetros de red), limitándose la práctica a verificar el acceso correcto a la interfaz de configuración.
 
-![alt text](image-7.png)
+![alt text](imagenes/image-7.png)
 
 **Conexión de equipos y pruebas de conectividad**
 
-![alt text](image-9.png)
+![alt text](imagenes/image-9.png)
 
 ---
 
