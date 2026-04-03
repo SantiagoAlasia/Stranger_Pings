@@ -23,11 +23,23 @@
 
 ## Resumen
 
+En este Trabajo Práctico se realizaron actividades prácticas sobre el cableado y la verificación de enlaces físicos (cables Cat5e), además de la conexión y acceso a la consola de un switch Cisco Catalyst 2950 para comprobar el acceso a la interfaz de administración. Se armó y testeó un cable Ethernet, se verificó la continuidad eléctrica de los ocho hilos y se validó el acceso por consola al switch.
 
 ---
 
 ## Introducción
 
+El objetivo de este trabajo es afianzar conocimientos prácticos relacionados con la capa física y la operación básica de equipos de red. 
+
+En particular, se busca que los integrantes del grupo aprendan a: 
+
+1. Armar cables Ethernet correctamente según los estándares.
+2. Comprobar la continuidad y funcionamiento de los cables mediante inspección visual y pruebas eléctricas.
+3. Establecer comunicación con un switch a través de la consola para verificar el acceso y observar la interfaz de configuración. 
+
+```
+Obs:El alcance del trabajo se limitó a la verificación y prueba de acceso: no se realizaron cambios persistentes en la configuración del switch ni tareas avanzadas de enrutamiento o seguridad.
+```
 
 ---
 
@@ -96,3 +108,11 @@ En este punto, el equipo quedó listo para recibir comandos de configuración. S
 ---
 
 ## Discusión Y Conclusiones
+
+El desarrollo de este trabajo práctico permitió afianzar de manera concreta los conceptos teóricos vinculados a la capa física del modelo de redes, evidenciando la importancia que tienen los componentes físicos en el correcto funcionamiento de una red.
+
+En la primera parte, el armado y verificación de cables Ethernet permitió comprender que una correcta disposición de los conductores no es solo un requisito teórico, sino una condición fundamental para garantizar la integridad de la transmisión de datos. La inspección visual y la verificación eléctrica demostraron ser herramientas complementarias esenciales para validar el correcto funcionamiento del enlace físico.
+
+Por otro lado, el trabajo con el switch Cisco Catalyst 2950 permitió introducirse en el uso de equipos reales de red, destacando la importancia del acceso por consola como primer paso en la administración de dispositivos.
+
+En conclusión, la experiencia resultó fundamental para integrar teoría y práctica, permitiendo desarrollar habilidades esenciales en el manejo de infraestructura de red y reforzando la comprensión del funcionamiento global de los sistemas de comunicación.
