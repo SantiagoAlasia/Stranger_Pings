@@ -35,7 +35,7 @@ Este trabajo busca consolidar los conocimientos adquiridos en los trabajos prác
 
 # Desarrollo
 
-## Consigna 1:
+## 1)
 
 **a) ¿Qué es SSH y qué problema resuelve?**
 
