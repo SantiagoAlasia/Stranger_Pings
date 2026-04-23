@@ -69,7 +69,9 @@ Lo que permitió confirmar que la carpeta fue creada correctamente en el sistema
 
 Luego entramos a la carpeta y creamos dentro de la misma un archivo de prueba y verificamos su existencia. Esto permitió confirmar la correcta interacción con el sistema de archivos de la máquina virtual.
 
-<img width="971" height="218" alt="image" src="https://github.com/user-attachments/assets/b2d5153a-deb2-49e3-8c62-c1d7c7154f91" />
+Por último utilizamos el comando pwd para verificar la ruta actual dentro del sistema de archivos, confirmando que se estaba trabajando dentro de la carpeta del grupo StrangerPings.
+
+<img width="925" height="262" alt="image" src="https://github.com/user-attachments/assets/74646f28-1045-4785-9c8b-72871862c0a3" />
 
 
 
