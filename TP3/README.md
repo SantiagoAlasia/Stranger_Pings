@@ -21,13 +21,15 @@
 
 ---
 
-## Resumen
+## Introducción a infraestructura de servicios web con perspectiva de redes
 
+Este trabajo práctico tiene como objetivo introducirnos en el uso de herramientas y conceptos fundamentales para la administración y análisis de servicios en red. A lo largo del desarrollo, se trabajará con máquinas virtuales en la nube, conexiones seguras mediante SSH y análisis de tráfico utilizando herramientas como Wireshark y netcat.
 
+Se abordarán tanto aspectos teóricos como prácticos, permitiendo comprender cómo se establecen las comunicaciones en red, cómo se protegen mediante mecanismos de cifrado y cómo pueden ser analizadas desde el punto de vista del tráfico de datos.
 
----
+Además, se realizarán experiencias prácticas que incluyen la creación de servidores simples, la captura y análisis de paquetes de red, y el despliegue de servicios HTTP, con el fin de observar el comportamiento real de los protocolos estudiados.
 
-## Introducción
+Este trabajo busca consolidar los conocimientos adquiridos en los trabajos prácticos anteriores y aplicar conceptos clave relacionados con la seguridad, la confidencialidad y el funcionamiento de las comunicaciones en redes.
 
 ---
 
