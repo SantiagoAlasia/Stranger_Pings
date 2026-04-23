@@ -99,6 +99,8 @@ Por lo tanto, no es posible descifrar el contenido de los mensajes utilizando Wi
 
 ### Consigna 4: Comunicación TCP con netcat
 
+a. 
+
 Se implementó un servidor TCP en la máquina virtual utilizando el siguiente comando: ncat -l 5000
 
 Desde la computadora local se estableció una conexión hacia la VM: ncat 4.174.129.188 5000 
@@ -113,8 +115,6 @@ Esto permitió simular un canal de comunicación tipo “chat” utilizando el p
 
 
 <img width="1045" height="194" alt="image" src="https://github.com/user-attachments/assets/6e10ec4d-f951-4e1a-9bdc-8926a71a52c4" />
-
-a.
 
 #### Visualización del contenido en texto plano
 
@@ -144,6 +144,23 @@ A diferencia de TCP, UDP no establece una conexión formal, pero permite el env�
 <img width="630" height="158" alt="image" src="https://github.com/user-attachments/assets/58434db0-adaa-409c-90ab-33698557b05e" />
 
 <img width="948" height="108" alt="image" src="https://github.com/user-attachments/assets/a13f1feb-5149-495a-ac26-50c300bdd9d1" />
+
+#### Análisis del tráfico UDP
+
+Se capturó el tráfico generado mediante el uso de netcat utilizando el protocolo UDP, aplicando el siguiente filtro en Wireshark: ip.addr == 4.174.129.188 and udp 
+
+
+Durante la captura se identificaron paquetes UDP correspondientes a la comunicación entre la computadora local y la máquina virtual.
+
+Al analizar uno de estos paquetes, se pudo observar el contenido del mensaje en texto plano dentro de la sección de datos. En particular, se visualiza claramente el mensaje enviado (“mensaje udp wireshark”), lo que evidencia que la información transmitida no se encuentra cifrada.
+
+Esto demuestra que el protocolo UDP, al igual que una comunicación TCP sin mecanismos de seguridad adicionales, no garantiza la confidencialidad de los datos, ya que cualquier intermediario podría acceder al contenido de los mensajes. 
+
+<img width="1919" height="1012" alt="image" src="https://github.com/user-attachments/assets/1ecaef9c-0514-4e3c-8d7f-cb08f762b17d" />
+
+c. 
+
+<img width="1316" height="287" alt="image" src="https://github.com/user-attachments/assets/d3f22a97-3ef1-41c6-a073-1cdf4dfee3e7" />
 
 
 
