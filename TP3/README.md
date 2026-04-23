@@ -63,9 +63,13 @@ La clave privada no debe compartirse porque garantiza la identidad del usuario; 
 - Reducen el riesgo de ataques de fuerza bruta.
 - Permiten automatización en procesos de conexxión.
 
-### 2) Conexión SSH a la VM
+## 2) Conexión SSH a la VM
 
-Se estableció una conexión SSH con la máquina virtual asignada utilizando una clave privada.  
+Se estableció una conexión SSH con la máquina virtual asignada utilizando autenticación mediante clave privada:
+
+```bash
+ssh -i <path/a/la/clave> <usuario>@<ip>
+
 Una vez dentro de la VM, se creó una carpeta con el nombre del grupo y luego se verificó su creación utilizando
 Lo que permitió confirmar que la carpeta fue creada correctamente en el sistema remoto.
 
