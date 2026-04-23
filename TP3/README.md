@@ -69,6 +69,7 @@ Se estableció una conexión SSH con la máquina virtual asignada utilizando aut
 
 ```bash
 ssh -i <path/a/la/clave> <usuario>@<ip>
+```
 
 Una vez dentro de la VM, se creó una carpeta con el nombre del grupo y luego se verificó su creación utilizando
 Lo que permitió confirmar que la carpeta fue creada correctamente en el sistema remoto.
