@@ -141,7 +141,7 @@ El protocolo SSH (Secure Shell) implementa mecanismos de cifrado para garantizar
 
 Por lo tanto, no es posible descifrar el contenido de los mensajes capturados, ya que viajan de forma segura y protegida frente a posibles interceptaciones.
 
-https://github.com/user-attachments/assets/ef0311d3-1c0d-477d-89b4-36293184806f
+<img width="1919" height="343" alt="image" src="https://github.com/user-attachments/assets/ef0311d3-1c0d-477d-89b4-36293184806f" />
 
 
 ### Consigna 4: Comunicación TCP con netcat
