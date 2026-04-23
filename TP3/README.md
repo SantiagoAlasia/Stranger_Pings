@@ -64,23 +64,15 @@ La clave privada no debe compartirse porque garantiza la identidad del usuario; 
 ## 2) Conexión SSH a la VM
 
 Se estableció una conexión SSH con la máquina virtual asignada utilizando una clave privada.  
-Una vez dentro de la VM, se creó una carpeta con el nombre del grupo:
-
-```bash
-mkdir StrangerPings
-
-Luego se verificó su creación utilizando
-
-```bash
-ls
-
+Una vez dentro de la VM, se creó una carpeta con el nombre del grupo y luego se verificó su creación utilizando
 Lo que permitió confirmar que la carpeta fue creada correctamente en el sistema remoto.
+
 <img width="781" height="122" alt="image" src="https://github.com/user-attachments/assets/fb9bcbc6-b50b-4bd4-b4e1-79648384288b" />
 
-Luego entramos a la carpeta:
+Luego entramos a la carpeta y creamos dentro de la misma un archivo de prueba y verificamos su existencia. Esto permitió confirmar la correcta interacción con el sistema de archivos de la máquina virtual.
 
-```bash
-cd StrangerPings
+<img width="971" height="218" alt="image" src="https://github.com/user-attachments/assets/b2d5153a-deb2-49e3-8c62-c1d7c7154f91" />
+
 
 
 ### Consigna 3:
