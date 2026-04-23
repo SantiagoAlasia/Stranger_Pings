@@ -308,3 +308,11 @@ Además del cifrado, es esencial garantizar la autenticación, es decir, verific
 ---
 
 ## Discusión Y Conclusiones
+
+El desarrollo de este trabajo práctico permitió evidenciar, a través de experiencias sobre redes reales, la importancia de proteger la información durante su transmisión. 
+
+En primer lugar, al utilizar SSH se observó cómo el uso de cifrado garantiza la confidencialidad de los datos, impidiendo que su contenido pueda ser interpretado incluso si los paquetes son interceptados. En contraste, se comprobó que la comunicación en red no es segura por defecto: mediante el uso de herramientas como netcat y el análisis con Wireshark, se pudo verificar que los datos transmitidos a través de protocolos como TCP, UDP y HTTP viajan en texto plano, lo que facilita su captura y lectura por parte de terceros. 
+
+Por otro lado, el video propuesto permitió comprender que no solo es importante el cifrado sino que tambien la autenticación, ya que no solo es necesario proteger la información, sino también garantizar la identidad de las entidades que participan en la comunicación. En este sentido, el uso de claves públicas y privadas permitió entender de manera práctica cómo se implementan estos mecanismos en protocolos seguros como SSH.
+
+En conclusión, este trabajo permitió poner en práctica conceptos abordados en trabajos anteriores y evidenciar la importancia de incorporar principios de seguridad, como la confidencialidad y la autenticación, en cualquier sistema que implique la transmisión de datos.
