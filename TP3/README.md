@@ -160,13 +160,64 @@ Esto demuestra que el protocolo UDP, al igual que una comunicación TCP sin meca
 
 c. 
 
+#### Comunicación entre máquinas virtuales
+
+Se estableció una comunicación directa entre dos máquinas virtuales utilizando netcat.
+
+En la primera VM se ejecutó: ncat -l 5002
+
+Mientras que desde la segunda VM se realizó la conexión: ncat 4.174.129.188 5002
+
+Una vez establecida la conexión, se intercambiaron mensajes entre ambas máquinas, simulando un chat bidireccional.
+
+Esto permitió demostrar la comunicación directa entre instancias en la nube utilizando el protocolo TCP.
+
 <img width="1316" height="287" alt="image" src="https://github.com/user-attachments/assets/d3f22a97-3ef1-41c6-a073-1cdf4dfee3e7" />
 
 <img width="965" height="74" alt="image" src="https://github.com/user-attachments/assets/c8ef982f-776d-48ef-bbed-b0b317fe5c4e" />
 
 
+### Consigna 5: Despliegue de servidor HTTP
 
-### Consigna 5:
+#### Creación de la página web
+
+Se creó un archivo `index.html` dentro de la carpeta del grupo con el siguiente contenido:
+
+<h1>Hola Mundo StrangerPings 🚀</h1>
+<p>Este es nuestro servidor web</p>
+
+Este archivo representa una página web básica que será servida mediante un servidor HTTP.
+
+Despliegue del servidor web
+
+Se levantó un servidor web utilizando Python con el siguiente comando:
+
+python3 -m http.server 5000
+
+Se utilizó el puerto 5000 debido a que se encuentra dentro del rango de puertos habilitados en la máquina virtual.
+
+Luego, desde la computadora local, se accedió al servidor mediante un navegador web utilizando la dirección:
+
+http://4.174.129.188:5000
+
+Se verificó el correcto funcionamiento al visualizar la página creada previamente.
+
+Análisis del tráfico HTTP
+
+Se capturó el tráfico HTTP generado al acceder a la página web desde el navegador, utilizando Wireshark.
+
+Al analizar los paquetes, se observó que el contenido de la página (HTML) es visible en texto plano dentro de los paquetes capturados.
+
+Esto demuestra que el protocolo HTTP no cifra la información transmitida, permitiendo que los datos puedan ser interceptados y leídos por terceros.
+
+En consecuencia, HTTP no garantiza la confidencialidad de la comunicación.
+
+<img width="1481" height="761" alt="image" src="https://github.com/user-attachments/assets/cbd18f6e-cbf0-465e-9aff-4be71baa420b" />
+
+<img width="961" height="872" alt="image" src="https://github.com/user-attachments/assets/f723d1b4-6e65-4fba-8984-1198cff4b0d8" />
+
+
+
 
 
 ### Consigna 6:
