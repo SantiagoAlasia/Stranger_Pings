@@ -48,9 +48,7 @@ SSH (Secure Shell) es un protocolo de red que permite conectarse de forma segura
 
 **c) ¿Qué es una clave pública y una clave privada?** 
 
-Una clave pública es una clave que se puede compartir libremente y se usa para cifrar información o verificar identidad.
-
-Una clave privada es secreta y se usa para descifrar información o generar firmas digitales.
+La **criptografía de clave pública** (o criptografía asimétrica) es un método que utiliza dos claves diferentes: **una clave pública**, que puede compartirse libremente, y **una clave privada**, que debe mantenerse en secreto. Ambas claves están matemáticamente relacionadas, de modo que lo que se cifra con una solo puede descifrarse con la otra. En una conexión SSH, tanto el cliente como el servidor poseen su propio par de claves y las utilizan para autenticarse y establecer una comunicación segura. Según cómo se utilicen estas claves, se pueden lograr dos objetivos: **confidencialidad** o **autenticación**. Para garantizar la confidencialidad, se cifra el mensaje con la clave pública del destinatario, de forma que solo él pueda descifrarlo con su clave privada. Para lograr autenticación, el emisor utiliza su clave privada para firmar el mensaje, permitiendo que cualquier persona verifique su identidad mediante la clave pública correspondiente.
 
 **d) ¿Por qué la clave privada no debe compartirse?**
 
@@ -291,8 +289,21 @@ En consecuencia, HTTP no garantiza la confidencialidad de la comunicación.
 <img width="961" height="872" alt="image" src="https://github.com/user-attachments/assets/f723d1b4-6e65-4fba-8984-1198cff4b0d8" />
 
 
-### Consigna 6:
+## Consigna 6:
 
+### a) Relacion con TP1/2/3
+
+La tematica del video se relaciona directamente con los TPs realizados, ya que evidencia que la información puede filtrarse o ser interceptada incluso cuando no resulta evidente. Permite observar como los datos viajan a través de un medio físico y, por lo tanto, pueden ser observados o inferidos por terceros.
+
+Además, el video pone en evidencia la necesidad del uso de mecanismos de cifrado, como SSH, que permiten proteger la información de modo que, aunque sea capturada durante su transmisión, no pueda ser comprendida.
+
+En definitiva, se demuestra que la información en tránsito no es segura por defecto.
+
+### b) Principio de confidencialidad
+
+En redes de computadoras no se debe confiar en el medio de comunicación, ya que puede ser observado o atacado por terceros. Por este motivo, es fundamental utilizar siempre mecanismos de cifrado, como SSH, que permiten proteger el contenido de la comunicación incluso si es interceptado. Asimismo, se debe evitar enviar información sensible en texto plano, como observamos que ocurria al utilizar herramientas como netcat.(Punto 4) 
+
+Además del cifrado, es esencial garantizar la autenticación, es decir, verificar la identidad de las partes involucradas, ya que no solo importa proteger los datos, sino también saber con quién se está estableciendo la comunicación. Esto se puede observar en el video cuando el posnet establece la comunicacion con el celular.
 
 ---
 
