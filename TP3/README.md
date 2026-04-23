@@ -162,6 +162,8 @@ c.
 
 <img width="1316" height="287" alt="image" src="https://github.com/user-attachments/assets/d3f22a97-3ef1-41c6-a073-1cdf4dfee3e7" />
 
+<img width="965" height="74" alt="image" src="https://github.com/user-attachments/assets/c8ef982f-776d-48ef-bbed-b0b317fe5c4e" />
+
 
 
 ### Consigna 5:
