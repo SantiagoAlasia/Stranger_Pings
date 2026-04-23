@@ -144,49 +144,56 @@ Por lo tanto, no es posible descifrar el contenido de los mensajes capturados, y
 <img width="1919" height="343" alt="image" src="https://github.com/user-attachments/assets/ef0311d3-1c0d-477d-89b4-36293184806f" />
 
 
-### Consigna 4: Comunicación TCP con netcat
+## 4) Comunicación con netcat
 
-a. 
+### a) Comunicación TCP
 
-Se implementó un servidor TCP en la máquina virtual utilizando el siguiente comando: ncat -l 5000
+Se implementó un servidor TCP en la máquina virtual utilizando el siguiente comando:
 
-Desde la computadora local se estableció una conexión hacia la VM: ncat 4.174.129.188 5000 
+```bash
+ncat -l 5000
+```
 
-Una vez establecida la conexión, se realizó un intercambio de mensajes entre la computadora local y la máquina virtual.
+Desde la computadora local se estableció una conexión hacia la VM mediante 
 
-Los mensajes enviados desde la PC fueron recibidos correctamente en la VM, y viceversa, evidenciando una comunicación bidireccional entre ambas.
+```bash
+ncat 4.174.129.188 5000 
+```
 
-Esto permitió simular un canal de comunicación tipo “chat” utilizando el protocolo TCP sin cifrado.
+Una vez establecida la conexión, se realizó un intercambio de mensajes entre la computadora local y la máquina virtual, funcionando como un canal de comunicación bidireccional tipo “chat”.
 
 <img width="904" height="91" alt="image" src="https://github.com/user-attachments/assets/2b8825c0-85e0-4eca-8418-72a53e957480" />
 
-
 <img width="1045" height="194" alt="image" src="https://github.com/user-attachments/assets/6e10ec4d-f951-4e1a-9bdc-8926a71a52c4" />
 
-#### Visualización del contenido en texto plano
+#### Análisis del tráfico TCP
+Se capturó el tráfico utilizando Wireshark y se identificaron paquetes correspondientes a la comunicación TCP.
 
-Se identificó un paquete con datos (PSH, ACK) correspondiente a la comunicación mediante netcat.
+En particular, se observó un paquete con flags PSH, ACK, indicando el envío de datos.
 
-Al inspeccionar dicho paquete en Wireshark, se pudo observar el contenido del mensaje en texto plano dentro de la sección de datos.
+Al inspeccionar el contenido del paquete, se pudo visualizar el mensaje en texto plano dentro de la sección de datos.
 
-Esto evidencia que la comunicación no está cifrada, permitiendo que cualquier intermediario pueda leer la información transmitida.
-
-En contraste con SSH, donde los paquetes aparecen como “Encrypted packet”, en este caso los datos son completamente visibles.
+Esto demuestra que la comunicación mediante netcat utilizando TCP no se encuentra cifrada, a diferencia de SSH. Por lo tanto, cualquier intermediario podría acceder al contenido de los mensajes transmitidos.
 
 <img width="1914" height="920" alt="image" src="https://github.com/user-attachments/assets/feb7d835-0f43-436a-a5e9-40dd7367adc7" />
 
+### b) Comunicación UDP
 
-b. 
+Se implementó un servidor UDP en la máquina virtual utilizando:
 
-#### Comunicación utilizando UDP
+```bash
+ncat -u -l 5001 
+```
 
-Se implementó un servidor UDP en la máquina virtual mediante: ncat -u -l 5001
+Desde la computadora local se estableció la conexión mediante:
 
-Desde la computadora local se estableció la conexión utilizando: ncat -u 4.174.129.188 5001 
+```bash
+ncat -u 4.174.129.188 5001 
+```
 
 Se realizó un intercambio de mensajes entre ambas partes, verificando que la comunicación también es posible utilizando el protocolo UDP.
 
-A diferencia de TCP, UDP no establece una conexión formal, pero permite el envío de datos entre cliente y servidor.
+A diferencia de TCP, UDP no establece una conexión formal, sino que envía los datos directamente sin garantizar entrega ni orden.
 
 <img width="630" height="158" alt="image" src="https://github.com/user-attachments/assets/58434db0-adaa-409c-90ab-33698557b05e" />
 
@@ -194,30 +201,39 @@ A diferencia de TCP, UDP no establece una conexión formal, pero permite el env�
 
 #### Análisis del tráfico UDP
 
-Se capturó el tráfico generado mediante el uso de netcat utilizando el protocolo UDP, aplicando el siguiente filtro en Wireshark: ip.addr == 4.174.129.188 and udp 
+Se capturó el tráfico en Wireshark aplicando el siguiente filtro:  
 
+```bash
+ip.addr == 4.174.129.188 and udp
+```
+Durante la captura se identificaron paquetes UDP correspondientes a la comunicación.
 
-Durante la captura se identificaron paquetes UDP correspondientes a la comunicación entre la computadora local y la máquina virtual.
+Al analizar uno de estos paquetes, se pudo observar el contenido del mensaje en texto plano dentro de la sección de datos.
 
-Al analizar uno de estos paquetes, se pudo observar el contenido del mensaje en texto plano dentro de la sección de datos. En particular, se visualiza claramente el mensaje enviado (“mensaje udp wireshark”), lo que evidencia que la información transmitida no se encuentra cifrada.
-
-Esto demuestra que el protocolo UDP, al igual que una comunicación TCP sin mecanismos de seguridad adicionales, no garantiza la confidencialidad de los datos, ya que cualquier intermediario podría acceder al contenido de los mensajes. 
+Esto evidencia que UDP tampoco cifra la información, por lo que los datos pueden ser interceptados y leídos por terceros.
 
 <img width="1919" height="1012" alt="image" src="https://github.com/user-attachments/assets/1ecaef9c-0514-4e3c-8d7f-cb08f762b17d" />
 
-c. 
-
-#### Comunicación entre máquinas virtuales
+### c) Comunicación entre máquinas virtuales
 
 Se estableció una comunicación directa entre dos máquinas virtuales utilizando netcat.
 
-En la primera VM se ejecutó: ncat -l 5002
+En la primera VM se ejecutó:
 
-Mientras que desde la segunda VM se realizó la conexión: ncat 4.174.129.188 5002
+```bash
+ncat -u -l 5002 
+```
+
+Mientras que desde la segunda VM se realizó la conexión:
+
+```bash
+ncat -u 4.174.129.188 5001 
+```
 
 Una vez establecida la conexión, se intercambiaron mensajes entre ambas máquinas, simulando un chat bidireccional.
 
-Esto permitió demostrar la comunicación directa entre instancias en la nube utilizando el protocolo TCP.
+Esto permitió demostrar la comunicación directa entre instancias en la nube utilizando el protocolo TCP sin cifrado.
+
 
 <img width="1316" height="287" alt="image" src="https://github.com/user-attachments/assets/d3f22a97-3ef1-41c6-a073-1cdf4dfee3e7" />
 
