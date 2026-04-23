@@ -240,36 +240,47 @@ Esto permitió demostrar la comunicación directa entre instancias en la nube ut
 <img width="965" height="74" alt="image" src="https://github.com/user-attachments/assets/c8ef982f-776d-48ef-bbed-b0b317fe5c4e" />
 
 
-### Consigna 5: Despliegue de servidor HTTP
+## 5) Despliegue de servidor HTTP
 
-#### Creación de la página web
+### Creación de la página web
 
 Se creó un archivo `index.html` dentro de la carpeta del grupo con el siguiente contenido:
 
+```html
 <h1>Hola Mundo StrangerPings 🚀</h1>
 <p>Este es nuestro servidor web</p>
-
+```
 Este archivo representa una página web básica que será servida mediante un servidor HTTP.
 
-Despliegue del servidor web
+### Despliegue del servidor web
 
 Se levantó un servidor web utilizando Python con el siguiente comando:
 
+```bash
 python3 -m http.server 5000
+```
 
 Se utilizó el puerto 5000 debido a que se encuentra dentro del rango de puertos habilitados en la máquina virtual.
 
 Luego, desde la computadora local, se accedió al servidor mediante un navegador web utilizando la dirección:
 
+```bash
 http://4.174.129.188:5000
+```
 
 Se verificó el correcto funcionamiento al visualizar la página creada previamente.
 
-Análisis del tráfico HTTP
+### Análisis del tráfico HTTP
 
-Se capturó el tráfico HTTP generado al acceder a la página web desde el navegador, utilizando Wireshark.
+Se capturó el tráfico HTTP generado al acceder a la página web desde el navegador utilizando Wireshark.
 
-Al analizar los paquetes, se observó que el contenido de la página (HTML) es visible en texto plano dentro de los paquetes capturados.
+Durante la captura, se observaron solicitudes del tipo:
+
+```bash
+GET / HTTP/1.1
+```
+
+Al analizar los paquetes, se pudo identificar que el contenido del archivo HTML es visible en texto plano dentro de la sección de datos.
 
 Esto demuestra que el protocolo HTTP no cifra la información transmitida, permitiendo que los datos puedan ser interceptados y leídos por terceros.
 
@@ -278,9 +289,6 @@ En consecuencia, HTTP no garantiza la confidencialidad de la comunicación.
 <img width="1481" height="761" alt="image" src="https://github.com/user-attachments/assets/cbd18f6e-cbf0-465e-9aff-4be71baa420b" />
 
 <img width="961" height="872" alt="image" src="https://github.com/user-attachments/assets/f723d1b4-6e65-4fba-8984-1198cff4b0d8" />
-
-
-
 
 
 ### Consigna 6:
