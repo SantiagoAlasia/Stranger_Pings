@@ -61,7 +61,26 @@ La clave privada no debe compartirse porque garantiza la identidad del usuario; 
 - Reducen el riesgo de ataques de fuerza bruta.
 - Permiten automatización en procesos de conexxión.
 
-### Consigna 2:
+## 2) Conexión SSH a la VM
+
+Se estableció una conexión SSH con la máquina virtual asignada utilizando una clave privada.  
+Una vez dentro de la VM, se creó una carpeta con el nombre del grupo:
+
+```bash
+mkdir StrangerPings
+
+Luego se verificó su creación utilizando
+
+```bash
+ls
+
+Lo que permitió confirmar que la carpeta fue creada correctamente en el sistema remoto.
+<img width="781" height="122" alt="image" src="https://github.com/user-attachments/assets/fb9bcbc6-b50b-4bd4-b4e1-79648384288b" />
+
+Luego entramos a la carpeta:
+
+```bash
+cd StrangerPings
 
 
 ### Consigna 3:
