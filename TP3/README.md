@@ -119,21 +119,29 @@ para verificar la ruta actual dentro del sistema de archivos, confirmando que se
 Este procedimiento se realizó en ambas máquinas virtuales (pc1 y pc2), obteniendo resultados consistentes en ambos casos.
 
 
-## 3) Consigna 3: Captura del tráfico SSH 
+## 3) Captura de tráfico SSH
 
 Se utilizó Wireshark para capturar el tráfico generado durante una conexión SSH previamente establecida con la máquina virtual.
 
-Se aplicó un filtro para visualizar únicamente los paquetes correspondientes al protocolo SSH. Se generó tráfico ejecutando comandos en la terminal remota, lo que permitió observar múltiples paquetes SSH en la captura.
+Para ello, se aplicó un filtro que permitió visualizar únicamente los paquetes correspondientes al protocolo SSH:
 
-<img width="1919" height="343" alt="image" src="https://github.com/user-attachments/assets/ef0311d3-1c0d-477d-89b4-36293184806f" />
+```plaintext
+ssh
+```
+### Captura de tráfico
 
 #### Análisis del contenido de los paquetes
+Al inspeccionar los paquetes capturados en Wireshark, se observa que en la columna "Info" aparece el mensaje:
 
-Al inspeccionar los paquetes capturados en Wireshark, se observa que el contenido aparece como “Encrypted packet”.
+Encrypted packet
 
-Esto se debe a que el protocolo SSH utiliza cifrado para proteger la información transmitida entre el cliente y el servidor.
+Esto indica que el contenido del paquete se encuentra cifrado.
 
-Por lo tanto, no es posible descifrar el contenido de los mensajes utilizando Wireshark, ya que los datos viajan de forma segura y no son legibles para terceros.
+El protocolo SSH (Secure Shell) implementa mecanismos de cifrado para garantizar la confidencialidad e integridad de la información transmitida entre el cliente y el servidor. Como resultado, los datos no pueden ser interpretados en texto plano por herramientas de captura de paquetes como Wireshark.
+
+Por lo tanto, no es posible descifrar el contenido de los mensajes capturados, ya que viajan de forma segura y protegida frente a posibles interceptaciones.
+
+https://github.com/user-attachments/assets/ef0311d3-1c0d-477d-89b4-36293184806f
 
 
 ### Consigna 4: Comunicación TCP con netcat
