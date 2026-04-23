@@ -111,7 +111,41 @@ Esto permitió simular un canal de comunicación tipo “chat” utilizando el p
 
 <img width="904" height="91" alt="image" src="https://github.com/user-attachments/assets/2b8825c0-85e0-4eca-8418-72a53e957480" />
 
+
 <img width="1045" height="194" alt="image" src="https://github.com/user-attachments/assets/6e10ec4d-f951-4e1a-9bdc-8926a71a52c4" />
+
+a.
+
+#### Visualización del contenido en texto plano
+
+Se identificó un paquete con datos (PSH, ACK) correspondiente a la comunicación mediante netcat.
+
+Al inspeccionar dicho paquete en Wireshark, se pudo observar el contenido del mensaje en texto plano dentro de la sección de datos.
+
+Esto evidencia que la comunicación no está cifrada, permitiendo que cualquier intermediario pueda leer la información transmitida.
+
+En contraste con SSH, donde los paquetes aparecen como “Encrypted packet”, en este caso los datos son completamente visibles.
+
+<img width="1914" height="920" alt="image" src="https://github.com/user-attachments/assets/feb7d835-0f43-436a-a5e9-40dd7367adc7" />
+
+
+b. 
+
+#### Comunicación utilizando UDP
+
+Se implementó un servidor UDP en la máquina virtual mediante: ncat -u -l 5001
+
+Desde la computadora local se estableció la conexión utilizando: ncat -u 4.174.129.188 5001 
+
+Se realizó un intercambio de mensajes entre ambas partes, verificando que la comunicación también es posible utilizando el protocolo UDP.
+
+A diferencia de TCP, UDP no establece una conexión formal, pero permite el envío de datos entre cliente y servidor.
+
+<img width="630" height="158" alt="image" src="https://github.com/user-attachments/assets/58434db0-adaa-409c-90ab-33698557b05e" />
+
+<img width="948" height="108" alt="image" src="https://github.com/user-attachments/assets/a13f1feb-5149-495a-ac26-50c300bdd9d1" />
+
+
 
 ### Consigna 5:
 
