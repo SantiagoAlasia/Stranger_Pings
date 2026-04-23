@@ -97,8 +97,21 @@ Esto se debe a que el protocolo SSH utiliza cifrado para proteger la informació
 Por lo tanto, no es posible descifrar el contenido de los mensajes utilizando Wireshark, ya que los datos viajan de forma segura y no son legibles para terceros.
 
 
-### Consigna 4:
+### Consigna 4: Comunicación TCP con netcat
 
+Se implementó un servidor TCP en la máquina virtual utilizando el siguiente comando: ncat -l 5000
+
+Desde la computadora local se estableció una conexión hacia la VM: ncat 4.174.129.188 5000 
+
+Una vez establecida la conexión, se realizó un intercambio de mensajes entre la computadora local y la máquina virtual.
+
+Los mensajes enviados desde la PC fueron recibidos correctamente en la VM, y viceversa, evidenciando una comunicación bidireccional entre ambas.
+
+Esto permitió simular un canal de comunicación tipo “chat” utilizando el protocolo TCP sin cifrado.
+
+<img width="904" height="91" alt="image" src="https://github.com/user-attachments/assets/2b8825c0-85e0-4eca-8418-72a53e957480" />
+
+<img width="1045" height="194" alt="image" src="https://github.com/user-attachments/assets/6e10ec4d-f951-4e1a-9bdc-8926a71a52c4" />
 
 ### Consigna 5:
 
