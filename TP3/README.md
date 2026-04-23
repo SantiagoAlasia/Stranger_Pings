@@ -71,23 +71,55 @@ Se estableció una conexión SSH con la máquina virtual asignada utilizando aut
 ssh -i <path/a/la/clave> <usuario>@<ip>
 ```
 
-Una vez dentro de la VM, se creó una carpeta con el nombre del grupo y luego se verificó su creación utilizando
+Una vez dentro de la VM, se creó una carpeta con el nombre del grupo: 
+
+```bash
+mkdir StrangerPings
+```
+
+Luego se verificó su creación utilizando:
+
+```bash
+ls
+```
+
 Lo que permitió confirmar que la carpeta fue creada correctamente en el sistema remoto.
-
-Luego entramos a la carpeta y creamos dentro de la misma un archivo de prueba y verificamos su existencia. Esto permitió confirmar la correcta interacción con el sistema de archivos de la máquina virtual.
-
-Por último utilizamos el comando pwd para verificar la ruta actual dentro del sistema de archivos, confirmando que se estaba trabajando dentro de la carpeta del grupo StrangerPings.
-
-Este proceso se realizó tanto para la pc1 como para la pc2.
 
 <img width="925" height="262" alt="image" src="https://github.com/user-attachments/assets/74646f28-1045-4785-9c8b-72871862c0a3" />
 
+A continuación, se ingresó a la carpeta creada:
+
+```bash
+cd StrangerPings
+```
+
+Dentro de la misma un archivo de prueba:
+
+```bash
+touch prueba.txt
+```
+Y se verificó su existencia nuevamente con:
+
+```bash
+ls
+```
+
+Esto permitió validar la correcta interacción con el sistema de archivos de la máquina virtual.
+
 <img width="890" height="255" alt="image" src="https://github.com/user-attachments/assets/af61e710-a0d9-4b54-8d40-f706a08f5ed0" />
 
+Por último, se utilizó el comando:
 
-### Consigna 3: Captura del tráfico SSH 
+```bash
+pwd
+```
 
-## 3) Captura de tráfico SSH
+para verificar la ruta actual dentro del sistema de archivos, confirmando que se estaba trabajando dentro del directorio /home/.../StrangerPings.
+
+Este procedimiento se realizó en ambas máquinas virtuales (pc1 y pc2), obteniendo resultados consistentes en ambos casos.
+
+
+## 3) Consigna 3: Captura del tráfico SSH 
 
 Se utilizó Wireshark para capturar el tráfico generado durante una conexión SSH previamente establecida con la máquina virtual.
 
