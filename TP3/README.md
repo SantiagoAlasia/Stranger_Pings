@@ -78,7 +78,23 @@ Este proceso se realizó tanto para la pc1 como para la pc2.
 <img width="890" height="255" alt="image" src="https://github.com/user-attachments/assets/af61e710-a0d9-4b54-8d40-f706a08f5ed0" />
 
 
-### Consigna 3:
+### Consigna 3: Captura del tráfico SSH 
+
+## 3) Captura de tráfico SSH
+
+Se utilizó Wireshark para capturar el tráfico generado durante una conexión SSH previamente establecida con la máquina virtual.
+
+Se aplicó un filtro para visualizar únicamente los paquetes correspondientes al protocolo SSH. Se generó tráfico ejecutando comandos en la terminal remota, lo que permitió observar múltiples paquetes SSH en la captura.
+
+<img width="1919" height="343" alt="image" src="https://github.com/user-attachments/assets/ef0311d3-1c0d-477d-89b4-36293184806f" />
+
+#### Análisis del contenido de los paquetes
+
+Al inspeccionar los paquetes capturados en Wireshark, se observa que el contenido aparece como “Encrypted packet”.
+
+Esto se debe a que el protocolo SSH utiliza cifrado para proteger la información transmitida entre el cliente y el servidor.
+
+Por lo tanto, no es posible descifrar el contenido de los mensajes utilizando Wireshark, ya que los datos viajan de forma segura y no son legibles para terceros.
 
 
 ### Consigna 4:
