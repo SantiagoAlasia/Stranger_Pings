@@ -50,52 +50,12 @@ En redes de computadoras, la serialización es fundamental porque los datos debe
 
 La principal diferencia entre la serialización **binaria** y **no binaria** radica en la forma en que los datos son representados antes de ser transmitidos o almacenados.
 
-<u>**Serialización no binaria**</u>
-
-La serialización no binaria representa la información utilizando formatos de texto legibles para las personas. Los datos pueden visualizarse y editarse fácilmente utilizando un editor de texto.
-
-Ejemplos:
-- JSON
-- XML
-- YAML
-
-Ejemplo de mensaje JSON:
-
-```
-{
-  "group": "Grupo1",
-  "payload": "Hola mundo"
-}
-```
-
-<u>Ventajas</u>
-- Fácil lectura e interpretación humana.
-- Mayor compatibilidad entre distintos lenguajes y sistemas.
-- Facilita la depuración y el análisis de errores.
-
-<u>Desventajas</u>
-- Mayor tamaño de los mensajes transmitidos.
-- Menor eficiencia en velocidad y uso de ancho de banda.
-- Requiere más procesamiento para interpretar los datos.
-
-<u>**Serialización binaria**</u>
-
-La serialización binaria representa la información directamente en bytes, utilizando formatos compactos y optimizados para el procesamiento por parte de las computadoras.
-
-Ejemplos:
-- Protocol Buffers
-- MessagePack
-- Avro
-
-<u>Ventajas</u>
-- Menor tamaño de los datos transmitidos.
-- Mayor velocidad de serialización y deserialización.
-- Mejor rendimiento en aplicaciones de alta demanda.
-
-<u>Desventajas</u>
-- No es legible para humanos.
-- Más difícil de depurar manualmente.
-- Puede requerir bibliotecas o esquemas específicos para interpretar los datos.
+|                     |Serialización binaria|Serialización no binaria|
+|:-------------------:|:-------------------:|:----------------------:|
+|Descripción          |La serialización binaria representa la información directamente en bytes, utilizando formatos compactos y optimizados para el procesamiento por parte de las computadoras.| La serialización no binaria representa la información utilizando formatos de texto legibles para las personas. Los datos pueden visualizarse y editarse fácilmente utilizando un editor de texto.|
+|Ejemplos             |Protocol Buffers, MessagePack, Avro |JSON, XML, YAML| 
+|Ventajas             |Menor tamaño de los datos transmitidos, Mayor velocidad de serialización y deserialización, Mejor rendimiento en aplicaciones de alta demanda.|Fácil lectura e interpretación humana, Mayor compatibilidad entre distintos lenguajes y sistemas, Facilita la depuración y el análisis de errores.|
+|Desventajas          |No es legible para humanos, Más difícil de depurar manualmente, Puede requerir bibliotecas o esquemas específicos para interpretar los datos.|Mayor tamaño de los mensajes transmitidos, Menor eficiencia en velocidad y uso de ancho de banda, Requiere más procesamiento para interpretar los datos.|
 
 > Obs: En este trabajo práctico se utilizó **serialización no binaria** mediante **JSON**.
 
