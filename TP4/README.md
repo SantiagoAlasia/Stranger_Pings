@@ -83,7 +83,7 @@ docker image ls
 docker ps -a
 ```
 
-Ahora, para enviar un paquete utilizaremos **Packet Sender** y la morfología del paquete sera la siguiente:
+Ahora, para enviar un paquete utilizaremos **Packet Sender** y el archivo `/src/message.txt` que contiene la informacion que nos interesa:
 
 ```
 {
@@ -108,6 +108,36 @@ Ahora, para enviar un paquete utilizaremos **Packet Sender** y la morfología de
 </div>
 
 Como podemos ver en la *Figura 3* el paquete es recibido por el Servidor e interpretado correctamente.
+
+### 3. 
+
+Ahora, en lugar de simular un cliente utilizando **Packet Sender**, se desarrollará un script en Python (`/TP4/src/client.py`) que cumpla con los siguientes requerimientos:
+1. Nuestro cliente deberá poder configurarse con la **IP** y **puerto** de destino del servidor, estableciendo conección con el mismo.
+2. Nuestro cliente deberá serializar la informacion previo al envío de la misma, en el formato que el servido admite.
+3. Ejecutar nuestro cliente y verificar que los mensajes enviados lleguen correctamente al serivdor.
+
+El servidor lo lanzaremos de la misma forma que en el punto anterior y al cliente lo lanzaremos desde una terminal de nuestra PC.
+Para lanzar el clinet usaremos el siguiente comando:
+
+```
+cd TP4/src
+python3 client.py
+```
+
+<div align="center">
+    <img src="img/Cap4.png"> <br>
+    <em>Figura 4: Terminal del cliente</em>
+</div>
+
+<div align="center">
+    <img src="img/Cap5.png"> <br>
+    <em>Figura 5: Informacion serializada por el cliente</em>
+</div>
+
+<div align="center">
+    <img src="img/Cap6.png"> <br>
+    <em>Figura 6: Terminal del Server</em>
+</div>
 
 ---
 
