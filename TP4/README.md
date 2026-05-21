@@ -199,6 +199,24 @@ El algoritmo RSA se basa en el uso de dos claves diferentes: una **clave públic
 
 Sin embargo, debido a su elevado costo computacional, suele utilizarse para cifrar pequeñas cantidades de información o claves de sesión. Para nuestro caso esto no seria un incoveniente ya que los mensajes que estamos eviando son de prueba y son pequeños.
 
+### 5.
+
+Para que el servidor sea capaz de descifrar los paquetes recibidos, al utilizar un esquema de cifrado **RSA**, simplemente debe emplear su **clave privada** correspondiente. De esta manera, únicamente el servidor puede recuperar el contenido original del mensaje enviado por el cliente.
+
+Para correr esta nueva version (**v3**), hay que seguir los mismos pasos de la version anterior.
+
+En las siguientes *Figuras* puede observarse el proceso completo de transmisión. En primer lugar, el cliente cifra el payload utilizando la **clave pública** recibida previamente desde el servidor (*Figura 9*). Luego, el mensaje es transmitido a través de la red en formato cifrado y recibido por el servidor manteniendo dicha codificación. Finalmente, el servidor utiliza su **clave privada** para descifrar el contenido, obteniendo nuevamente el mensaje original. *Puede verificarse que el mensaje descifrado coincide correctamente con el mensaje enviado inicialmente por el cliente*. (*Figura 10*)
+
+<div align="center">
+    <img src="img/Cap9.png"> <br>
+    <em>Figura 9: Terminal del Cliente</em>
+</div>
+
+<div align="center">
+    <img src="img/Cap10.png"> <br>
+    <em>Figura 9: Terminal del Servidor</em>
+</div>
+
 ---
 
 ## Discusión Y Conclusiones
