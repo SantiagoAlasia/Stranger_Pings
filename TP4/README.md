@@ -67,13 +67,13 @@ Primero, debemos levantar nuestro servidor, para ello seguiremos los siguientes 
 1. Creamos la imagen del contenedor:
 
 ```
-docker build -t tcp-server .
+docker build -t tcp-server-v1 .
 ```
 
 2. Creamos y ejecutamos el contenedor:
 
 ```
-docker run -it -p 5000:5000 tcp-server
+docker run -it -p 5000:5000 tcp-server-v1
 ```
 
 3. Para verificar que se creo:
@@ -83,7 +83,7 @@ docker image ls
 docker ps -a
 ```
 
-Ahora, para enviar un paquete utilizaremos **Packet Sender** y el archivo `/src/message.txt` que contiene la informacion que nos interesa:
+Ahora, para enviar un paquete utilizaremos **Packet Sender** y el archivo `/v1/src/message.txt` que contiene la informacion que nos interesa:
 
 ```
 {
@@ -111,7 +111,7 @@ Como podemos ver en la *Figura 3* el paquete es recibido por el Servidor e inter
 
 ### 3. 
 
-Ahora, en lugar de simular un cliente utilizando **Packet Sender**, se desarrollará un script en Python (`/TP4/src/client.py`) que cumpla con los siguientes requerimientos:
+Ahora, en lugar de simular un cliente utilizando **Packet Sender**, se desarrollará un script en Python (`/TP4/v1/src/client.py`) que cumpla con los siguientes requerimientos:
 1. Nuestro cliente deberá poder configurarse con la **IP** y **puerto** de destino del servidor, estableciendo conección con el mismo.
 2. Nuestro cliente deberá serializar la informacion previo al envío de la misma, en el formato que el servido admite.
 3. Ejecutar nuestro cliente y verificar que los mensajes enviados lleguen correctamente al serivdor.
@@ -120,7 +120,7 @@ El servidor lo lanzaremos de la misma forma que en el punto anterior y al client
 Para lanzar el clinet usaremos el siguiente comando:
 
 ```
-cd TP4/src
+cd TP4/v1/src
 python3 client.py
 ```
 
@@ -138,6 +138,66 @@ python3 client.py
     <img src="img/Cap6.png"> <br>
     <em>Figura 6: Terminal del Server</em>
 </div>
+
+### 4. 
+
+Para agregar seguridad en nuestro sistema, utilizaremos un **cifrado asimetrico** utilizando **RSA**. El cliente cifra la carga útil mediante una **clave pública** y el servidor puede descifrarla utilizando la **clave privada** correspondiente.
+
+Para realizar las pruebas del sistema cliente-servidor utilizando Docker Compose, primero debemos posicionarnos dentro del directorio del proyecto:
+
+```
+cd v2
+sudo docker compose build
+```
+
+Luego, iniciamos el contenedor correspondiente al servidor:
+
+```
+sudo docker compose up server
+```
+
+Una vez iniciado, el servidor permanecerá en ejecución y mostrará en pantalla los mensajes recibidos y los eventos de conexión.
+
+Posteriormente, en una nueva terminal, ejecutamos el contenedor del cliente:
+
+```
+sudo docker compose run client
+```
+
+La dirección IP del servidor cambia al utilizar Docker Compose porque cada contenedor se ejecuta dentro de una red virtual aislada creada automáticamente por Docker. En este entorno, cada contenedor recibe una dirección IP privada dinámica perteneciente a dicha red interna. A diferencia de la ejecución de la **v1**, donde 127.0.0.1 referencia a la misma máquina física, dentro de Docker cada contenedor posee su propia interfaz de red y su propio espacio de direcciones. 
+
+Por este motivo, el cliente ya no puede conectarse utilizando localhost, sino que debe utilizar la dirección IP interna del contenedor servidor o el nombre del servicio definido en docker-compose.yml.
+Para conocer la dirección IP asignada al contenedor del servidor, utilizamos el siguiente comando:
+
+```
+sudo docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' tcp-server
+```
+
+El sistema devolverá una dirección similar a:
+
+```
+172.18.0.2
+```
+
+Dicha IP deberá ingresarse en el cliente para establecer la conexión con el servidor.
+
+Como podemos ver en la *Figura 7* la carga util sale cifrada del cliente.
+
+<div align="center">
+    <img src="img/Cap7.png"> <br>
+    <em>Figura 7: Payload Cifrado - Cliente</em>
+</div>
+
+Y podemos verificar que la **payload** llega cifrada viendo la terminal del **server**. (Ver *Figura 8*)
+
+<div align="center">
+    <img src="img/Cap8.png"> <br>
+    <em>Figura 8: Payload Cifrado - Server</em>
+</div>
+
+El algoritmo RSA se basa en el uso de dos claves diferentes: una **clave pública**, utilizada para cifrar la información, y una **clave privada**, utilizada para descifrarla. RSA se apoya en la dificultad computacional de factorizar números primos de gran tamaño, lo que le otorga un alto nivel de seguridad. Entre sus principales aplicaciones se encuentran el cifrado de datos, el intercambio seguro de claves y las firmas digitales.
+
+Sin embargo, debido a su elevado costo computacional, suele utilizarse para cifrar pequeñas cantidades de información o claves de sesión. Para nuestro caso esto no seria un incoveniente ya que los mensajes que estamos eviando son de prueba y son pequeños.
 
 ---
 
