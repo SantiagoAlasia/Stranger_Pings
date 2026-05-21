@@ -220,3 +220,9 @@ En las siguientes *Figuras* puede observarse el proceso completo de transmisión
 ---
 
 ## Discusión Y Conclusiones
+
+En el presente trabajo práctico se desarrolló una aplicación cliente-servidor capaz de intercambiar mensajes mediante sockets TCP, utilizando serialización JSON y ejecución mediante contenedores. A través de la implementación realizada se logró comprender el funcionamiento de las comunicaciones en red, el manejo de conexiones TCP y la interacción entre múltiples contenedores dentro de una red virtual.
+
+Asimismo, la incorporación de mecanismos de cifrado RSA permitió introducir conceptos fundamentales de seguridad informática, como el uso de claves públicas y privadas, el cifrado asimétrico y la confidencialidad de la información transmitida. Las pruebas realizadas demostraron que el mensaje enviado por el cliente podía ser correctamente cifrado, transmitido y posteriormente descifrado por el servidor.
+
+En conjunto, el trabajo permitió integrar conceptos de programación de redes, virtualización mediante contenedores y criptografía básica, obteniendo una solución funcional y representativa de los mecanismos utilizados en sistemas de comunicación modernos.
