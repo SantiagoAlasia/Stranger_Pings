@@ -1,0 +1,4 @@
+{
+"group": "StrangerPings",
+"payload": "Hello server, I'm a client"
+}

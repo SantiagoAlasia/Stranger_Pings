@@ -40,13 +40,14 @@ Además, se incorpora una técnica de cifrado aplicada sobre la carga útil de l
 
 ## Desarrollo
 
-### 1.a) ¿Qué es la serialización en redes de computadoras?
+### 1.
+### a) ¿Qué es la serialización en redes de computadoras?
 
 La serialización es el proceso mediante el cual una **estructura de datos** u **objeto** es transformado a un formato que pueda ser almacenado o transmitido a través de una red. Este proceso permite que la información pueda enviarse entre distintos dispositivos o aplicaciones y luego **reconstruirse correctamente** en el receptor mediante un proceso inverso denominado **deserialización**.
 
 En redes de computadoras, la serialización es fundamental porque los datos deben viajar como secuencias de bytes dentro de los paquetes de red. Gracias a este mecanismo, diferentes sistemas pueden intercambiar información utilizando formatos comunes y entendibles por ambas partes.
 
-### 1.b) ¿Cuál es la diferencia entre serialización binaria y no binaria? Buscar ejemplos, ventajas y desventajas de cada una.
+### b) ¿Cuál es la diferencia entre serialización binaria y no binaria? Buscar ejemplos, ventajas y desventajas de cada una.
 
 La principal diferencia entre la serialización **binaria** y **no binaria** radica en la forma en que los datos son representados antes de ser transmitidos o almacenados.
 
@@ -60,6 +61,53 @@ La principal diferencia entre la serialización **binaria** y **no binaria** rad
 > Obs: En este trabajo práctico se utilizó **serialización no binaria** mediante **JSON**.
 
 ### 2.
+
+Primero, debemos levantar nuestro servidor, para ello seguiremos los siguientes pasos:
+
+1. Creamos la imagen del contenedor:
+
+```
+docker build -t tcp-server .
+```
+
+2. Creamos y ejecutamos el contenedor:
+
+```
+docker run -it -p 5000:5000 tcp-server
+```
+
+3. Para verificar que se creo:
+
+```
+docker image ls
+docker ps -a
+```
+
+Ahora, para enviar un paquete utilizaremos **Packet Sender** y la morfología del paquete sera la siguiente:
+
+```
+{
+“group”: “StrangerPings”,
+“payload”: “Hello server, I'm a client”
+}
+```
+
+<div align="center">
+    <img src="img/Cap1.png"> <br>
+    <em>Figura 1: Packet Sender</em>
+</div>
+
+<div align="center">
+    <img src="img/Cap2.png"> <br>
+    <em>Figura 2: Envio del paquete</em>
+</div>
+
+<div align="center">
+    <img src="img/Cap3.png"> <br>
+    <em>Figura 3: Terminal del Server</em>
+</div>
+
+Como podemos ver en la *Figura 3* el paquete es recibido por el Servidor e interpretado correctamente.
 
 ---
 
