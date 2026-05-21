@@ -10,4 +10,4 @@ COPY . .
 EXPOSE 5000
 
 # Comando para ejecutar el servidor
-CMD ["python", "server.py"]
+CMD ["python", "src/server.py"]
