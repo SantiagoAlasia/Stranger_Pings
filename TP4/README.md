@@ -214,7 +214,7 @@ En las siguientes *Figuras* puede observarse el proceso completo de transmisión
 
 <div align="center">
     <img src="img/Cap10.png"> <br>
-    <em>Figura 9: Terminal del Servidor</em>
+    <em>Figura 10: Terminal del Servidor</em>
 </div>
 
 ---
