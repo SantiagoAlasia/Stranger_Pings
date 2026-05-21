@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile.server
+
+    container_name: tcp-server
+
+    ports:
+      - "5000:5000"
+
+  client:
+    build:
+      context: .
+      dockerfile: Dockerfile.client
+
+    container_name: tcp-client
+
+    stdin_open: true
+    tty: true
+
+    depends_on:
+      - server

@@ -1,0 +1,16 @@
+FROM python:3.12
+
+# Directorio de trabajo dentro del contenedor
+WORKDIR /app
+
+# Copia todos los archivos del proyecto
+COPY . .
+
+# Instala las dependencias necesarias
+RUN pip install -r requirements.txt
+
+# Puerto que usa el servidor
+EXPOSE 5000
+
+# Comando para ejecutar el servidor
+CMD ["python", "-u", "src/server.py"]
