@@ -269,7 +269,53 @@ Al aumentar la tasa de tráfico, la Queue comienza a acumular solicitudes y las 
 
 Aunque el tráfico entrante disminuye o desaparece, la Queue continúa enviando las solicitudes que habían quedado almacenadas. Esto provoca que Compute siga trabajando durante un tiempo hasta vaciar completamente la cola.
 
-### Conclusión
+## Conclusión
 
 La Queue actúa como un mecanismo de desacople entre la llegada de solicitudes y su procesamiento. Su principal ventaja es absorber picos de tráfico, mejorar la estabilidad del sistema y evitar sobrecargas repentinas sobre los servicios de cómputo.
 
+# 4. Primera infraestructura mínima
+
+Se diseñó una arquitectura capaz de atender tráfico estático, cargas de archivos, consultas de lectura y escritura, búsquedas y tráfico malicioso.
+
+La arquitectura implementada estuvo compuesta por un Firewall, un Load Balancer, una instancia de Compute, una base de datos SQL, un servicio de Storage y un Search Engine.
+
+
+<img width="1929" height="827" alt="image" src="https://github.com/user-attachments/assets/52594763-319d-4ac5-9aaf-9fb363949e39" />
+
+*Figura 6. Arquitectura diseñada para atender los diferentes tipos de tráfico presentes en el simulador.*
+
+## Presupuesto inicial
+
+La arquitectura fue desplegada con un presupuesto inicial aproximado de $1555, manteniendo todos los servicios operativos y en estado saludable.
+
+## Estado inicial de los servicios
+
+Al iniciar la simulación todos los componentes se encontraban en estado saludable. El Firewall filtraba tráfico malicioso, el Load Balancer distribuía solicitudes hacia Compute y los servicios de almacenamiento, búsqueda y base de datos respondían correctamente.
+
+## Observaciones
+
+Se realizaron pruebas incrementando progresivamente la tasa de tráfico.
+
+Con una tasa de 20 solicitudes por segundo comenzó a observarse una mayor carga sobre el componente Compute. Este servicio fue el primero en mostrar signos de saturación.
+
+Al aumentar el tráfico a 50 solicitudes por segundo y posteriormente a 100 solicitudes por segundo, la carga sobre Compute continuó creciendo, mientras que el resto de los servicios mantuvo un comportamiento relativamente estable.
+
+Esto indica que la principal limitación de la arquitectura se encontraba en la capacidad de procesamiento y no en los servicios de almacenamiento, búsqueda o seguridad.
+
+## Respuestas
+
+### ¿Qué componente falló primero?
+
+El primer componente en presentar signos de saturación fue Compute.
+
+### ¿Por qué creés que falló?
+
+Porque toda la lógica de procesamiento de solicitudes dependía de una única instancia de cómputo. A medida que aumentó el tráfico, la cantidad de solicitudes superó su capacidad de procesamiento.
+
+### ¿Fue un problema de capacidad, diseño, costo o seguridad?
+
+Principalmente fue un problema de capacidad. La arquitectura contaba con una sola instancia de Compute y no disponía de mecanismos de escalado horizontal que permitieran distribuir mejor la carga. 
+
+## Conclusión
+
+La arquitectura propuesta logró procesar correctamente los distintos tipos de tráfico requeridos por la consigna. Sin embargo, las pruebas demostraron que el componente de cómputo constituye el principal cuello de botella cuando aumenta la demanda. Esto evidencia la necesidad de aplicar estrategias de escalabilidad para soportar mayores volúmenes de tráfico.
