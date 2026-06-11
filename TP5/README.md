@@ -366,6 +366,31 @@ Sin embargo, si el cuello de botella se encontrara en la base de datos, el almac
 
 Por lo tanto, la efectividad del escalado horizontal depende de identificar correctamente qué componente limita el rendimiento general de la arquitectura.
 
+# 6. Sobrevivir
+
+<img width="1024" height="482" alt="image" src="https://github.com/user-attachments/assets/eac41262-10c0-454e-b457-1b18c812d7b9" />
+
+
+### Justificación y Análisis de la Arquitectura
+
+- Flujo Estático Desacoplado (`Internet ──> CDN ──> Storage <── Computes`): Diseñado específicamente para absorber de raíz el tráfico `STATIC` y `UPLOAD`. El CDN cachea el contenido en la frontera de la red para evitar transferencias redundantes, y se apoya en el Storage como almacenamiento de origen. Al conectar este Storage hacia todos los nodos de cómputo, se garantiza que los servidores de aplicación tengan acceso inmediato a los archivos subidos y estáticos de forma centralizada sin duplicar datos.
+- Línea de Defensa y Asincronismo (`Internet ──> Firewall ──> Queue ──> LB ──> Computes`): El Firewall actúa como el escudo inicial contra el tráfico `ATTACK`. Las peticiones legítimas de procesamiento e ingreso de datos pasan de inmediato a una Queue (Cola de mensajes), que actúa como un amortiguador (buffer) ante ráfagas masivas. Un Load Balancer (LB) toma los mensajes ordenadamente de la cola y los distribuye de manera balanceada entre el clúster de servidores Compute para que ninguno se sature.
+- Procesamiento y API Gateway (`Computes ──> API GW`): Los Computes procesan la lógica de negocio y se conectan a la API Gateway para centralizar, unificar y exponer de forma segura los endpoints de los microservicios de la aplicación.
+- Capa de Caché y Búsquedas Indexadas (`Computes ──> Cache ──> Search Engine`): Para mitigar el tráfico pesado de `READ` y `SEARCH`, cada Compute delega las solicitudes de lectura en memoria a una Cache. Si la consulta requiere procesamiento de texto indexado, la Cache se comunica directamente con el Search Engine, optimizando drásticamente los tiempos de respuesta.
+- Segregación de Base de Datos y Réplicas (`Computes ──> DB` y `Cache/DB ──> Read Replica`): Los servidores Compute realizan las operaciones de escritura (`WRITE`) directamente sobre la base de datos principal (DB). Para evitar cuellos de botella por concurrencia , tanto la DB (para sincronización) como la Cache se conectan a una Read Replica (Réplica de lectura) dedicada de forma exclusiva a resolver las peticiones `READ`.
+
+**Qué cuello de botella apareció primero:**
+
+El primer cuello de botella crítico apareció en los servidores Compute individuales y en la base de datos DB principal al inicio del laboratorio. Al procesar el tráfico de manera síncrona y sin intermediarios, las ráfagas concurrentes de escrituras (`WRITE`) y búsquedas de texto (`SEARCH`) bloqueaban las tablas de la base de datos relacional y saturaban el procesamiento de los servidores , lo que provocaba degradación del servicio (componentes en amarillo) y un alto costo operativo en reparaciones antes de implementar este diseño distribuido.
+
+**Qué componente escalaría si tuviera más presupuesto:**
+
+Contando con el excelente presupuesto remanente de $3,919, la estrategia ideal de escalabilidad consistiría en añadir funciones serverless (`λ Func`) conectadas en paralelo a la salida de la Queue, u hacer un escalamiento horizontal añadiendo más nodos de Compute al clúster del Load Balancer. Esto permitiría vaciar la cola de mensajes a una velocidad drásticamente mayor durante los picos de tráfico máximo de solicitudes por segundo ($req/s$).  
+
+**Conclusión de "Estabilidad" (Condición de Victoria)**
+
+Evaluando los resultados del simulador, la arquitectura desarrollada ha alcanzado con éxito la condición de estabilidad económica y técnica requerida para ganar el escenario. El sistema es capaz de mitigar fallas de manera automatizada manteniendo la reputación al 100% y generando ingresos constantes que superan con creces el costo de mantenimiento operativo ($\text{Upkeep Cost de }-\$12.60/\text{s}$), logrando romper ampliamente el objetivo con una puntuación final superior a los 354,000 puntos.
+
 ## Conclusión
 
 Las pruebas realizadas demostraron que la escalabilidad debe aplicarse sobre el componente que actúa como cuello de botella. La incorporación de una segunda instancia de Compute permitió mejorar la capacidad de procesamiento del sistema, mientras que estrategias como el uso de caché o réplicas pueden reducir la carga sobre las bases de datos y mejorar el rendimiento general.
