@@ -33,5 +33,58 @@ La arquitectura quedaría expuesta a ataques y tráfico malicioso, aumentando el
 
 *Figura 2. Implementación del Firewall como primera línea de defensa de la arquitectura.*
 
+## Load Balancer
+
+El Load Balancer o balanceador de carga distribuye las solicitudes entrantes entre distintos servidores o instancias de procesamiento.
+
+### a) ¿Qué problema resuelve?
+
+Evita que un único servidor reciba todo el tráfico y se sobrecargue.
+
+### b) ¿En qué capa del modelo TCP/IP se ubica?
+
+Principalmente en la capa de Transporte y, en algunos casos, en la capa de Aplicación.
+
+### c) ¿Qué pasaría si faltara?
+
+Todo el tráfico llegaría a un único servidor, aumentando las probabilidades de saturación y fallos.
+
+## Compute
+
+El componente Compute representa los servidores o instancias encargadas de ejecutar la lógica principal de la aplicación.
+
+### a) ¿Qué problema resuelve?
+
+Procesa las solicitudes de los usuarios y ejecuta las operaciones necesarias para responderlas.
+
+### b) ¿En qué capa del modelo TCP/IP se ubica?
+
+Principalmente en la capa de Aplicación.
+
+### c) ¿Qué pasaría si faltara?
+
+La aplicación no tendría capacidad de procesamiento y no podría responder solicitudes. 
+
+## SQL DB
+
+La base de datos SQL almacena información estructurada utilizando tablas y relaciones entre datos.
+
+### a) ¿Qué problema resuelve?
+
+Permite almacenar y recuperar información de forma organizada y consistente.
+
+### b) ¿En qué capa del modelo TCP/IP se ubica?
+
+Capa de Aplicación.
+
+### c) ¿Qué pasaría si faltara?
+
+No existiría un almacenamiento persistente para la información crítica de la aplicación.
+
+<img width="1921" height="843" alt="image" src="https://github.com/user-attachments/assets/f0033708-8c12-4474-9301-810e18e26332" />
+
+*Figura 3. Componentes principales utilizados para procesar y distribuir solicitudes dentro de la arquitectura: Firewall, Load Balancer, Compute y SQL Database.*
+
+
 
 
