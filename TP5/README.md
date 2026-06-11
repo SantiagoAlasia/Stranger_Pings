@@ -1,5 +1,25 @@
 # Trabajo Práctico N°5 - Server Survival
 
+- **Santiago Alasia**
+- **Lucia Feiguin Malkoni**
+- **Elena Monutti**
+
+**Stranger Pings** </br>
+**Universidad Nacional de Córdoba**</br>
+**Redes de Computadoras**</br>
+**Santiago Martin Henn** </br>
+**Facundo Nicolas Oliva Cuneo**</br>
+**11/06/2026**
+
+---
+
+### Información de los autores
+ 
+- **Información de contacto**: santiago.alasia@mi.unc.edu.ar 
+- **Información de contacto**: lucia.feiguin@mi.unc.edu.ar
+- **Información de contacto**: elena.monutti@mi.unc.edu.ar
+
+
 ## Introducción
 
 En este trabajo práctico se utilizó el simulador Server Survival para analizar el comportamiento de una arquitectura de servicios frente a distintos tipos de tráfico. El objetivo fue comprender la función de los principales componentes de infraestructura cloud, identificar posibles cuellos de botella y evaluar estrategias de escalabilidad y balanceo de carga.
@@ -370,6 +390,7 @@ Por lo tanto, la efectividad del escalado horizontal depende de identificar corr
 
 <img width="1024" height="482" alt="image" src="https://github.com/user-attachments/assets/eac41262-10c0-454e-b457-1b18c812d7b9" />
 
+*Figura 7. Arquitectura final con los resultados y componentes utilizados.*
 
 ### Justificación y Análisis de la Arquitectura
 
@@ -393,6 +414,6 @@ Evaluando los resultados del simulador, la arquitectura desarrollada ha alcanzad
 
 ## Conclusión
 
-Las pruebas realizadas demostraron que la escalabilidad debe aplicarse sobre el componente que actúa como cuello de botella. La incorporación de una segunda instancia de Compute permitió mejorar la capacidad de procesamiento del sistema, mientras que estrategias como el uso de caché o réplicas pueden reducir la carga sobre las bases de datos y mejorar el rendimiento general.
+El análisis y la experimentación con el simulador Server Survival permitieron comprobar de manera práctica que una infraestructura eficiente no depende únicamente de la cantidad de recursos de cómputo asignados, sino de un diseño arquitectónico estratégico y adaptado a la naturaleza del tráfico.
 
-Una arquitectura escalable requiere combinar distintas técnicas de balanceo y distribución de carga según las características del tráfico recibido.
+A lo largo del trabajo práctico, se evidenció cómo los esquemas tradicionales y síncronos colapsan ante picos de demanda debido a cuellos de botella en la capa de datos y procesamiento. La implementación exitosa de la arquitectura final en el modo Survival —que logró la condición de estabilidad económica y técnica superando los 354,000 puntos— demostró que patrones avanzados como el procesamiento asíncrono mediante colas (`Queue`), el desacoplamiento del tráfico estático con tecnologías de borde (`CDN` + `Storage`), la optimización de búsquedas indexadas y la segregación de lecturas y escrituras en las bases de datos (`Read Replica` y `Cache`) son indispensables para garantizar la alta disponibilidad, la tolerancia a fallos y la viabilidad financiera de una plataforma moderna en la nube.
