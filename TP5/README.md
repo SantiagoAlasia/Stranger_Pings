@@ -410,7 +410,7 @@ Contando con el excelente presupuesto remanente de $3,919, la estrategia ideal d
 
 **Conclusión de "Estabilidad" (Condición de Victoria)**
 
-Evaluando los resultados del simulador, la arquitectura desarrollada ha alcanzado con éxito la condición de estabilidad económica y técnica requerida para ganar el escenario. El sistema es capaz de mitigar fallas de manera automatizada manteniendo la reputación al 100% y generando ingresos constantes que superan con creces el costo de mantenimiento operativo ($\text{Upkeep Cost de }-\$12.60/\text{s}$), logrando romper ampliamente el objetivo con una puntuación final superior a los 354,000 puntos.
+Evaluando los resultados del simulador, la arquitectura desarrollada ha alcanzado con éxito la condición de estabilidad económica y técnica requerida para ganar el escenario. El sistema es capaz de mitigar fallas de manera automatizada manteniendo la reputación al 100% y generando ingresos constantes que superan con creces el costo de mantenimiento operativo ($\text{Upkeep Cost de } -12.60\$/\text{s}$) logrando romper ampliamente el objetivo con una puntuación final superior a los 354,000 puntos.
 
 ## Conclusión
 
