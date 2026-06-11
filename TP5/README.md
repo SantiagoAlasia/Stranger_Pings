@@ -222,4 +222,54 @@ El simulador Server Survival trabaja con distintos tipos de solicitudes que repr
 | SEARCH | Búsqueda de productos, artículos o usuarios | Search Engine | Consultas lentas y sobrecarga de la base de datos |
 | MALICIOUS | Ataques DDoS, bots o solicitudes maliciosas | Firewall | Caída del servicio y pérdida de reputación |
 
+## Análisis
+
+Los distintos tipos de tráfico requieren tratamientos diferentes para garantizar un funcionamiento eficiente del sistema. El contenido estático suele beneficiarse del uso de CDN y almacenamiento especializado, mientras que las operaciones de lectura y escritura dependen principalmente de bases de datos y mecanismos de caché.
+
+Por otra parte, las búsquedas suelen procesarse mediante motores especializados para evitar sobrecargar las bases de datos transaccionales. Finalmente, el tráfico malicioso debe ser bloqueado por mecanismos de seguridad como los firewalls para proteger la disponibilidad y estabilidad de la infraestructura.
+
+
+<img width="189" height="304" alt="image" src="https://github.com/user-attachments/assets/fc02bd21-d098-4f12-ad1f-11be59334a84" />
+
+*Figura 2. Distribución de los distintos tipos de tráfico simulados por Server Survival.*
+
+# 3. Testeamos Queues
+
+Para analizar el comportamiento de una cola de mensajes se construyó una arquitectura mínima compuesta por un Firewall, una Queue y una instancia de Compute.
+
+La prueba consistió en incrementar progresivamente la tasa de tráfico (Traffic Rate) para observar cómo reaccionaba la cola ante distintos niveles de carga.
+
+<img width="1922" height="830" alt="image" src="https://github.com/user-attachments/assets/ef05b393-7656-4876-aee1-43982b95ceef" />
+
+*Figura 3. Arquitectura utilizada para evaluar el comportamiento de una cola de mensajes. El tráfico ingresa a través del Firewall, pasa por la Queue y finalmente es procesado por Compute.*
+
+<img width="1922" height="830" alt="image" src="https://github.com/user-attachments/assets/4deedaf0-f2b4-45b8-9c52-50cfe07c14a9" />
+
+*Figura 4. Comportamiento de la Queue con una tasa de tráfico de 20 solicitudes por segundo.*
+
+<img width="1932" height="818" alt="image" src="https://github.com/user-attachments/assets/86d47b9a-39f8-4b66-8238-e81dce2db3fe" />
+
+*Figura 5. Comportamiento de la Queue con una tasa de tráfico de 50 solicitudes por segundo.*
+
+## Observaciones
+
+Inicialmente se ejecutó la arquitectura con una tasa de tráfico de 1 solicitud por segundo. En estas condiciones la Queue permaneció prácticamente vacía, ya que Compute podía procesar las solicitudes al mismo ritmo en que llegaban.
+
+Posteriormente se incrementó la tasa de tráfico a 20 solicitudes por segundo. En este escenario comenzó a observarse una acumulación temporal de mensajes dentro de la Queue. Sin embargo, el sistema continuó funcionando correctamente debido a que la cola absorbió parte de la carga.
+
+Finalmente se aumentó el tráfico a 50 solicitudes por segundo. La cantidad de mensajes almacenados en la Queue creció considerablemente, evidenciando su función como mecanismo de amortiguación frente a picos de demanda. Compute continuó procesando solicitudes mientras la cola regulaba el flujo de trabajo.
+
+## Respuestas
+
+### ¿Qué sucede después de la Queue cuando se incrementa el rate?
+
+Al aumentar la tasa de tráfico, la Queue comienza a acumular solicitudes y las envía progresivamente hacia Compute. De esta manera evita que el componente de procesamiento reciba toda la carga de forma instantánea.
+
+### ¿Qué sucede después de la Queue cuando el rate se lleva rápidamente a cero?
+
+Aunque el tráfico entrante disminuye o desaparece, la Queue continúa enviando las solicitudes que habían quedado almacenadas. Esto provoca que Compute siga trabajando durante un tiempo hasta vaciar completamente la cola.
+
+### Conclusión
+
+La Queue actúa como un mecanismo de desacople entre la llegada de solicitudes y su procesamiento. Su principal ventaja es absorber picos de tráfico, mejorar la estabilidad del sistema y evitar sobrecargas repentinas sobre los servicios de cómputo.
 
