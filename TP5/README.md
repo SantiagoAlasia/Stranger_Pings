@@ -209,3 +209,17 @@ Toda la carga recaería sobre una única base de datos o servicio, aumentando el
 
 Los componentes disponibles en Server Survival representan elementos comunes de una arquitectura cloud moderna. Cada uno cumple una función específica relacionada con seguridad, procesamiento, almacenamiento, distribución de tráfico o escalabilidad. La ausencia de cualquiera de estos componentes puede generar problemas de rendimiento, disponibilidad o seguridad, dependiendo del rol que desempeñe dentro del sistema.
 
+# 2. Tipos de tráfico
+
+El simulador Server Survival trabaja con distintos tipos de solicitudes que representan situaciones habituales dentro de una arquitectura informática. Cada tipo de tráfico posee características particulares y suele ser procesado por componentes especializados para optimizar el rendimiento y la escalabilidad del sistema.
+
+| Tipo de tráfico | Ejemplo real | Componente recomendado | Riesgo si se procesa incorrectamente |
+|----------------|-------------|------------------------|-------------------------------------|
+| STATIC | Imágenes, archivos CSS y JavaScript de una página web | CDN o Storage | Se desperdician recursos de cómputo y aumenta la latencia |
+| READ | Consulta de perfiles, productos o publicaciones | Cache, Réplica o SQL DB | Sobrecarga de la base de datos y respuestas lentas |
+| WRITE | Registro de usuarios, compras o publicaciones | SQL DB o Queue + Compute | Pérdida de datos o inconsistencias |
+| UPLOAD | Subida de imágenes, videos o documentos | Storage | Saturación de servidores de aplicación |
+| SEARCH | Búsqueda de productos, artículos o usuarios | Search Engine | Consultas lentas y sobrecarga de la base de datos |
+| MALICIOUS | Ataques DDoS, bots o solicitudes maliciosas | Firewall | Caída del servicio y pérdida de reputación |
+
+
