@@ -319,3 +319,55 @@ Principalmente fue un problema de capacidad. La arquitectura contaba con una sol
 ## Conclusión
 
 La arquitectura propuesta logró procesar correctamente los distintos tipos de tráfico requeridos por la consigna. Sin embargo, las pruebas demostraron que el componente de cómputo constituye el principal cuello de botella cuando aumenta la demanda. Esto evidencia la necesidad de aplicar estrategias de escalabilidad para soportar mayores volúmenes de tráfico.
+
+# 5. Escalabilidad y balanceo
+
+A partir de la arquitectura desarrollada en el punto anterior se realizaron distintas modificaciones con el objetivo de soportar una mayor cantidad de tráfico y reducir los cuellos de botella identificados durante las pruebas.
+
+Las estrategias implementadas estuvieron orientadas a distribuir mejor la carga de procesamiento y optimizar el acceso a los datos. 
+
+## Estrategia 1: Agregar más capacidad de cómputo
+
+La primera estrategia consistió en agregar una segunda instancia de Compute detrás del Load Balancer.
+
+<img width="1927" height="830" alt="image" src="https://github.com/user-attachments/assets/0e6d3caa-f10e-46d9-9ff3-b2a7f988c3ee" />
+
+*Figura 6. Arquitectura modificada incorporando una segunda instancia de Compute para distribuir la carga de procesamiento.*
+
+Al incorporar una segunda instancia de Compute, el Load Balancer pudo distribuir las solicitudes entre ambos servidores. Esto permitió reducir la carga individual de cada instancia y aumentar la capacidad total de procesamiento de la arquitectura.
+
+Esta estrategia resultó efectiva para resolver el cuello de botella identificado en el punto anterior, donde una única instancia de Compute se saturaba al incrementar la tasa de tráfico.
+
+## Estrategia 2: Incorporación de Cache
+
+La segunda estrategia consistió en agregar un componente de Cache para almacenar temporalmente datos consultados con frecuencia.
+
+La utilización de caché permite responder solicitudes READ sin necesidad de acceder constantemente a la base de datos principal.
+
+Como consecuencia, disminuye la carga sobre SQL DB y mejora el tiempo de respuesta para los usuarios.
+
+Esta estrategia resulta especialmente efectiva cuando predominan las operaciones de lectura sobre las de escritura.
+
+## Estrategia 3: Réplicas de lectura
+
+Otra estrategia posible consiste en incorporar réplicas de la base de datos.
+
+Las réplicas permiten distribuir las consultas de lectura entre varias instancias, evitando que una única base de datos reciba toda la carga.
+
+Esta solución mejora la disponibilidad y permite escalar aplicaciones con grandes volúmenes de consultas READ.
+
+## ¿Escalar horizontalmente siempre mejora el sistema?
+
+No necesariamente.
+
+Durante las pruebas realizadas se observó que agregar una segunda instancia de Compute permitió distribuir mejor la carga y reducir la saturación del componente de procesamiento.
+
+Sin embargo, si el cuello de botella se encontrara en la base de datos, el almacenamiento o el motor de búsqueda, agregar más servidores de cómputo no resolvería el problema.
+
+Por lo tanto, la efectividad del escalado horizontal depende de identificar correctamente qué componente limita el rendimiento general de la arquitectura.
+
+## Conclusión
+
+Las pruebas realizadas demostraron que la escalabilidad debe aplicarse sobre el componente que actúa como cuello de botella. La incorporación de una segunda instancia de Compute permitió mejorar la capacidad de procesamiento del sistema, mientras que estrategias como el uso de caché o réplicas pueden reducir la carga sobre las bases de datos y mejorar el rendimiento general.
+
+Una arquitectura escalable requiere combinar distintas técnicas de balanceo y distribución de carga según las características del tráfico recibido.
